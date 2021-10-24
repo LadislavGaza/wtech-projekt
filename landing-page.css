@@ -1,0 +1,60 @@
+.banner {
+    width: 100%;
+}
+
+.featured {
+    display: grid;
+    grid: 400px 8rem 12rem / auto 80% auto;
+}
+
+.discounts {
+    grid-row: 1;
+    grid-column: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.promises-heading {
+    grid-row: 2;
+    grid-column: 2;
+    text-align: center;
+}
+
+.promises {
+    grid-row: 3;
+    grid-column: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+
+.shield {
+    width: 10rem;
+    margin: 1rem;
+    height: 100%;
+    text-align: center;
+    padding: 1rem;
+    background-color: antiquewhite;
+    font-weight: bold;
+    font-size: 1.6rem;
+    border-radius: 0 0 50% 50%;
+    box-shadow: 5px 8px 16px #ccc;
+    background: rgb(181, 111, 13);
+    background: linear-gradient(
+          0deg, 
+          rgba(181, 111, 13, 1) 0%, 
+          rgba(215,151,20,1) 43%
+    );
+}
+
+.placeholder-discount {
+    background-color: gray;
+    width: 40%;
+    height: 80%;
+    text-align: center;
+    line-height: 3;
+}

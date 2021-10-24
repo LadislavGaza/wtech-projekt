@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>Antiquea</title>
         <link href="main.css" rel="stylesheet">
-        <link href="landing-page.css" rel="stylesheet">
+        <link href="login.css" rel="stylesheet">
     </head>
     <body>
         <header>
@@ -37,33 +37,21 @@
                 </ul>
             </nav>
         </header>
-        <main>
-            <img class="banner" src="images/banner.jpg" alt="Posteľ v kráľovskej spáľni">
-            <div class="featured">
-                <div class="discounts">
-                    <div class="placeholder-discount">Zľava 30%</div>
-                    <div class="placeholder-discount">Zľava na pohovky</div>
-                </div>
-                <h1 class="promises-heading">Prečo Antiquea</h1>
-                <div class="promises">
-                    <div class="shield">
-                        <p>Rýchle dodanie</p>
-                        <img class="icon-large" src="icons/wagon.svg">
-                    </div>
-                    <div class="shield">
-                        <p>Dobové prevedenie</p>
-                        <img class="icon-large" src="icons/pillar.svg">
-                    </div>
-                    <div class="shield">
-                        <p>Zaručená kvalita</p>
-                        <img class="icon-large" src="icons/badge.svg">
-                    </div>
-                    <div class="shield">
-                        <p>Expresný servis</p>
-                        <img class="icon-large" src="icons/book.svg">
-                    </div>
-                </div>
-            </div>
+        <main class="login-page">
+            <section class="login-form">
+                <h1>Prihlásenie</h1>
+                <form action="/login.php" method="post">
+                    <label for="email">E-mail</label>
+                    <input type="text" id="email">
+                    <label for="password">Heslo</label>
+                    <input type="password" id="password">
+                    <button type="submit">Prihlásiť sa</button>
+                </form>
+            </section>
+            <section class="login-register-link">
+                <h1>Nemáte ešte účet</h1>
+                <a href="#">Registrovať sa</a>
+            </section>
         </main>
         <footer>
             <div class="footer-container">
