@@ -1,0 +1,31 @@
+.registration-page {
+    display: grid;
+    grid: 450px / auto 50% auto; /*Nastav max-width detom*/
+    grid-row-gap: 2rem;
+    align-self: center;
+}
+
+.registration-form {
+    padding: 2% 10%;
+    grid-row: 1;
+    grid-column: 2;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+}
+
+.registration-form form {
+    display: grid;
+    grid: repeat(5, 1fr) / 20% 80%;
+    grid-row-gap: 0.5rem;
+    align-items: center;
+}
+
+#subtitle {
+    grid-column: span 2;
+}
+
+.registration-form button {
+    grid-column: 2;
+    width: 40%;
+    justify-self: end;
+}

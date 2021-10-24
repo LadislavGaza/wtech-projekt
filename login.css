@@ -15,7 +15,7 @@
 
 .login-form form {
     display: grid;
-    grid: 1fr 1fr 1fr / 20% 80%;
+    grid: repeat(3, 1fr) / 20% 80%;
     grid-row-gap: 0.5rem;
     align-items: center;
 }
@@ -38,24 +38,17 @@
     justify-self: end;
 }
 
-button:hover {
-    background-color: orange;
-    cursor: pointer;
-}
-
 .login-register-link a:hover {
     background-color: orange;
     cursor: pointer;
 }
 
 .login-register-link h1 {
-    display: inline-block;
-    width: 70%;
     margin: 0;
 }
 
 .login-register-link a {
-    display: inline-block;
+    display: block;
     text-decoration: none;
     color: black;
     border: 1px solid gray;
