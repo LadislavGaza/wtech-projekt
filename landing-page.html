@@ -3,15 +3,15 @@
     <head>
         <meta charset="utf-8">
         <title>Antiquea</title>
-        <link href="main.css" rel="stylesheet">
-        <link href="landing-page.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+        <link href="css/landing-page.css" rel="stylesheet">
     </head>
     <body>
         <header>
             <div class="toolbar">
-                <div class="logo"></div>
-                <div>
-                    <!--<img class="icon" src="icons/magician.svg">-->
+                <img src="images/logo.png" class="logo" alt="Antiquea Logo">
+                <div class="login-user">
+                    <img class="icon" src="icons/magician.svg">
                     <p>novotna@gmail.com</p>
                 </div>
                 <div class="search-bar">
@@ -21,7 +21,7 @@
                 <button>
                     Prihlásiť sa <img class="icon" src="icons/magician.svg">
                 </button>
-                <button>
+                <button class="cart">
                     Košík <img class="icon" src="icons/wagon.svg">
                 </button>
             </div>
@@ -44,23 +44,25 @@
                     <div class="placeholder-discount">Zľava 30%</div>
                     <div class="placeholder-discount">Zľava na pohovky</div>
                 </div>
-                <h1 class="promises-heading">Prečo Antiquea</h1>
-                <div class="promises">
-                    <div class="shield">
-                        <p>Rýchle dodanie</p>
-                        <img class="icon-large" src="icons/wagon.svg">
-                    </div>
-                    <div class="shield">
-                        <p>Dobové prevedenie</p>
-                        <img class="icon-large" src="icons/pillar.svg">
-                    </div>
-                    <div class="shield">
-                        <p>Zaručená kvalita</p>
-                        <img class="icon-large" src="icons/badge.svg">
-                    </div>
-                    <div class="shield">
-                        <p>Expresný servis</p>
-                        <img class="icon-large" src="icons/book.svg">
+                <div class="promises-container">
+                    <h1 class="promises-heading">Prečo Antiquea</h1>
+                    <div class="promises">
+                        <div class="shield">
+                            <p>Rýchle dodanie</p>
+                            <img class="icon-large" src="icons/wagon.svg">
+                        </div>
+                        <div class="shield">
+                            <p>Dobové prevedenie</p>
+                            <img class="icon-large" src="icons/pillar.svg">
+                        </div>
+                        <div class="shield">
+                            <p>Zaručená kvalita</p>
+                            <img class="icon-large" src="icons/badge.svg">
+                        </div>
+                        <div class="shield">
+                            <p>Expresný servis</p>
+                            <img class="icon-large" src="icons/book.svg">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -74,9 +76,21 @@
                     <li><a href="#">Doručenie</a></li>
                     <li><a href="#">Kontakt</a></li>
                 </ul>
-                <p>
-                    Gaža &amp; Hájek &copy; 2021
-                </p>
+                <div class="footer-icons-container">
+                    <div class="icons-transport">
+                        <img class="icon" src="icons/box.svg">
+                        <img class="icon" src="icons/truck.svg">
+                    </div>
+                    <div class="icons-contact">
+                        <img class="icon" src="icons/facebook.svg">
+                        <img class="icon" src="icons/instagram.svg">
+                    </div>
+                    <div class="icons-payment">
+                        <img class="icon" src="icons/cash-coin.svg">
+                        <img class="icon" src="icons/credit-card.svg">
+                    </div>
+                </div>
+                <p class="copyright">Gaža &amp; Hájek &copy; 2021 </p>
             </div>
         </footer>
     </body>

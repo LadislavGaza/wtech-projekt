@@ -1,0 +1,87 @@
+.center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.login-page {
+    width: 50%;
+    max-width: 650px;
+    color: #333;
+}
+
+.login-form {
+    height: 20rem;
+    padding: 5% 10%;
+    margin: 2rem 0;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    color: inherit;
+}
+
+.login-form form {
+    display: grid;
+    height: 80%;
+    grid: repeat(3, 1fr) / 20% 80%;
+    grid-column-gap: 0.5rem;
+    align-items: center;
+}
+
+.login-form {
+    font-size: 1rem;
+}
+
+.login-form input {
+    height: 50%;
+}
+
+
+.login-register-link {
+    padding: 2% 10%;
+    grid-row: 2;
+    grid-column: 2;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    display: grid;
+    grid: 1fr / 70% 30%;
+    align-items: center;
+        color: inherit;
+}
+
+.login-register-link a:hover {
+    background-color: orange;
+    cursor: pointer;
+}
+
+.login-register-link h1 {
+    margin: 0;
+}
+
+.login-form button {
+    grid-column: 2;
+    width: 40%;
+    justify-self: end;
+    padding: 0.5rem;
+    font-weight: bold;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 5%;
+}
+
+.login-form button:hover {
+    background-color: orange;
+}
+
+.login-register-link a {
+    display: block;
+    text-decoration: none;
+    border: 1px solid gray;
+    border-radius: 5%;
+    text-align: center;
+    padding: 0.5rem;
+    font-weight: bold;
+    color: inherit;
+    background-color: white;
+}
