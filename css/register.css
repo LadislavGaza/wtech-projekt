@@ -1,22 +1,24 @@
-.registration-page {
-    display: grid;
-    grid: 450px / auto 50% auto; /*Nastav max-width detom*/
-    grid-row-gap: 2rem;
-    align-self: center;
+.login-page {
+    width: 50%;
+    max-width: 750px;
+    color: #333;
 }
 
 .registration-form {
-    padding: 2% 10%;
-    grid-row: 1;
-    grid-column: 2;
+    height: 25rem;
+    font-size: 1rem;
+    padding: 5% 10%;
+    margin: 2rem 0;
     border: 1px solid black;
     border-radius: 0.5rem;
+    color: inherit;
 }
 
 .registration-form form {
     display: grid;
+    height: 80%;
     grid: repeat(5, 1fr) / 20% 80%;
-    grid-row-gap: 0.5rem;
+    grid-column-gap: 0.5rem;
     align-items: center;
 }
 
@@ -28,4 +30,8 @@
     grid-column: 2;
     width: 40%;
     justify-self: end;
+}
+
+.registration-form input {
+    height: 50%;
 }
