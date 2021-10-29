@@ -4,14 +4,10 @@
     grid-row-gap: 2rem;
 }
 
-.center {
-    grid-column: 2;
-}
 
 .product-image {
     width: 100%;
 }
-
 
 #product-category {
     grid-row: 1;
@@ -48,20 +44,6 @@
     position: relative;
 }
 
-@media (max-width: 768px) {
-    #product-wrapper article {
-        width: 45%;
-        height: 200px;
-    }
-}
-
-@media (max-width: 576px) {
-    #product-wrapper article {
-        width: 95%;
-        height: 300px;
-    }
-}
-
 #product-wrapper a {
     text-decoration: none;
     color: #333;
@@ -90,6 +72,13 @@
     font-weight: bold;
 }
 
+/* Pagination */
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 .pagination li {
     display: inline-block;
     list-style-type: none;
@@ -106,6 +95,7 @@
     background-color: orange;
 }
 
+/* Order dropdown */
 select {
     /* Reset Select */
     appearance: none;
@@ -132,7 +122,6 @@ select {
     overflow: hidden;
 }
 
-/* Arrow */
 .select-wrapper::after {
     content: '\25BC';
     position: absolute;
@@ -144,7 +133,6 @@ select {
     pointer-events: none;
 }
 
-/* Transition */
 .select:hover::after {
     color: #f39c12;
 }
@@ -154,8 +142,6 @@ select {
 .tabs {
     border-radius: 8px;
     box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
-    height: auto;
-    max-height: 50%;
 }
 
 .tab {
@@ -192,19 +178,6 @@ select {
     transition: all .3s;
 }
 
-.tab-close {
-    display: flex;
-    justify-content: flex-end;
-    padding: 1rem;
-    font-size: 0.75rem;
-    background-color: gray;
-    cursor: pointer;
-}
-      
-.tab-close:hover {
-    background-color: #edb72f;
-}
-
 .tab-checked {
     position: absolute;
     opacity: 0;
@@ -224,6 +197,7 @@ select {
     padding: 1rem;
 }
 
+/* Filter content */ 
 input[type="range"] {
     width: 100%;
 }
@@ -235,4 +209,18 @@ input[type="range"] {
 .price-constraint {
     display: inline-block;
     width: 30%;
+}
+
+@media (max-width: 768px) {
+    #product-wrapper article {
+        width: 45%;
+        height: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    #product-wrapper article {
+        width: 95%;
+        height: 300px;
+    }
 }

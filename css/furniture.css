@@ -1,0 +1,66 @@
+.furniture-page {
+    display: grid;
+    grid: repeat(4, auto) / auto 80% auto;
+    grid-row-gap: 2rem;
+}
+
+.breadcrumb{
+    padding: 0;
+    grid-row: 1;
+}
+
+.breadcrumb li {
+    display: inline;
+    font-size: 1.2rem;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: black;
+}
+
+.breadcrumb li+li:before {
+    color: black;
+    content: "/ ";
+}
+
+#furniture-description{
+    grid-row: 2;
+    display: grid;
+    grid: repeat(4, auto) / 1fr 1fr;
+}
+
+#preview {
+    grid-column: 1;
+    width: 95%;
+    margin: 1rem;
+}
+
+.second-column {
+    grid-column: 2;
+    height: 100%;
+}
+
+.second-column h1 {
+    margin-bottom: 2rem;
+}
+
+.second-column p {
+    line-height: 1.5rem;
+}
+
+.description {
+    margin-bottom: 5rem;
+}
+
+.paragraph-inline {
+    display: inline-block;
+    font-size: 1.5rem;
+}
+
+.second-column button {
+    float: right;
+    width: 40%;
+    height: 2.5rem;
+    margin-top: 2.5rem;
+}

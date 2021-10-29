@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Antiquea - Produkty</title>
+    <title>Antiquea - Objednávka</title>
     <link href="css/main.css" rel="stylesheet">
 </head>
-
 <body>
     <header>
         <div class="toolbar">
-            <a href="/landing-page.html">
+            <a href="landing-page.html">
                 <img src="images/logo.png" class="logo" alt="Antiquea Logo">
             </a>
             <div class="login-user">
@@ -41,7 +40,101 @@
         </nav>
     </header>
     <main>
-       
+        <h1>Váš nákup</h1>
+        <form action="/order.php" method="post">
+            <button type="submit">Na prehľad</button>
+            <section>
+                <input type="checkbox" class="tab-checked">
+                <h2>Doprava</h2>
+                <input type="radio" id="place" name="transport">
+                <label for="place">Výdajné miesto</label>
+                <label for="place">1 €</label>
+                <input type="radio" id="delivery" name="transport">
+                <label for="delivery">Kuriér</label>
+                <label for="delivery">0 €</label>
+                <input type="input">
+                <ul>
+                    <li>Bratislava</li>
+                    <li>Telgárt - veľkosklad</li>
+                    <li>Moldava nad Bodvou - papiernictvo</li>
+                    <li>Brezová pod Bradlom - chovateľské potreby</li>
+                </ul>
+                <p><b>Výdajné miesto:</b> Telgárt - veľkosklad</p>
+                <a href="#">Platba</a>
+            </section>
+            <section>
+                <input type="checkbox" class="tab-checked">
+                <h2>Platba</h2>
+                <input type="radio" id="dobierka" name="payment">
+                <label for="dobierka">Dobierka</label>
+                <label for="dobierka">1 €</label>
+                <input type="radio" id="card" name="payment">
+                <label for="card">Kartou vopred</label>
+                <label for="card">0 €</label>
+            </section>
+            <section>
+                <input type="checkbox" class="tab-checked">
+                <h2>Dodacia a fakturačná adresa</h2>
+                <div>
+                    <input type="checkbox" name="org">
+                    <label>Súkromná osoba</label>
+                    <input type="checkbox" name="org">
+                    <label>Firma</label>
+                </div>
+                <div>
+                    <label for="company">Spoločnosť</label>
+                    <input type="text" id="company" class="company">
+                    <label for="ico">IČO</label>
+                    <input type="text" id="ico" class="ico">
+                    <label for="dic">DIČ</label>
+                    <input type="text" id="dic" class="dic">
+                    <label for="ic-dph">IČ DPH</label>
+                    <input type="text" id="ic-dph" class="ic-dph">
+                </div>
+                <div>
+                    <label for="name">Meno</label>
+                    <input type="text" id="name" class="name">
+                    <label for="surname">Priezvisko</label>
+                    <input type="text" id="surname" class="surname">
+                    <label for="street">Ulica a číslo domu</label>
+                    <input type="text" id="street" class="street">
+                    <label for="city">Mesto</label>
+                    <input type="text" id="city" class="city">
+                    <label for="psc">PSČ</label>
+                    <input type="text" id="psc" class="psc">
+                    <label for="phone">Telefónne číslo</label>
+                    <input type="text" id="phone" class="phone">
+                </div>
+            </section>
+            <a href="#">Na prehľad</a>
+        </form>
+        <section>
+            <article>
+                <img src="images/sofa.jpg">
+                <label>Bauhaus Chrome</label>
+                <label>1400 €</label>
+            </article>
+            <article>
+                <img src="images/sofa.jpg">
+                <label>Bauhaus Chrome</label>
+                <label>1400 €</label>
+            </article>
+            <article>
+                <img src="images/sofa.jpg">
+                <label>Bauhaus Chrome</label>
+                <label>1400 €</label>
+            </article>
+            <table>
+                <tr>
+                    <th><emph>Celková suma:</emph><th>
+                    <td><emph>3305 €</emph></td>
+                </tr>
+                <tr>
+                    <th>Bez DPH:<th>
+                    <td>3305 €</td>
+                </tr>
+            </table>
+        </section>
     </main>
     <footer>
         <div class="footer-container">
@@ -49,23 +142,23 @@
                 <li><a href="#">O nás</a></li>
                 <li><a href="#">Obchodné podmienky</a></li>
                 <li><a href="#">Reklamácia</a></li>
-                <li><a href="#">Doručenie</a></li>
-                <li><a href="#">Kontakt</a></li>
-            </ul>
-            <div class="footer-icons-container">
-                <div class="icons-transport">
+                <li class="footer-icons-container">
+                    <a href="#">Doručenie</a>
                     <img class="icon" src="icons/box.svg">
                     <img class="icon" src="icons/truck.svg">
-                </div>
-                <div class="icons-contact">
+                   
+                </li>
+                <li class="footer-icons-container">
+                    <a href="#">Kontakt</a>
                     <img class="icon" src="icons/facebook.svg">
                     <img class="icon" src="icons/instagram.svg">
-                </div>
-                <div class="icons-payment">
+                </li>
+                <li class="footer-icons-container">
+                    <a href="#">Platba</a>
                     <img class="icon" src="icons/cash-coin.svg">
                     <img class="icon" src="icons/credit-card.svg">
-                </div>
-            </div>
+                </li>
+            </ul>
             <p class="copyright">Gaža &amp; Hájek &copy; 2021 </p>
         </div>
     </footer>
