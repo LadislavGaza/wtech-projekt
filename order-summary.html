@@ -40,7 +40,69 @@
         </nav>
     </header>
     <main>
-
+        <h1 class="content-middle">Zhrnutie objednávky</h1>
+        <table class="cart-contents content-middle">
+            <thead>
+                <th></th>
+                <th>Názov produktu</th>
+                <th>Cena za kus</th>
+                <th>Množstvo</th>
+                <th>Medzisúčet</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="images/couch.jpg" width="150"></td>
+                    <td>Pohovka Bauhaus Chrome</td>
+                    <td>720 €</td>
+                    <td>2</td>
+                    <td>1440 €</td>
+                </tr>
+                <tr>
+                    <td><img src="images/couch.jpg" width="150"></td>
+                    <td>Drevený rošt Jakub</td>
+                    <td>65 €</td>
+                    <td>1</td>
+                    <td>65 €</td>
+                </tr>
+                <tr>
+                    <td><img src="images/couch.jpg" width="150"></td>
+                    <td>Medený kávový stolík</td>
+                    <td>1800 €</td>
+                    <td>1</td>
+                    <td>1800 €</td>
+                </tr>
+            </tbody>
+        </table>
+        <section>
+            <h1>Doprava</h1>
+            <img class="icon" src="icons/box.svg">
+            <p>Výdajné miesto</p>
+            <p>5 €</p>
+            <p>Telgárt - veľkosklad</p>
+        </section>
+        <section>
+            <h1>Platba</h1>
+            <img class="icon" src="icons/credit-card.svg">
+            <p>Kartou vopred</p>
+            <p>0 €</p>
+        </section>
+        <table>
+            <tr>
+                <th><emph>Celková suma:</emph><th>
+                <td><emph>3305 €</emph></td>
+            </tr>
+            <tr>
+                <th>Bez DPH:<th>
+                <td>3305 €</td>
+            </tr>
+        </table>
+        <button>Späť k objednávke</button> 
+        <input id="sales-terms-confirm" type="checkbox">
+        <label for="sales-terms-confirm">Súhlasím s obchodnými podmienkami</label>
+        <input id="personal-data-confirm" type="checkbox">
+        <label for="personal-data-confirm">Súhlasím so spracovaním osobných údajov</label>
+        <button>Dokončiť nákup</button>
+        <p>*s povinnosťou platby</p>
     </main>
     <footer>
         <div class="footer-container">
@@ -48,18 +110,18 @@
                 <li><a href="#">O nás</a></li>
                 <li><a href="#">Obchodné podmienky</a></li>
                 <li><a href="#">Reklamácia</a></li>
-                <li class="footer-icons-container">
+                <li>
                     <a href="#">Doručenie</a>
                     <img class="icon" src="icons/box.svg">
                     <img class="icon" src="icons/truck.svg">
-                   
+
                 </li>
-                <li class="footer-icons-container">
+                <li>
                     <a href="#">Kontakt</a>
                     <img class="icon" src="icons/facebook.svg">
                     <img class="icon" src="icons/instagram.svg">
                 </li>
-                <li class="footer-icons-container">
+                <li>
                     <a href="#">Platba</a>
                     <img class="icon" src="icons/cash-coin.svg">
                     <img class="icon" src="icons/credit-card.svg">

@@ -6,6 +6,22 @@
     <title>Antiquea - Produkt</title>
     <link href="css/main.css" rel="stylesheet">
     <link href="css/furniture.css" rel="stylesheet">
+    <script type="text/javascript">
+        window.addEventListener('load', function() {
+            const buy = document.getElementById('add-to-cart');
+        
+            buy.addEventListener('click', function() {
+                const icon = document.getElementById('cart-add-icon');
+                const notif = document.getElementById('cart-notification');
+                
+                this.textContent = 'Pridané do košíka';
+                this.style.color = 'white';
+                this.style.backgroundColor = 'green';
+                notif.style.display = 'flex';
+                icon.src = 'icons/check.svg';
+            });    
+        })
+    </script>
 </head>
 <body>
     <header>
@@ -26,6 +42,7 @@
             </a>
             <a href="cart.html" class="button cart">
                 Košík <img class="icon" src="icons/wagon.svg">
+                <div id="cart-notification">1</div>
             </a>
         </div>
         <nav class="product-categories">
@@ -45,110 +62,105 @@
             <li><a href="#">Obývačka</a></li>
             <li><a href="#">Pohovka Bauhaus Chrome</a></li>
         </ul>
-
-        <div id="furniture-description" class="content-middle">
+        <div id="furniture-panel" class="content-middle">
             <img src="images/couch.jpg" alt="Pohovka Bauhaus Chrome" id="preview">
-            <div class="second-column">
+            <div id="furniture-description">
                 <h1>Pohovka Bauhaus Chrome</h1>
                 <p class="description">Kovová rúrková pohovka chrómového vzhľadu, rok 1930. Traduje sa,
                     že bola nadizajnovaná samotným Klementom Gottwaldom. Kov je vo
                     výbornom stave
                 </p>
-                <p>Na sklade 4 ks</p>
-                <div class="paragraph-inline">
-                    <p>720 €</p>
+                <p id="stock-amount">Na sklade 4 ks</p>
+                <div id="furniture-price">
+                    <p id="furniture-price-dph">720 €</p>
                     <p>576 € bez DPH</p>
                 </div>
-                
-                <button>Do košíka</button>
+                <button id="add-to-cart" class="button">
+                    <img class="icon" id="cart-add-icon" src="icons/wagon.svg">
+                    Do košíka
+                </button>
             </div>
-            <section>
-                <div>
-                    <h2>Parametre</h2>
-                    <table>
-                        <tr>
-                            <th>Historické obdobie</th>
-                            <td>Bauhaus</td>
-                        </tr>
-                        <tr>
-                            <th>Druh nábytku</th>
-                            <td>Pohovka</td>
-                        </tr>
-                        <tr>
-                            <th>Rok výroby</th>
-                            <td>1930</td>
-                        </tr>
-                        <tr>
-                            <th>Krajina pôvodu</th>
-                            <td>Česká republika</td>
-                        </tr>
-                        <tr>
-                            <th>Materiál</th>
-                            <ul>
-                                <li>Kov</li>
-                                <li>Látka</li>
-                            </ul>
-                        </tr>
-                        <tr>
-                            <th>Farba</th>
-                            <ul>
-                                <li>Strieborna</li>
-                                <li>Šedá</li>
-                            </ul>
-                        </tr>
-                    </table>
-                </div>
-                <div>
-                    <h2>Rozmery</h2>
-                    <table>
-                        <tr>
-                            <th>Šírka</th>
-                            <td>191 cm</td>
-                        </tr>
-                        <tr>
-                            <th>Hĺbka</th>
-                            <td>81 cm</td>
-                        </tr>
-                        <tr>
-                            <th>Výška</th>
-                            <td>70 cm</td>
-                        </tr>
-                    </table>  
-                </div>
+        </div>
+        <section id="furniture-parameters" class="content-middle">
+            <div class="furniture-parameters-column">
+                <h2>Parametre</h2>
+                <table>
+                    <tr>
+                        <th>Historické obdobie:</th>
+                        <td>Bauhaus</td>
+                    </tr>
+                    <tr>
+                        <th>Druh nábytku:</th>
+                        <td>Pohovka</td>
+                    </tr>
+                    <tr>
+                        <th>Rok výroby:</th>
+                        <td>1930</td>
+                    </tr>
+                    <tr>
+                        <th>Krajina pôvodu:</th>
+                        <td>Česká republika</td>
+                    </tr>
+                    <tr>
+                        <th>Materiál:</th>
+                        <td>Kov, Látka</td>
+                    </tr>
+                    <tr>
+                        <th>Farba:</th>
+                        <td>Strieborna, Šedá</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="furniture-parameters-column">
+                <h2>Rozmery</h2>
+                <table>
+                    <tr>
+                        <th>Šírka:</th>
+                        <td>191 cm</td>
+                    </tr>
+                    <tr>
+                        <th>Hĺbka:</th>
+                        <td>81 cm</td>
+                    </tr>
+                    <tr>
+                        <th>Výška:</th>
+                        <td>70 cm</td>
+                    </tr>
+                </table>  
+            </div>
+        </section>
+        <div id="furniture-recommendation" class="content-middle product-wrapper"> 
+            <h2 id="furniture-recommendation-title">Ďalej odporúčame</h2>
+            <section id="furniture-recommendation-products">
+                <article>
+                    <a href="furniture.html">
+                        <img class="product-image" src="images/couch.jpg">
+                        <p class="product-caption">Holandský barokový kabinet</p>
+                        <p class="product-price">1120 €</p>
+                    </a>
+                </article>
+                <article>
+                    <a href="furniture.html">
+                        <img class="product-image" src="images/sofa.jpg">
+                        <p class="product-caption">Pohovka zo zelenej kože  z 1970</p>
+                        <p class="product-price">525 €</p>
+                    </a>
+                </article>
+                <article>
+                    <a href="furniture.html">
+                        <img class="product-image" src="images/couch.jpg">
+                        <p class="product-caption">Pohovka Bauhaus Chrome</p>
+                        <p class="product-price">720 €</p>
+                    </a>
+                </article>
+                <article>
+                    <a href="furniture.html">
+                        <img class="product-image" src="images/sofa.jpg">
+                        <p class="product-caption">Maľované bambusové kreslo</p>
+                        <p class="product-price">499 €</p>
+                    </a>
+                </article>
             </section>
-            <div class="content-middle"> 
-                <h2>Ďalej odporúčame</h2>
-                <section>
-                    <article>
-                        <a href="furniture.html">
-                            <img class="product-image" src="images/couch.jpg">
-                            <p class="product-caption">Holandský barokový kabinet</p>
-                            <p class="product-price">1120 €</p>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="furniture.html">
-                            <img class="product-image" src="images/sofa.jpg">
-                            <p class="product-caption">Pohovka zo zelenej kože  z 1970</p>
-                            <p class="product-price">525 €</p>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="furniture.html">
-                            <img class="product-image" src="images/couch.jpg">
-                            <p class="product-caption">Pohovka Bauhaus Chrome</p>
-                            <p class="product-price">720 €</p>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="furniture.html">
-                            <img class="product-image" src="images/sofa.jpg">
-                            <p class="product-caption">Maľované bambusové kreslo</p>
-                            <p class="product-price">499 €</p>
-                        </a>
-                    </article>
-                </section>
-            </div>
         </div>
     </main>
     <footer>
@@ -157,18 +169,18 @@
                 <li><a href="#">O nás</a></li>
                 <li><a href="#">Obchodné podmienky</a></li>
                 <li><a href="#">Reklamácia</a></li>
-                <li class="footer-icons-container">
+                <li>
                     <a href="#">Doručenie</a>
                     <img class="icon" src="icons/box.svg">
                     <img class="icon" src="icons/truck.svg">
-                   
+
                 </li>
-                <li class="footer-icons-container">
+                <li>
                     <a href="#">Kontakt</a>
                     <img class="icon" src="icons/facebook.svg">
                     <img class="icon" src="icons/instagram.svg">
                 </li>
-                <li class="footer-icons-container">
+                <li>
                     <a href="#">Platba</a>
                     <img class="icon" src="icons/cash-coin.svg">
                     <img class="icon" src="icons/credit-card.svg">

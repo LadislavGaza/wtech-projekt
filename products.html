@@ -1,242 +1,242 @@
 <!DOCTYPE html>
 <html lang="sk">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Antiquea - Produkty</title>
-        <link href="css/main.css" rel="stylesheet">
-        <link href="css/products.css" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-            <div class="toolbar">
-                <a href="landing-page.html">
-                    <img src="images/logo.png" class="logo" alt="Antiquea Logo">
-                </a>
-                <div class="login-user">
-                    <img class="icon" src="icons/magician.svg">
-                    <p>novotna@gmail.com</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Antiquea - Produkty</title>
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/products.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="toolbar">
+            <a href="landing-page.html">
+                <img src="images/logo.png" class="logo" alt="Antiquea Logo">
+            </a>
+            <div class="login-user">
+                <img class="icon" src="icons/magician.svg">
+                <p>novotna@gmail.com</p>
+            </div>
+            <div class="search-bar">
+                <img src="icons/search.svg" class="icon">
+                <input type="text" id="search" placeholder="Sem zadajte hľadaný nábytok ...">
+            </div>
+            <a href="login.html" class="button">
+                Prihlásiť sa <img class="icon" src="icons/magician.svg">
+            </a>
+            <a href="cart.html" class="button cart">
+                Košík <img class="icon" src="icons/wagon.svg">
+            </a>
+        </div>
+        <nav class="product-categories">
+            <ul>
+                <li><a href="products.html">Obývačka</a></li>
+                <li><a href="products.html">Detská izba</a></li>
+                <li><a href="products.html">Spálňa</a></li>
+                <li><a href="products.html">Kuchyňa</a></li>
+                <li><a href="products.html">Kupeľňa</a></li>
+                <li><a href="products.html">Pracovňa</a></li>
+                <li><a href="products.html">Doplnky</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="product-page">
+        <h1 id="product-category" class="content-middle">Obývačka</h1>
+        <div id="product-description" class="content-middle">
+            <p>Obývačka je miestom kde spoločne posedí celá rodina, pozývame si do nej hostí, trávime v nej chvíľe pohodlia.
+                Zvolený nábytok by mal preto vhodne vyzdvihovať ostatné zariadenie domácnosti a zároveň pôsobiť na pohľad
+                príjemným dojmom. Ideálnou voľbou je zladiť štýl pohoviek, kresiel, stolíku a skriniek v dobovom tóne.
+            </p>
+            <form action="/sort.php" action="post">
+                <fieldset class="content-middle">
+                    <legend>Usporiadanie</legend>
+                    <div class="select-wrapper">
+                        <select>
+                            <option value="cheap">Od najlacnejších</option>
+                            <option value="expensive">Od najdrahších</option>
+                            <option value="discount">Od najväčšej zľavy</option>
+                            <option value="newest">Najnovšie</option>
+                        </select>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div id="product-list" class="content-middle">
+            <aside class="tabs">
+                <div class="tab">
+                    <input type="checkbox" id="price-accordion" class="tab-checked">
+                    <label class="tab-label" for="price-accordion">Cena</label>
+                    <div class="tab-content">
+                        <input type="range" min="0" max="2000" id="cena">
+                        <div class="price-range">
+                            <input type="text" class="price-constraint"> € až <input type="text" class="price-constraint"> €
+                        </div>
+                    </div>
                 </div>
-                <div class="search-bar">
-                    <img src="icons/search.svg" class="icon">
-                    <input type="text" id="search" placeholder="Sem zadajte hľadaný nábytok ...">
+                <div class="tab">
+                    <input type="checkbox" id="era-accordion" class="tab-checked">
+                    <label class="tab-label" for="era-accordion">Historické obdobie</label>
+                    <div class="tab-content">
+                        <input type="checkbox" id="stredovek">
+                        <label for="stredovek">Stredovek</label>
+                        <input type="checkbox" id="renesancia">
+                        <label for="renesancia">Renesancia</label>
+                        <input type="checkbox" id="rokoko">
+                        <label for="rokoko">Rokoko</label>
+                        <input type="checkbox" id="art-nouveau">
+                        <label for="art-nouveau">Art Nouveau</label>
+                        <input type="checkbox" id="bauhaus">
+                        <label for="bauhaus">Bauhaus</label>
+                        <input type="checkbox" id="art-deco">
+                        <label for="art-deco">Art Deco</label>
+                    </div>
                 </div>
-                <a href="login.html" class="button">
-                    Prihlásiť sa <img class="icon" src="icons/magician.svg">
-                </a>
-                <a href="cart.html" class="button cart">
-                    Košík <img class="icon" src="icons/wagon.svg">
-                </a>
-            </div>
-            <nav class="product-categories">
-                <ul>
-                    <li><a href="products.html">Obývačka</a></li>
-                    <li><a href="products.html">Detská izba</a></li>
-                    <li><a href="products.html">Spálňa</a></li>
-                    <li><a href="products.html">Kuchyňa</a></li>
-                    <li><a href="products.html">Kupeľňa</a></li>
-                    <li><a href="products.html">Pracovňa</a></li>
-                    <li><a href="products.html">Doplnky</a></li>
-                </ul>
-            </nav>
-        </header>
-        <main class="product-page">
-            <h1 id="product-category" class="content-middle">Obývačka</h1>
-            <div id="product-description" class="content-middle">
-                <p>Obývačka je miestom kde spoločne posedí celá rodina, pozývame si do nej hostí, trávime v nej chvíľe pohodlia.
-                    Zvolený nábytok by mal preto vhodne vyzdvihovať ostatné zariadenie domácnosti a zároveň pôsobiť na pohľad
-                    príjemným dojmom. Ideálnou voľbou je zladiť štýl pohoviek, kresiel, stolíku a skriniek v dobovom tóne.
-                </p>
-                <form action="/sort.php" action="post">
-                    <fieldset class="content-middle">
-                        <legend>Usporiadanie</legend>
-                        <div class="select-wrapper">
-                            <select>
-                                <option value="cheap">Od najlacnejších</option>
-                                <option value="expensive">Od najdrahších</option>
-                                <option value="discount">Od najväčšej zľavy</option>
-                                <option value="newest">Najnovšie</option>
-                            </select>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-            <div id="product-list" class="content-middle">
-                <aside class="tabs">
-                    <div class="tab">
-                        <input type="checkbox" id="price-accordion" class="tab-checked">
-                        <label class="tab-label" for="price-accordion">Cena</label>
-                        <div class="tab-content">
-                            <input type="range" min="0" max="2000" id="cena">
-                            <div class="price-range">
-                                <input type="text" class="price-constraint"> € až <input type="text" class="price-constraint"> €
-                            </div>
-                        </div>
+                <div class="tab">
+                    <input type="checkbox" id="material-accordion" class="tab-checked">
+                    <label class="tab-label" for="material-accordion">Materiál</label>
+                    <div class="tab-content">
+                        <input type="checkbox" id="drevo">
+                        <label for="drevo">Drevo</label>
+                        <input type="checkbox" id="koza">
+                        <label for="koza">Koža</label>
+                        <input type="checkbox" id="kov">
+                        <label for="kov">Kov</label>
+                        <input type="checkbox" id="plast">
+                        <label for="plast">Plast</label>
+                        <input type="checkbox" id="latka">
+                        <label for="latka">Látka</label>          
                     </div>
-                    <div class="tab">
-                        <input type="checkbox" id="era-accordion" class="tab-checked">
-                        <label class="tab-label" for="era-accordion">Historické obdobie</label>
-                        <div class="tab-content">
-                            <input type="checkbox" id="stredovek">
-                            <label for="stredovek">Stredovek</label>
-                            <input type="checkbox" id="renesancia">
-                            <label for="renesancia">Renesancia</label>
-                            <input type="checkbox" id="rokoko">
-                            <label for="rokoko">Rokoko</label>
-                            <input type="checkbox" id="art-nouveau">
-                            <label for="art-nouveau">Art Nouveau</label>
-                            <input type="checkbox" id="bauhaus">
-                            <label for="bauhaus">Bauhaus</label>
-                            <input type="checkbox" id="art-deco">
-                            <label for="art-deco">Art Deco</label>
-                        </div>
+                </div>
+                <div class="tab">
+                    <input type="checkbox" id="furniture-accordion" class="tab-checked">
+                    <label class="tab-label" for="furniture-accordion">Druh nábytku</label>
+                    <div class="tab-content">
+                        <input type="checkbox" id="sedacky">
+                        <label for="sedacky">Sedačky</label>
+                        <input type="checkbox" id="pohovky">
+                        <label for="pohovky">Pohovky</label>
+                        <input type="checkbox" id="kresla">
+                        <label for="kresla">Kreslá</label>
+                        <input type="checkbox" id="lehatka">
+                        <label for="lehatka">Lehátka</label>
+                        <input type="checkbox" id="komody">
+                        <label for="komody">Komody</label>           
                     </div>
-                    <div class="tab">
-                        <input type="checkbox" id="material-accordion" class="tab-checked">
-                        <label class="tab-label" for="material-accordion">Materiál</label>
-                        <div class="tab-content">
-                            <input type="checkbox" id="drevo">
-                            <label for="drevo">Drevo</label>
-                            <input type="checkbox" id="koza">
-                            <label for="koza">Koža</label>
-                            <input type="checkbox" id="kov">
-                            <label for="kov">Kov</label>
-                            <input type="checkbox" id="plast">
-                            <label for="plast">Plast</label>
-                            <input type="checkbox" id="latka">
-                            <label for="latka">Látka</label>          
-                        </div>
+                </div>
+                <div class="tab">
+                    <input type="checkbox" id="color-accordion" class="tab-checked">
+                    <label class="tab-label" for="color-accordion">Farba</label>
+                    <div class="tab-content">
+                        <input type="checkbox" id="biela">
+                        <label for="biela">Biela</label>
+                        <input type="checkbox" id="cierna">
+                        <label for="cierna">Čierna</label>
+                        <input type="checkbox" id="hneda">
+                        <label for="hneda">Hneda</label>           
                     </div>
-                    <div class="tab">
-                        <input type="checkbox" id="furniture-accordion" class="tab-checked">
-                        <label class="tab-label" for="furniture-accordion">Druh nábytku</label>
-                        <div class="tab-content">
-                            <input type="checkbox" id="sedacky">
-                            <label for="sedacky">Sedačky</label>
-                            <input type="checkbox" id="pohovky">
-                            <label for="pohovky">Pohovky</label>
-                            <input type="checkbox" id="kresla">
-                            <label for="kresla">Kreslá</label>
-                            <input type="checkbox" id="lehatka">
-                            <label for="lehatka">Lehátka</label>
-                            <input type="checkbox" id="komody">
-                            <label for="komody">Komody</label>           
-                        </div>
-                    </div>
-                    <div class="tab">
-                        <input type="checkbox" id="color-accordion" class="tab-checked">
-                        <label class="tab-label" for="color-accordion">Farba</label>
-                        <div class="tab-content">
-                            <input type="checkbox" id="biela">
-                            <label for="biela">Biela</label>
-                            <input type="checkbox" id="cierna">
-                            <label for="cierna">Čierna</label>
-                            <input type="checkbox" id="hneda">
-                            <label for="hneda">Hneda</label>           
-                        </div>
-                    </div>
-                </aside>
-                <section id="product-wrapper">
-                    <article>
-                        <a href="furniture.html">
-                            <img class="product-image" src="images/sofa.jpg" alt="Kreslo v štýle art deco">
-                            <p class="product-caption">Kreslo v štýle art deco s červeným čalúnením</p>
-                            <p class="product-price">350 €</p>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="furniture.html">
-                            <img class="product-image" src="images/couch.jpg">
-                            <p class="product-caption">Holandský barokový kabinet</p>
-                            <p class="product-price">1120 €</p>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="furniture.html">
-                            <img class="product-image" src="images/sofa.jpg">
-                            <p class="product-caption">Pohovka zo zelenej kože  z 1970</p>
-                            <p class="product-price">525 €</p>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="furniture.html">
-                            <img class="product-image" src="images/couch.jpg">
-                            <p class="product-caption">Pohovka Bauhaus Chrome</p>
-                            <p class="product-price">720 €</p>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="furniture.html">
-                            <img class="product-image" src="images/sofa.jpg">
-                            <p class="product-caption">Maľované bambusové kreslo</p>
-                            <p class="product-price">499 €</p>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="furniture.html">
-                            <img class="product-image" src="images/sofa.jpg">
-                            <p class="product-caption">Gauč alebo rozkladacia pohovka z 1960</p>
-                            <p class="product-price">380 €</p>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="furniture.html">
-                            <img class="product-image" src="images/couch.jpg">
-                            <p class="product-caption">Benátsky rokokový konferenčný stolík</p>
-                            <p class="product-price">2200 €</p>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="furniture.html">
-                            <img class="product-image" src="images/sofa.jpg">
-                            <p class="product-caption">Mahagonový kartový stolík z pozláteného bronzu</p>
-                            <p class="product-price">5200 €</p>
-                        </a>
-                    </article>
-                    <article>
-                        <a href="furniture.html">
-                            <img class="product-image" src="images/couch.jpg">
-                            <p class="product-caption">Medený kávový stolík</p>
-                            <p class="product-price">1800 €</p>
-                        </a>
-                    </article>
-                </section>
-            </div>
-            <nav class="pagination content-middle">
-                <ul>
-                    <li><a href="#">&lt;</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">&gt;</a></li>
-                </ul>
-            </nav>
-        </main>
-        <footer>
-            <div class="footer-container">
-                <ul>
-                    <li><a href="#">O nás</a></li>
-                    <li><a href="#">Obchodné podmienky</a></li>
-                    <li><a href="#">Reklamácia</a></li>
-                    <li class="footer-icons-container">
-                        <a href="#">Doručenie</a>
-                        <img class="icon" src="icons/box.svg">
-                        <img class="icon" src="icons/truck.svg">
-                       
-                    </li>
-                    <li class="footer-icons-container">
-                        <a href="#">Kontakt</a>
-                        <img class="icon" src="icons/facebook.svg">
-                        <img class="icon" src="icons/instagram.svg">
-                    </li>
-                    <li class="footer-icons-container">
-                        <a href="#">Platba</a>
-                        <img class="icon" src="icons/cash-coin.svg">
-                        <img class="icon" src="icons/credit-card.svg">
-                    </li>
-                </ul>
-                <p class="copyright">Gaža &amp; Hájek &copy; 2021 </p>
-            </div>
-        </footer>
-    </body>
+                </div>
+            </aside>
+            <section class="product-wrapper">
+                <article>
+                    <a href="furniture.html">
+                        <img class="product-image" src="images/sofa.jpg" alt="Kreslo v štýle art deco">
+                        <p class="product-caption">Kreslo v štýle art deco s červeným čalúnením</p>
+                        <p class="product-price">350 €</p>
+                    </a>
+                </article>
+                <article>
+                    <a href="furniture.html">
+                        <img class="product-image" src="images/couch.jpg">
+                        <p class="product-caption">Holandský barokový kabinet</p>
+                        <p class="product-price">1120 €</p>
+                    </a>
+                </article>
+                <article>
+                    <a href="furniture.html">
+                        <img class="product-image" src="images/sofa.jpg">
+                        <p class="product-caption">Pohovka zo zelenej kože  z 1970</p>
+                        <p class="product-price">525 €</p>
+                    </a>
+                </article>
+                <article>
+                    <a href="furniture.html">
+                        <img class="product-image" src="images/couch.jpg">
+                        <p class="product-caption">Pohovka Bauhaus Chrome</p>
+                        <p class="product-price">720 €</p>
+                    </a>
+                </article>
+                <article>
+                    <a href="furniture.html">
+                        <img class="product-image" src="images/sofa.jpg">
+                        <p class="product-caption">Maľované bambusové kreslo</p>
+                        <p class="product-price">499 €</p>
+                    </a>
+                </article>
+                <article>
+                    <a href="furniture.html">
+                        <img class="product-image" src="images/sofa.jpg">
+                        <p class="product-caption">Gauč alebo rozkladacia pohovka z 1960</p>
+                        <p class="product-price">380 €</p>
+                    </a>
+                </article>
+                <article>
+                    <a href="furniture.html">
+                        <img class="product-image" src="images/couch.jpg">
+                        <p class="product-caption">Benátsky rokokový konferenčný stolík</p>
+                        <p class="product-price">2200 €</p>
+                    </a>
+                </article>
+                <article>
+                    <a href="furniture.html">
+                        <img class="product-image" src="images/sofa.jpg">
+                        <p class="product-caption">Mahagonový kartový stolík z pozláteného bronzu</p>
+                        <p class="product-price">5200 €</p>
+                    </a>
+                </article>
+                <article>
+                    <a href="furniture.html">
+                        <img class="product-image" src="images/couch.jpg">
+                        <p class="product-caption">Medený kávový stolík</p>
+                        <p class="product-price">1800 €</p>
+                    </a>
+                </article>
+            </section>
+        </div>
+        <nav class="pagination content-middle">
+            <ul>
+                <li><a href="#">&lt;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">&gt;</a></li>
+            </ul>
+        </nav>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <ul>
+                <li><a href="#">O nás</a></li>
+                <li><a href="#">Obchodné podmienky</a></li>
+                <li><a href="#">Reklamácia</a></li>
+                <li>
+                    <a href="#">Doručenie</a>
+                    <img class="icon" src="icons/box.svg">
+                    <img class="icon" src="icons/truck.svg">
+
+                </li>
+                <li>
+                    <a href="#">Kontakt</a>
+                    <img class="icon" src="icons/facebook.svg">
+                    <img class="icon" src="icons/instagram.svg">
+                </li>
+                <li>
+                    <a href="#">Platba</a>
+                    <img class="icon" src="icons/cash-coin.svg">
+                    <img class="icon" src="icons/credit-card.svg">
+                </li>
+            </ul>
+            <p class="copyright">Gaža &amp; Hájek &copy; 2021 </p>
+        </div>
+    </footer>
+</body>
 </html>

@@ -5,36 +5,29 @@
 .featured {
     display: grid;
     grid: repeat(2, 450px) / auto 80% auto;
-
 }
 
 .discounts {
-    grid-row: 1;
     grid-column: 2;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
+    display: grid;
+    grid: 1fr / repeat(2, 1fr);
+    place-items: center;
     background-color: papayawhip;
 }
 
-.promises-container {
-    grid-row: 2;
+.promises {
     grid-column: 2;
+    display: grid;
+    grid: 120px 1fr / repeat(4, 1fr);
+    align-items: start;
+    justify-items: center;
     text-align: center;
-    background-color: lightyellow;
+    background-color: lightyellow;   
 }
 
 .promises-heading {
     margin: 3rem 0;
-}
-
-.promises {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    
+    grid-column: span 4;
 }
 
 .shield {
@@ -57,8 +50,55 @@
 
 .placeholder-discount {
     background-color: gray;
-    width: 40%;
-    height: 80%;
+    width: 300px;
+    height: 300px;
     text-align: center;
     line-height: 3;
 }
+
+@media (max-width: 992px) {
+    .featured {
+        display: block;
+    }
+
+    .promises {
+        grid-column: 1;
+        grid: 120px repeat(2, 1fr) / repeat(2, 1fr);
+        align-items: start;
+        justify-items: center;
+        padding: 3rem 0;
+    }
+
+    .discounts {
+        grid-column: 1;
+    }
+
+    .promises-heading {
+        grid-column: span 2;
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .discounts {
+        grid: repeat(2, 1fr) / 1fr;
+        place-items: center;
+        grid-row-gap: 2rem;
+        padding: 3rem 0;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .promises {
+        grid-column: 1;
+        grid: 120px repeat(4, 1fr) / 1fr;
+        align-items: start;
+        justify-items: center;
+    }
+
+    .promises-heading {
+        grid-column: 1;
+    }
+}
+
