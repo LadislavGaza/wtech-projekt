@@ -1,0 +1,68 @@
+body, html {
+    height: 100%;
+    display: grid;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
+
+#admin-login-page {
+    margin: auto;
+}
+
+.button {
+    font-family: 'Open Sans', sans-serif;
+    display: block;
+    text-align: center;
+    background-color: white;
+    color: inherit;
+    font-weight: 600;
+    border: 1px solid gray;
+    text-decoration: none;
+    box-sizing: border-box;
+    height: 70%;
+}
+
+.button:hover {
+    background-color: orange;
+    cursor: pointer;
+}
+
+.logo {
+    width: 80%;
+    max-width: 200px;
+}
+
+.login-form-field {
+    grid-column: span 2;
+}
+
+#admin-login-form {
+    display: grid;
+    grid: 1fr 0.25fr 1fr 0.25fr 1fr 1fr  / repeat(2, 1fr);
+    grid-row-gap: 0.5rem;
+    border: 1px solid black;
+    padding: 2.5rem 5rem; 
+    align-items: center;
+    max-width: 800px;
+    box-shadow: 5px 5px 25px 4px #ddd; 
+}
+
+#admin-login-form h1 {
+    font-size: 1.5rem;
+    padding: 0;
+}
+
+#admin-login-form input {
+    height: 50%;
+    align-self: start;
+}
+
+.admin-login-button {
+    grid-column: 2;
+}
+

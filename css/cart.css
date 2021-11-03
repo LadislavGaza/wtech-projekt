@@ -1,0 +1,64 @@
+main {
+    display: grid; 
+    grid: auto / auto 80% auto;
+    padding: 0 1rem;
+}
+
+.cart-price {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 3rem;
+    margin-bottom: 7rem;
+}
+
+.cart-price table {
+    width: 40%;
+    max-width: 800px;
+    border-radius: 5px;
+    padding: 1rem 0;
+    background-color: papayawhip;
+}
+
+.cart-contents thead {
+    background-color: peachpuff;
+}
+
+.cart-contents td {
+    padding-left: 1.5rem;
+}
+
+.cart-contents tbody tr:nth-child(even) {
+    background-color: beige;
+}
+
+.cart-contents tbody tr:nth-child(odd) {
+    background-color: lightyellow;
+}
+
+.cart-price emph {
+    font-size: 1.5rem;
+}
+
+.payment-button {
+    width: 30%;
+    max-width: 400px;
+    border-radius: 5px;
+    padding: 1.5rem 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 2rem 0;
+    color: white;
+    background-color: orange;
+    border: none;
+}
+
+.payment-button:hover {
+    background-color: darkorange;
+}
+
+
+.payment-button:after {
+    content: '>';
+    padding-left: 1rem;
+}
