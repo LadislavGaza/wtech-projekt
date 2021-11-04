@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Antiquea - Objednávka</title>
     <link href="css/main.css" rel="stylesheet">
+    <link href="css/cart.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -41,7 +42,7 @@
     </header>
     <main>
         <h1 class="content-middle">Zhrnutie objednávky</h1>
-        <table class="cart-contents content-middle">
+        <table class="cart-contents content-middle divider-bottom">
             <thead>
                 <th></th>
                 <th>Názov produktu</th>
@@ -73,36 +74,40 @@
                 </tr>
             </tbody>
         </table>
-        <section>
-            <h1>Doprava</h1>
-            <img class="icon" src="icons/box.svg">
-            <p>Výdajné miesto</p>
-            <p>5 €</p>
-            <p>Telgárt - veľkosklad</p>
-        </section>
-        <section>
-            <h1>Platba</h1>
-            <img class="icon" src="icons/credit-card.svg">
-            <p>Kartou vopred</p>
-            <p>0 €</p>
-        </section>
-        <table>
-            <tr>
-                <th><emph>Celková suma:</emph><th>
-                <td><emph>3305 €</emph></td>
-            </tr>
-            <tr>
-                <th>Bez DPH:<th>
-                <td>3305 €</td>
-            </tr>
-        </table>
-        <button>Späť k objednávke</button> 
-        <input id="sales-terms-confirm" type="checkbox">
-        <label for="sales-terms-confirm">Súhlasím s obchodnými podmienkami</label>
-        <input id="personal-data-confirm" type="checkbox">
-        <label for="personal-data-confirm">Súhlasím so spracovaním osobných údajov</label>
-        <button>Dokončiť nákup</button>
-        <p>*s povinnosťou platby</p>
+        <div class="summary-options">
+            <section id="order-summary-transport">
+                <h1>Doprava</h1>
+                <img class="icon" src="icons/box.svg">
+                <p>Výdajné miesto</p>
+                <p>5 €</p>
+                <p>Telgárt - veľkosklad</p>
+            </section>
+            <section id="order-summary-payment">
+                <h1>Platba</h1>
+                <img class="icon" src="icons/credit-card.svg">
+                <p>Kartou vopred</p>
+                <p>0 €</p>
+            </section>
+            <table id="order-summary-price" class="cart-price-content">
+                <tr>
+                    <th><emph>Celková suma:</emph><th>
+                    <td><emph>3305 €</emph></td>
+                </tr>
+                <tr>
+                    <th>Bez DPH:<th>
+                    <td>3305 €</td>
+                </tr>
+            </table>
+            <div id="order-summary-confirm">
+                <input id="sales-terms-confirm" type="checkbox">
+                <label for="sales-terms-confirm">Súhlasím s obchodnými podmienkami</label>
+                <input id="personal-data-confirm" type="checkbox">
+                <label for="personal-data-confirm">Súhlasím so spracovaním osobných údajov</label>
+            </div>
+            <button id="order-btn-back"  class="payment-button payment-back">Späť k objednávke</button> 
+            <button id="order-btn-finish" class="order-move payment-button">Dokončiť nákup</button>
+            <p class="mandatory-payment">*s povinnosťou platby</p>
+        </div>
     </main>
     <footer>
         <div class="footer-container">

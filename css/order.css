@@ -1,0 +1,20 @@
+.order-page {
+    display: grid;
+    grid: repeat(3, auto) / 10% 3fr 1fr 10%;
+}
+
+.order-page h1 {
+    grid-column: 2 / span 2;
+}
+
+#order-form {
+    grid-column: 2;
+}
+
+#order-summary {
+    grid-column: 3;
+}
+
+fieldset {
+    border: none;
+}

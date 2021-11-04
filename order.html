@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Antiquea - Objednávka</title>
     <link href="css/main.css" rel="stylesheet">
+    <link href="css/order.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -39,11 +40,10 @@
             </ul>
         </nav>
     </header>
-    <main>
+    <main class="order-page">
         <h1>Váš nákup</h1>
-        <form action="/order.php" method="post">
-            <button type="submit">Na prehľad</button>
-            <section>
+        <form id="order-form" action="/order.php" method="post">
+            <fieldset>
                 <input type="checkbox" class="tab-checked">
                 <h2>Doprava</h2>
                 <input type="radio" id="place" name="transport">
@@ -61,8 +61,8 @@
                 </ul>
                 <p><b>Výdajné miesto:</b> Telgárt - veľkosklad</p>
                 <a href="#">Platba</a>
-            </section>
-            <section>
+            </fieldset>
+            <fieldset>
                 <input type="checkbox" class="tab-checked">
                 <h2>Platba</h2>
                 <input type="radio" id="dobierka" name="payment">
@@ -71,8 +71,8 @@
                 <input type="radio" id="card" name="payment">
                 <label for="card">Kartou vopred</label>
                 <label for="card">0 €</label>
-            </section>
-            <section>
+            </fieldset>
+            <fieldset>
                 <input type="checkbox" class="tab-checked">
                 <h2>Dodacia a fakturačná adresa</h2>
                 <div>
@@ -105,10 +105,10 @@
                     <label for="phone">Telefónne číslo</label>
                     <input type="text" id="phone" class="phone">
                 </div>
-            </section>
-            <a href="#">Na prehľad</a>
+            </fieldset>
+            <button type="submit">Na prehľad</button>
         </form>
-        <section>
+        <section id="order-summary">
             <article>
                 <img src="images/sofa.jpg">
                 <label>Bauhaus Chrome</label>

@@ -1,22 +1,22 @@
 main {
     display: grid; 
     grid: auto / auto 80% auto;
-    padding: 0 1rem;
 }
 
 .cart-price {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid: 1fr / repeat(2, 1fr);
+    place-items: space-between;
     margin-top: 3rem;
     margin-bottom: 7rem;
 }
 
-.cart-price table {
-    width: 40%;
-    max-width: 800px;
+.cart-price-content {
+    width: 100%;
+    max-width: 500px;
     border-radius: 5px;
-    padding: 1rem 0;
+    padding: 1rem 3rem;
+    text-align: right;
     background-color: papayawhip;
 }
 
@@ -36,29 +36,198 @@ main {
     background-color: lightyellow;
 }
 
-.cart-price emph {
+.cart-contents td:last-child {
+    padding-left: 0;
+    text-align: center;
+}
+
+.divider-bottom {
+    border-bottom: 1px solid black;
+    padding-bottom: 2rem;
+}
+
+.cart-price-content emph {
     font-size: 1.5rem;
 }
 
 .payment-button {
-    width: 30%;
+    width: 90%;
     max-width: 400px;
+    max-height: 4rem;
     border-radius: 5px;
     padding: 1.5rem 0;
     font-size: 1.3rem;
     font-weight: bold;
-    margin: 2rem 0;
+    margin: 1rem 0;
     color: white;
     background-color: orange;
     border: none;
+    justify-self: end;
+    line-height: 1rem;
+
 }
 
 .payment-button:hover {
     background-color: darkorange;
 }
 
-
 .payment-button:after {
     content: '>';
     padding-left: 1rem;
+}
+
+.payment-back {
+    justify-self: start;
+}
+
+.payment-back:after {
+    content: '';
+    padding-left: 0;
+}
+
+.payment-back:before {
+    content: '<';
+    padding-right: 1rem;
+}
+
+.icon-clickable {
+    width: 2rem;
+}
+
+.icon-clicakble:hover {
+    cursor: pointer;
+    color: red;
+}
+
+
+/* Order summary */
+.summary-options {
+    display: grid;
+    grid-column: 2;
+    grid: repeat(4, auto) / 2fr 1fr;
+    align-items: center;
+}
+
+#order-summary-transport, #order-summary-payment {
+    width: 60%;
+    grid-row: 1;
+    grid-column: 1;
+    display: grid;
+    grid: repeat(2, 1fr) / 2.5rem repeat(3, 1fr);
+    align-items: center;
+    border-bottom: 1px solid gray;
+}
+
+#order-summary-payment {
+    grid-row: 2;
+}
+
+#order-summary-transport h1, #order-summary-payment h1 {
+    grid-row: 1;
+    grid-column: span 4;
+    margin: 0.2rem 0;
+}
+
+#order-summary-price {
+    grid-row: 1;
+    grid-column: 2;
+    justify-self: end;
+}
+
+#order-summary-confirm {
+    display: grid;
+    align-items: center;   
+    grid: repeat(2, 1fr) / 10% 1fr;
+    width: 90%;
+    max-width: 400px;
+    place-self: end;
+
+}
+
+.mandatory-payment {
+    grid-column: 2;
+    place-self: end;
+    margin-right: 1rem;
+    margin-top: 0;
+}
+
+@media  (max-width: 1200px)  {
+    .summary-options {
+        grid-template-columns:  repeat(2, 1fr);
+    }  
+}
+
+@media (max-width: 992px) {
+    .summary-options {
+        grid: repeat(6, 1fr) / 1fr;
+    } 
+    
+    #order-summary-transport, #order-summary-payment {
+        width: 100%;
+    }
+
+    #order-summary-confirm {
+        width: 100%;
+        justify-self: center;
+        align-self: end;
+    }
+
+    #order-summary-price {
+        grid-row: 3;
+        grid-column: 1;
+        justify-self: center;
+        max-width: none;
+    }
+
+    .mandatory-payment {
+        grid-column: 1;
+    }
+
+    #order-btn-back, #order-btn-finish {
+        justify-self: center;
+        width: 100%;
+    }
+    
+}
+
+@media  (max-width: 768px)  {
+	.cart-contents, 
+    .cart-contents thead, 
+    .cart-contents tbody,
+    .cart-contents th, 
+    .cart-contents td, 
+    .cart-contents tr { 
+		display: block; 
+	}
+	
+	.cart-contents thead { 
+		opacity: 0;
+	}
+	
+	.cart-contents tr { 
+        border: 1px solid #ccc;
+    }
+
+	.cart-contents td {
+        border: none;
+        border-bottom: 1px solid #eee; 
+        text-align: center;
+        padding: 1rem 0;
+	}
+
+    .cart-contents td:last-child {
+        padding-left: 0;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+@media (max-width: 562px)  {
+    .cart-price {
+        display: block;
+    }
+
+    .payment-button, .cart-price table {
+        width: 100%;
+    }
 }

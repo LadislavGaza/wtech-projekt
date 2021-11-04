@@ -1,15 +1,18 @@
 .furniture-page {
     display: grid;
-    grid: repeat(4, auto) / auto 80% auto;
+    grid: repeat(7, auto) / 10% 2fr 1fr 1fr 10%;
 }
 
+/* Breadcrumb navigation */ 
 .breadcrumb{
-    padding: 0;
     grid-row: 1;
+    grid-column: 2 / span 3;
+    padding: 0;
 }
 
 .breadcrumb li {
     display: inline;
+    list-style-type: none;
     font-size: 1.2rem;
 }
 
@@ -28,103 +31,207 @@
     content: "/ ";
 }
 
-#furniture-panel {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
+/* Main product info panel */
 
-#furniture-description {
-    padding: 2% 4%;
-}
-
-#furniture-parameters {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    background-color: papayawhip;
-    flex-wrap: wrap;
-    padding-bottom: 4rem;
-}
-
-.furniture-parameters-column {
-    margin-left: 5%;
-    padding: 3rem 0;
-    text-align: left;
-    width: 30%;
-}
-
-.furniture-parameters-column th {
-    padding-right: 5rem;
-}
-
-.furniture-parameters-column ul {
-    display: inline-block;
-}
-
-#furniture-recommendation {
-    background-color: lightyellow;
-}
-
-#furniture-recommendation-products {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 4rem 0;
-}
-
-#furniture-recommendation-products article {
-    border: 1px solid black;
-}
-
-#furniture-recommendation-title {
-    text-align: center;
-}
-
-#furniture-recommendation article {
-    width: 20%;
-}
-
-#furniture-recommendation img {
+#furniture-image {
+    grid-column: 2;
+    grid-row: 2 / span 4;
     width: 100%;
-}
-
-#preview {
-    box-sizing: border-box;
-    width: 50%;
-    margin: 1rem;
+    padding: 1rem;
+    justify-self: center;
     box-shadow: 10px 10px 35px -5px gray;
 }
 
-.description {
-    margin-bottom: 4rem;
+#furniture-name {
+    grid-row: 2;
+    grid-column: 3 / span 2;
+    margin-left: 3rem;
 }
 
+#furniture-description {
+    grid-row: 3;
+    grid-column: 3 / span 2;
+    margin-left: 3rem;
+}
 
-#stock-amount {
+#furniture-stock-amount {
+    grid-row: 4;
+    grid-column: 3;
     color: green;
     font-size: 1.3rem;
+    margin-left: 3rem;
 }
 
 #furniture-price {
-    display: inline-block;
+    grid-row: 5;
+    grid-column: 3;
+    margin-left: 3rem;
 }
 
-#furniture-price-dph {
+#furniture-price emph {
+    display: block;
     font-size: 1.8rem;
     font-weight: bold;
 }
 
 #add-to-cart {
-    float: right;
-    width: 40%;
-    max-width: 250px;
+    grid-row: 5;
+    grid-column: 4;
+    align-self: center;
+    justify-self: start;
+    max-width: 600px;
+    width: 100%;
     font-size: 1.2rem;
     font-weight: bold;
-    padding: 2rem 0;
-    height: 2.5rem;
-    margin-top: 2.5rem;
-    margin-right: 10%;
+    padding: 1rem 2rem;
+}
+
+#add-to-cart:hover {
+    cursor: pointer;
+    background-color: orange;
+}
+
+#furniture-parameters, #furniture-size {
+    grid-row: 6;
+    padding: 2rem 5rem 4rem 5rem;
+    margin: 5rem 0;
+    text-align: left;
+    background-color: papayawhip;
+}
+
+#furniture-parameters th, #furniture-size th {
+    padding-right: 5rem;
+}
+
+#furniture-parameters {
+    grid-column: 2;
+}
+
+#furniture-size {
+    grid-column: 3 / span 2;
+}
+
+#furniture-recommendation {
+    grid-column: 2 / span 3;
+    background-color: lightyellow;
+    display: grid;
+    grid: 1fr / repeat(4, 1fr);
+    padding: 5rem 2rem;
+    padding: 2rem;
+    padding-bottom: 6rem;
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+}
+
+#furniture-recommendation h2 {
+    grid-column: span 4;
+    text-align: center;
+}
+
+#furniture-parameters th, #furniture-size th {
+    padding-right: 5rem;
+}
+
+
+@media (max-width: 992px) {
+    .furniture-page {
+        grid: repeat(9, auto) / 5% repeat(2, 1fr) 5%;
+    }
+
+    #furniture-image {
+        grid-row: 3;
+        grid-column: 2 / span 2;
+        margin-left: 0;
+    }
+
+    #furniture-name {
+        grid-row: 2;
+        grid-column: 2 / span 2;
+        margin-left: 0;
+    }
+
+    #furniture-description {
+        grid-row: 4;
+        grid-column: 2 / span 2;
+        margin-left: 0;
+    }
+
+    #furniture-stock-amount {
+        grid-row: 5;
+        grid-column: 2;
+    }
+    
+    #furniture-price {
+        grid-row: 5;
+        grid-column: 3;
+        margin-left: 3rem;
+        justify-self: center;
+    }
+
+    #furniture-parameters, #furniture-size {
+        grid-row: 7;
+    }
+
+    #furniture-parameters th, #furniture-size th {
+        padding-right: 1rem;
+    }
+
+    #add-to-cart {
+        grid-row: 6;
+        grid-column: 2 / span 2;
+        align-self: center;
+        justify-self: center;
+        max-width: 600px;
+        width: 100%;
+    }
+
+    #furniture-recommendation {
+        grid: 3rem repeat(2, 1fr) / repeat(2, 1fr);
+    }
+
+    #furniture-recommendation h2 {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .furniture-page {
+        grid-template-rows: repeat(10, auto);
+        grid-row-gap: 0.5rem;
+    }
+
+    #furniture-parameters, #furniture-size {
+        grid-column: span 4;
+        margin: 0;
+    }
+
+    #furniture-parameters {
+        grid-row: 7;
+    }
+
+    #furniture-size {
+        grid-row: 8;
+    }
+
+    #add-to-cart {
+        grid-row: 6;
+        grid-column: 2 / span 2;
+        align-self: center;
+        justify-self: center;
+        max-width: 600px;
+        width: 100%;
+    }
+
+    #furniture-recommendation {
+        grid: 3rem repeat(4, 1fr) / 1fr;
+
+    }
+
+    #furniture-recommendation h2 {
+        grid-column: 1;
+    }
+
+    .product {
+        height: 400px;
+    }
 }
