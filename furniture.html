@@ -1,27 +1,14 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Antiquea - Produkt</title>
     <link href="css/main.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
     <link href="css/furniture.css" rel="stylesheet">
-    <script type="text/javascript">
-        window.addEventListener('load', function() {
-            const buy = document.getElementById('add-to-cart');
-        
-            buy.addEventListener('click', function() {
-                const icon = document.getElementById('cart-add-icon');
-                const notif = document.getElementById('cart-notification');
-                
-                this.textContent = 'Pridané do košíka';
-                this.style.color = 'white';
-                this.style.backgroundColor = 'green';
-                notif.style.display = 'flex';
-                icon.src = 'icons/check.svg';
-            });    
-        })
-    </script>
+    <script src="js/main.js" type="text/javascript"></script>
 </head>
 <body>
     <header>

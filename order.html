@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Antiquea - Objednávka</title>
     <link href="css/main.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
     <link href="css/order.css" rel="stylesheet">
 </head>
 <body>
@@ -42,68 +44,84 @@
     </header>
     <main class="order-page">
         <h1>Váš nákup</h1>
-        <form id="order-form" action="/order.php" method="post">
-            <fieldset>
-                <input type="checkbox" class="tab-checked">
-                <h2>Doprava</h2>
-                <input type="radio" id="place" name="transport">
-                <label for="place">Výdajné miesto</label>
-                <label for="place">1 €</label>
-                <input type="radio" id="delivery" name="transport">
-                <label for="delivery">Kuriér</label>
-                <label for="delivery">0 €</label>
-                <input type="input">
-                <ul>
-                    <li>Bratislava</li>
-                    <li>Telgárt - veľkosklad</li>
-                    <li>Moldava nad Bodvou - papiernictvo</li>
-                    <li>Brezová pod Bradlom - chovateľské potreby</li>
-                </ul>
-                <p><b>Výdajné miesto:</b> Telgárt - veľkosklad</p>
-                <a href="#">Platba</a>
-            </fieldset>
-            <fieldset>
-                <input type="checkbox" class="tab-checked">
-                <h2>Platba</h2>
-                <input type="radio" id="dobierka" name="payment">
-                <label for="dobierka">Dobierka</label>
-                <label for="dobierka">1 €</label>
-                <input type="radio" id="card" name="payment">
-                <label for="card">Kartou vopred</label>
-                <label for="card">0 €</label>
-            </fieldset>
-            <fieldset>
-                <input type="checkbox" class="tab-checked">
-                <h2>Dodacia a fakturačná adresa</h2>
-                <div>
-                    <input type="checkbox" name="org">
-                    <label>Súkromná osoba</label>
-                    <input type="checkbox" name="org">
-                    <label>Firma</label>
+        <form id="order-form" class="tabs" action="/order.php" method="post">
+            <fieldset class="tab">
+                <input id="order-transport" type="checkbox" class="tab-checked">
+                <label for="order-transport" class="tab-label">
+                    <emph>Krok 1/<sub>3</sub></emph> 
+                    Doprava
+                </label>
+                <div class="tab-content">
+                    <input type="radio" id="place" name="transport">
+                    <label for="place">Výdajné miesto</label>
+                    <label for="place">1 €</label>
+                    <input type="radio" id="delivery" name="transport">
+                    <label for="delivery">Kuriér</label>
+                    <label for="delivery">0 €</label>
+                    <input type="input">
+                    <ul>
+                        <li>Bratislava</li>
+                        <li>Telgárt - veľkosklad</li>
+                        <li>Moldava nad Bodvou - papiernictvo</li>
+                        <li>Brezová pod Bradlom - chovateľské potreby</li>
+                    </ul>
+                    <p><b>Výdajné miesto:</b> Telgárt - veľkosklad</p>
+                    <a href="#">Platba</a>
                 </div>
-                <div>
-                    <label for="company">Spoločnosť</label>
-                    <input type="text" id="company" class="company">
-                    <label for="ico">IČO</label>
-                    <input type="text" id="ico" class="ico">
-                    <label for="dic">DIČ</label>
-                    <input type="text" id="dic" class="dic">
-                    <label for="ic-dph">IČ DPH</label>
-                    <input type="text" id="ic-dph" class="ic-dph">
+            </fieldset>
+            <fieldset class="tab">
+                <input id="order-payment" type="checkbox" class="tab-checked">
+                <label for="order-payment" class="tab-label">
+                    <emph>Krok 2/<sub>3</sub></emph> 
+                    Platba
+                </label>
+                <div class="tab-content">
+                    <input type="radio" id="dobierka" name="payment">
+                    <label for="dobierka">Dobierka</label>
+                    <label for="dobierka">1 €</label>
+                    <input type="radio" id="card" name="payment">
+                    <label for="card">Kartou vopred</label>
+                    <label for="card">0 €</label>
+                    <a href="#">Dodanie a fakturácia</a>
                 </div>
-                <div>
-                    <label for="name">Meno</label>
-                    <input type="text" id="name" class="name">
-                    <label for="surname">Priezvisko</label>
-                    <input type="text" id="surname" class="surname">
-                    <label for="street">Ulica a číslo domu</label>
-                    <input type="text" id="street" class="street">
-                    <label for="city">Mesto</label>
-                    <input type="text" id="city" class="city">
-                    <label for="psc">PSČ</label>
-                    <input type="text" id="psc" class="psc">
-                    <label for="phone">Telefónne číslo</label>
-                    <input type="text" id="phone" class="phone">
+            </fieldset>
+            <fieldset class="tab">
+                <input id="order-address" type="checkbox" class="tab-checked">
+                <label for="order-address" class="tab-label">
+                    <emph>Krok 3/<sub>3</sub></emph> 
+                    Dodacia a fakturačná adresa
+                </label>
+                <div class="tab-content">
+                    <div>
+                        <input type="checkbox" name="org">
+                        <label>Súkromná osoba</label>
+                        <input type="checkbox" name="org">
+                        <label>Firma</label>
+                    </div>
+                    <div>
+                        <label for="company">Spoločnosť</label>
+                        <input type="text" id="company" class="company">
+                        <label for="ico">IČO</label>
+                        <input type="text" id="ico" class="ico">
+                        <label for="dic">DIČ</label>
+                        <input type="text" id="dic" class="dic">
+                        <label for="ic-dph">IČ DPH</label>
+                        <input type="text" id="ic-dph" class="ic-dph">
+                    </div>
+                    <div>
+                        <label for="name">Meno</label>
+                        <input type="text" id="name" class="name">
+                        <label for="surname">Priezvisko</label>
+                        <input type="text" id="surname" class="surname">
+                        <label for="street">Ulica a číslo domu</label>
+                        <input type="text" id="street" class="street">
+                        <label for="city">Mesto</label>
+                        <input type="text" id="city" class="city">
+                        <label for="psc">PSČ</label>
+                        <input type="text" id="psc" class="psc">
+                        <label for="phone">Telefónne číslo</label>
+                        <input type="text" id="phone" class="phone">
+                    </div>
                 </div>
             </fieldset>
             <button type="submit">Na prehľad</button>

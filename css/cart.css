@@ -91,12 +91,18 @@ main {
 }
 
 .icon-clickable {
-    width: 2rem;
+    width: 1.5rem;
 }
 
-.icon-clicakble:hover {
+.icon-clickable:hover {
     cursor: pointer;
-    color: red;
+    /* https://codepen.io/sosuke/pen/Pjoqqp */
+    filter: invert(17%) 
+            sepia(100%) 
+            saturate(6695%) 
+            hue-rotate(356deg) 
+            brightness(110%) 
+            contrast(131%);
 }
 
 
@@ -142,6 +148,10 @@ main {
     max-width: 400px;
     place-self: end;
 
+}
+
+.product-image {
+    width: 200px;
 }
 
 .mandatory-payment {

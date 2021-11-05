@@ -41,17 +41,22 @@
     justify-self: center;
     box-shadow: 10px 10px 35px -5px gray;
 }
+#furniture-name,
+#furniture-description,
+#furniture-stock-amount,
+#furniture-price {
+    margin-left: 5rem;
+}
+
 
 #furniture-name {
     grid-row: 2;
     grid-column: 3 / span 2;
-    margin-left: 3rem;
 }
 
 #furniture-description {
     grid-row: 3;
     grid-column: 3 / span 2;
-    margin-left: 3rem;
 }
 
 #furniture-stock-amount {
@@ -59,13 +64,11 @@
     grid-column: 3;
     color: green;
     font-size: 1.3rem;
-    margin-left: 3rem;
 }
 
 #furniture-price {
     grid-row: 5;
     grid-column: 3;
-    margin-left: 3rem;
 }
 
 #furniture-price emph {
@@ -138,22 +141,28 @@
         grid: repeat(9, auto) / 5% repeat(2, 1fr) 5%;
     }
 
+    #furniture-name,
+    #furniture-description,
+    #furniture-stock-amount,
+    #furniture-price {
+        margin-left: 0;
+    }
+
+
     #furniture-image {
         grid-row: 3;
         grid-column: 2 / span 2;
-        margin-left: 0;
     }
 
     #furniture-name {
         grid-row: 2;
         grid-column: 2 / span 2;
-        margin-left: 0;
     }
 
     #furniture-description {
         grid-row: 4;
         grid-column: 2 / span 2;
-        margin-left: 0;
+        margin-top: 5rem;
     }
 
     #furniture-stock-amount {

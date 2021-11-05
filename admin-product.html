@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Antiquea - Admin</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
     <header>
@@ -23,32 +24,29 @@
             Odhlásiť sa
         </a>
     </header>
-    <main class="content-center">
-        <div>
+    <main id="product-edit">
+        <div id="product-image">
             <img src="images/sofa.jpg" width="300">
             <button>
                 <img class="icon" src="icons/card-image.svg">
                 Nahrať obrázok
             </button>
         </div>
-        <form>
-            <div>
-                <h1>Produkt</h1>
-                <a href="furniture.html">
-                    <img class="icon" src="icons/box-arrow.svg">
-                    Zobraziť
-                </a>
-                <button type="submit">
-                    <img class="icon" src="icons/save.svg">
-                    Uložiť
-                </button>
-            </div>
-            <fieldset>
+        <form id="product-edit-form">
+            <h1>Produkt</h1>
+            <a href="furniture.html" class="admin-product-action">
+                <img class="icon" src="icons/box-arrow.svg">
+                Zobraziť
+            </a>
+            <button type="submit" class="admin-product-action">
+                <img class="icon" src="icons/save.svg">
+                Uložiť
+            </button>
+            <fieldset id="product-basic-info">
                 <label for="product-name">Názov</label>
                 <input type="text" id="product-name" class="name">
                 <label for="product-desc">Popis</label>
-                <textarea id="product-desc" class="desc"></textarea>
-                
+                <textarea id="product-desc" class="desc"></textarea>      
                 <label for="product-in-portfolio">V ponuke</label>
                 <input type="checkbox" id="product-in-portfolio" class="in-portfolio">
                 <label for="product-price">Cena</label>
@@ -88,7 +86,7 @@
         </form>
     </main>
     <footer>
-        <p class="copyright">Gaža &amp; Hájek &copy; 2021</p>
+        <p>Gaža &amp; Hájek &copy; 2021</p>
     </footer>
 </body>
 </html>
