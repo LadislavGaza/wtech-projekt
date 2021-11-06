@@ -36,7 +36,7 @@
     grid: repeat(5, 1fr) / 20% 80%;
 }
 
-.login-button, .registration-form button {
+.login-form button, .registration-form button {
     grid-column: 2;
     width: 40%;
     justify-self: end;
@@ -57,6 +57,7 @@
     border-radius: 0.5rem;
     padding: 2% 10%;
     color: inherit;
+    margin: 2rem 0;
 }
 
 .login-register-link h1 {
@@ -69,4 +70,43 @@
 
 .registration-form input {
     height: 50%;
+}
+
+@media (max-width: 700px) {
+    .center {
+        display: block;
+    }
+
+    .login-page {
+        width: 100%;
+    }
+
+    .login-form form {
+        grid: repeat(5, 1fr) / 1fr;
+    }
+
+    .login-form button, .registration-form button {
+        grid-column: 1;
+        width: 100%;
+    }
+
+    .login-register-link {
+        grid: repeat(2, 1fr) / 1fr;
+    }
+
+    .registration-form{
+        height: 28rem;
+    }
+
+    .registration-form form {
+        grid: repeat(8, 1fr) / 1fr;
+    }
+
+    #subtitle {
+        grid-column: span 1;
+    }
+
+    .big-button {
+        margin-top: 1rem;
+    }
 }

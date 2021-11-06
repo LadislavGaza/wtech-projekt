@@ -49,11 +49,8 @@
 }
 
 .placeholder-discount {
-    background-color: gray;
-    width: 300px;
-    height: 300px;
-    text-align: center;
-    line-height: 3;
+    width: 65%;
+    /* height: 400px; */
 }
 
 @media (max-width: 992px) {
@@ -86,9 +83,6 @@
         grid-row-gap: 2rem;
         padding: 3rem 0;
     }
-}
-
-@media (max-width: 576px) {
 
     .promises {
         grid-column: 1;

@@ -11,13 +11,6 @@ body {
     grid: auto 1fr auto / 100%;
 }
 
-.logo {
-    display: block;
-    width: 10rem;
-    height: 100%;
-
-}
-
 .center {
     display: grid;
     grid: 1fr / auto 80% auto;
@@ -98,7 +91,7 @@ body {
 /* Products */
 .product {
     box-sizing: border-box;
-    height: 300px;
+    height: 307px;
     border: 1px solid black;
     margin: 1.5%;
     position: relative;
@@ -138,7 +131,6 @@ body {
 .pagination {
     margin: 4rem 0;
     display: grid;
-    flex-direction: row;
     justify-content: center;
 }
 
@@ -173,7 +165,6 @@ body {
 .tab-label {
     display: grid;
     grid: auto / 1fr 1rem;
-    justify-content: space-between;
     align-items: center;
     padding: 1rem;
     background-color: #ffce52;

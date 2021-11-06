@@ -131,11 +131,6 @@
     text-align: center;
 }
 
-#furniture-parameters th, #furniture-size th {
-    padding-right: 5rem;
-}
-
-
 @media (max-width: 992px) {
     .furniture-page {
         grid: repeat(9, auto) / 5% repeat(2, 1fr) 5%;
@@ -177,14 +172,6 @@
         justify-self: center;
     }
 
-    #furniture-parameters, #furniture-size {
-        grid-row: 7;
-    }
-
-    #furniture-parameters th, #furniture-size th {
-        padding-right: 1rem;
-    }
-
     #add-to-cart {
         grid-row: 6;
         grid-column: 2 / span 2;
@@ -194,7 +181,20 @@
         width: 100%;
     }
 
+    #furniture-parameters, #furniture-size {
+        grid-row: 7;
+    }
+
+    #furniture-size {
+        grid-column: 3;
+    }
+
+    #furniture-parameters th, #furniture-size th {
+        padding-right: 1rem;
+    }
+
     #furniture-recommendation {
+        grid-column: 2 / span 2;
         grid: 3rem repeat(2, 1fr) / repeat(2, 1fr);
     }
 
@@ -209,7 +209,16 @@
         grid-row-gap: 0.5rem;
     }
 
-    #furniture-parameters, #furniture-size {
+    #add-to-cart {
+        grid-row: 6;
+        grid-column: 2 / span 2;
+        align-self: center;
+        justify-self: center;
+        max-width: 600px;
+        width: 100%;
+    }
+
+    #furniture-parameters, #furniture-size, #furniture-recommendation {
         grid-column: span 4;
         margin: 0;
     }
@@ -220,15 +229,6 @@
 
     #furniture-size {
         grid-row: 8;
-    }
-
-    #add-to-cart {
-        grid-row: 6;
-        grid-column: 2 / span 2;
-        align-self: center;
-        justify-self: center;
-        max-width: 600px;
-        width: 100%;
     }
 
     #furniture-recommendation {
