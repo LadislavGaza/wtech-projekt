@@ -1,6 +1,7 @@
 .order-page {
     display: grid;
-    grid: repeat(3, auto) / 10% 3fr 1fr 10%;
+    grid: repeat(2, auto) / 10% 5fr 1fr 10%;
+    margin-bottom: 5rem;
 }
 
 .order-page h1 {
@@ -11,8 +12,42 @@
     grid-column: 2;
 }
 
+#order-form button {
+    /* margin-top: 40%; */
+
+}
+
 #order-summary {
     grid-column: 3;
+    display: grid;
+    grid: repeat(3, 1fr) 8rem / 1fr;
+    justify-content: end;
+}
+
+/* #order-summary:last-child {
+    height: 85%;
+    border-bottom: 1px solid black;
+} */
+
+.divider {
+    border-left: 1px solid black;
+}
+
+.product {
+    height: 205px;
+}
+
+.cart-price-content {
+    width: 90%;
+    height: 50%;
+    max-width: 500px;
+    border-radius: 5px;
+    padding: 1rem 1rem;
+    text-align: right;
+    background-color: papayawhip;
+    /* margin: 1.5%; */
+    justify-self: end;
+    align-self: center;
 }
 
 fieldset {
@@ -38,4 +73,33 @@ fieldset {
     font-size: 1.1rem;
     padding: 0.5rem;
     border-radius: 30%;
+}
+
+/* #order-form button {
+    place-self: end;
+} */
+
+.payment-button {
+    width: 90%;
+    max-width: 400px;
+    max-height: 4rem;
+    border-radius: 5px;
+    padding: 1.5rem 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    color: white;
+    background-color: orange;
+    border: none;
+    justify-self: end;
+    line-height: 1rem;
+}
+
+.payment-button:hover {
+    background-color: darkorange;
+}
+
+.payment-button:after {
+    content: '>';
+    padding-left: 1rem;
 }

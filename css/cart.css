@@ -3,29 +3,16 @@ main {
     grid: auto / auto 80% auto;
 }
 
-.cart-price {
-    display: grid;
-    grid: 1fr / repeat(2, 1fr);
-    place-items: space-between;
-    margin-top: 3rem;
-    margin-bottom: 7rem;
-}
-
-.cart-price-content {
-    width: 100%;
-    max-width: 500px;
-    border-radius: 5px;
-    padding: 1rem 3rem;
-    text-align: right;
-    background-color: papayawhip;
-}
-
 .cart-contents thead {
     background-color: peachpuff;
 }
 
 .cart-contents td {
     padding-left: 1.5rem;
+}
+
+.cart-contents input {
+    text-align: center;
 }
 
 .cart-contents tbody tr:nth-child(even) {
@@ -41,9 +28,40 @@ main {
     text-align: center;
 }
 
-.divider-bottom {
-    border-bottom: 1px solid black;
-    padding-bottom: 2rem;
+.product-image {
+    width: 200px;
+}
+
+.icon-clickable {
+    width: 1.5rem;
+}
+
+.icon-clickable:hover {
+    cursor: pointer;
+    /* https://codepen.io/sosuke/pen/Pjoqqp */
+    filter: invert(17%) 
+            sepia(100%) 
+            saturate(6695%) 
+            hue-rotate(356deg) 
+            brightness(110%) 
+            contrast(131%);
+}
+
+.cart-price {
+    display: grid;
+    grid: 1fr / repeat(2, 1fr);
+    place-items: space-between;
+    margin-top: 3rem;
+    margin-bottom: 7rem;
+}
+
+.cart-price-content {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 5px;
+    padding: 1rem 3rem;
+    text-align: right;
+    background-color: papayawhip;
 }
 
 .cart-price-content emph {
@@ -64,7 +82,6 @@ main {
     border: none;
     justify-self: end;
     line-height: 1rem;
-
 }
 
 .payment-button:hover {
@@ -76,37 +93,12 @@ main {
     padding-left: 1rem;
 }
 
-.payment-back {
-    justify-self: start;
-}
-
-.payment-back:after {
-    content: '';
-    padding-left: 0;
-}
-
-.payment-back:before {
-    content: '<';
-    padding-right: 1rem;
-}
-
-.icon-clickable {
-    width: 1.5rem;
-}
-
-.icon-clickable:hover {
-    cursor: pointer;
-    /* https://codepen.io/sosuke/pen/Pjoqqp */
-    filter: invert(17%) 
-            sepia(100%) 
-            saturate(6695%) 
-            hue-rotate(356deg) 
-            brightness(110%) 
-            contrast(131%);
-}
-
-
 /* Order summary */
+.divider-bottom {
+    border-bottom: 1px solid black;
+    padding-bottom: 2rem;
+}
+
 .summary-options {
     display: grid;
     grid-column: 2;
@@ -146,12 +138,21 @@ main {
     grid: repeat(2, 1fr) / 10% 1fr;
     width: 90%;
     max-width: 400px;
-    place-self: end;
-
+    place-self: end; /* justify a align end */
 }
 
-.product-image {
-    width: 200px;
+.payment-back {
+    justify-self: start;
+}
+
+.payment-back:after {
+    content: '';
+    padding-left: 0;
+}
+
+.payment-back:before {
+    content: '<';
+    padding-right: 1rem;
 }
 
 .mandatory-payment {
@@ -161,13 +162,22 @@ main {
     margin-top: 0;
 }
 
+/* order summary */
 @media  (max-width: 1200px)  {
     .summary-options {
         grid-template-columns:  repeat(2, 1fr);
     }  
+
+    .cart-price-content {
+        width: 90%;
+    }
 }
 
 @media (max-width: 992px) {
+    .cart-price-content {
+        width: 100%;
+    }
+
     .summary-options {
         grid: repeat(6, 1fr) / 1fr;
     } 
@@ -177,7 +187,7 @@ main {
     }
 
     #order-summary-confirm {
-        width: 100%;
+        width: 100%; /* ma nastaveny max-width preto neni cez cele  */
         justify-self: center;
         align-self: end;
     }
@@ -200,6 +210,8 @@ main {
     
 }
 
+
+/* both pages */
 @media  (max-width: 768px)  {
 	.cart-contents, 
     .cart-contents thead, 
@@ -239,5 +251,9 @@ main {
 
     .payment-button, .cart-price table {
         width: 100%;
+    }
+
+    .payment-button {
+        max-width: none;
     }
 }
