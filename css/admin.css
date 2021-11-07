@@ -5,45 +5,7 @@ body, html {
     margin: 0;
 }
 
-#admin-login-page {
-    margin: auto;
-}
-
-.btn {
-    height: 70%;
-}
-
-.logo {
-    width: 80%;
-    max-width: 200px;
-}
-
-.login-form-field {
-    grid-column: span 2;
-}
-
-#admin-login-form {
-    display: grid;
-    grid: 1fr 0.25fr 1fr 0.25fr 1fr 1fr  / repeat(2, 1fr);
-    grid-row-gap: 0.5rem;
-    border: 1px solid black;
-    padding: 2.5rem 5rem; 
-    align-items: center;
-    max-width: 800px;
-    box-shadow: 5px 5px 25px 4px #ddd; 
-}
-
-#admin-login-form h1 {
-    font-size: 1.5rem;
-    padding: 0;
-}
-
-#admin-login-form input {
-    height: 50%;
-    align-self: start;
-}
-
-.admin-login-button {
+header a:first-child {
     grid-column: 2;
 }
 
@@ -52,6 +14,21 @@ header {
     grid-template-columns: 10% 1fr 40% 1fr 1fr 10%;
     background-color: saddlebrown;
     color: white;
+    padding: 1rem;
+    grid-column-gap: 1rem;
+}
+
+@media (max-width: 980px) {
+    header a:first-child {
+        grid-column: 1;
+    }
+    
+    header {
+        grid: repeat(3, auto) / 1fr;
+        justify-items: center;
+        align-items: start;
+        grid-row-gap: 1rem;
+    }
 }
 
 footer {
@@ -64,32 +41,50 @@ footer {
     color: white;
 }
 
-#product-edit {
+.btn {
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    background-color: white;
+    color: black;
+    font-weight: 600;
+    border: 1px solid gray;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.5rem 0;
+    height: 50%;
+}
+
+
+.button-login:hover {
+    background-color: orange;
+    cursor: pointer;
+}
+
+.logo {
+    max-width: 150px;
+}
+
+.login-form-field {
+    grid-column: span 2;
+}
+
+.button {
+    grid-template-columns: auto;
+}
+
+.admin-product-button {
     display: grid;
-    grid: repeat(2, auto) / 10% 1fr 3fr 10%;
-
+    grid: auto / 2rem auto;
+    align-items: center;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    border: 1px black solid;
+    max-width: 400px;
+    width: 50%;
+    height: 70%;
+    justify-self: end;
+    align-self: center;
+    text-align: center;
 }
-
-#product-image {
-    grid-column: 2;
-}
-
-#product-edit-form {
-    grid-column: 3;
-    grid-row: span 2;
-    display: grid;
-    grid: repeat(3, auto) / 2fr 1fr 1fr;
-    grid-row-gap: 1rem;
-    grid-column-gap: 1rem;
-}
-
-.admin-product-action {
-    height: 4rem;
-    max-width: 10rem;
-}
-
-#product-basic-info {
-    grid-row: 2;
-    grid-column: span 3;
-}
-

@@ -34,6 +34,10 @@
     grid-column: 2 / span 4;
 }
 
+#product-pager ul {
+    padding: 0;
+}
+
 /* Order dropdown */
 select {
     /* Reset Select */
@@ -108,7 +112,25 @@ input[type="range"] {
 }
 
 @media (max-width: 500px) {
+    .product-page {
+        grid: repeat(5, auto) / repeat(4, 1fr);
+    }
+
+    #product-category,
+    #product-description, 
+    #product-sort, 
+    #product-filter, 
+    #product-list,
+    #product-pager {
+        grid-column: 1 / span 4;
+    }
+
     #product-list {
         grid: repeat(9, 1fr) / 1fr;
+        justify-items: center;
+    }
+
+    .product {
+        width: 320px;
     }
 }

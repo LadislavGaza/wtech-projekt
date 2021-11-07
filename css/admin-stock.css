@@ -1,0 +1,50 @@
+.button {
+    grid-template-columns: auto;
+}
+
+/* Stock page */
+#product-stock  {
+    display: grid;
+    grid: repeat(3, auto) / auto 80% auto;
+    grid-row-gap: 1rem;
+    margin: 2rem 0;
+}
+
+#product-stock table {
+    grid-row: 2;
+    grid-column: 2;
+}
+
+#product-stock a {
+    text-decoration: none;
+}
+
+#product-stock table {
+    border-collapse: collapse;
+}
+
+#product-stock thead {
+    background-color: saddlebrown;
+    color: white;
+}
+
+#product-stock tr {
+    border: 1px solid black;
+    text-align: left;
+}
+
+#new-product {
+    grid-row: 1;
+    grid-column: 2;
+    max-width: 200px;
+    justify-self: end;
+    padding: 0.5rem 2rem;
+    display: grid;
+    grid: 1fr / 2rem auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image {
+    max-width: 120px;
+}

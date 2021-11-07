@@ -9,5 +9,19 @@ window.addEventListener('load', function() {
         this.style.backgroundColor = 'green';
         
         notif.style.display = 'grid';
-    });    
+    }); 
+    
+    const outpost = document.querySelector('.outpost-chooser');
+    console.log(outpost);
+    /*
+    for (var i = 0; i < outpost.length; i++) {
+        outpost[i].addEventListener('change', function() {
+            console.log(this);
+            console.log(this.checked);
+            console.log(this.id);
+            // const name = document.getElementById(this.id);
+            // name.textContent = 'Zvolené';
+            console.log(outpost);
+        });
+    }*/
 })

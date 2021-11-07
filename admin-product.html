@@ -6,11 +6,12 @@
     <title>Antiquea - Admin</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/admin-product.css">
 </head>
 <body>
     <header>
-        <a href="landing-page.html">
-            <img src="images/logo.png" class="logo" alt="Antiquea Logo">
+        <a href="index.html">
+            <img src="images/logo-white.png" class="logo" alt="Antiquea Logo">
         </a>
         <div class="search-bar">
             <img src="icons/search.svg" class="icon">
@@ -20,25 +21,25 @@
             <img class="icon" src="icons/magician.svg">
             <p>Admin účet</p>
         </div>
-        <a href="login.html" class="button">
+        <a href="login.html" class="btn button">
             Odhlásiť sa
         </a>
     </header>
     <main id="product-edit">
-        <div id="product-image">
+        <div id="upload-image">
             <img src="images/sofa.jpg" width="300">
-            <button>
+            <button class=login-user>
                 <img class="icon" src="icons/card-image.svg">
                 Nahrať obrázok
             </button>
         </div>
         <form id="product-edit-form">
             <h1>Produkt</h1>
-            <a href="furniture.html" class="admin-product-action">
+            <a href="furniture.html" class="admin-product-button">
                 <img class="icon" src="icons/box-arrow.svg">
                 Zobraziť
             </a>
-            <button type="submit" class="admin-product-action">
+            <button type="submit" class="admin-product-button">
                 <img class="icon" src="icons/save.svg">
                 Uložiť
             </button>
@@ -47,6 +48,8 @@
                 <input type="text" id="product-name" class="name">
                 <label for="product-desc">Popis</label>
                 <textarea id="product-desc" class="desc"></textarea>      
+            </fieldset>
+            <fieldset id="product-availability">
                 <label for="product-in-portfolio">V ponuke</label>
                 <input type="checkbox" id="product-in-portfolio" class="in-portfolio">
                 <label for="product-price">Cena</label>
@@ -56,7 +59,8 @@
                 <label for="product-stock">Na sklade</label>
                 <input type="number" id="product-stock" class="stock">
             </fieldset>
-            <fieldset>
+            <fieldset id="product-attributes">
+                <h2>Parametre</h2>
                 <label for="product-categories">Kategórie</label>  <!-- multiselect -->
                 <input type="text" id="product-categories" class="categories">
                 <label for="product-period">Historické obdobie</label>
@@ -72,7 +76,7 @@
                 <label for="color">Farba</label>
                 <input type="text" id="product-color" class="color">
             </fieldset>
-            <fieldset>
+            <fieldset id="product-dimensions">
                 <label for="product-width">Šírka</label>
                 <input type="number" id="product-width" class="width">
                 cm

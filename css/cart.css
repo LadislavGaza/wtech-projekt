@@ -50,7 +50,6 @@ main {
 .cart-price {
     display: grid;
     grid: 1fr / repeat(2, 1fr);
-    place-items: space-between;
     margin-top: 3rem;
     margin-bottom: 7rem;
 }
@@ -120,7 +119,7 @@ main {
     grid-row: 2;
 }
 
-#order-summary-transport h1, #order-summary-payment h1 {
+#order-summary-transport h2, #order-summary-payment h2 {
     grid-row: 1;
     grid-column: span 4;
     margin: 0.2rem 0;
@@ -212,7 +211,7 @@ main {
 
 
 /* both pages */
-@media  (max-width: 768px)  {
+@media  (max-width: 992px)  {
 	.cart-contents, 
     .cart-contents thead, 
     .cart-contents tbody,
@@ -236,12 +235,6 @@ main {
         text-align: center;
         padding: 1rem 0;
 	}
-
-    .cart-contents td:last-child {
-        padding-left: 0;
-        text-align: center;
-        width: 100%;
-    }
 }
 
 @media (max-width: 562px)  {

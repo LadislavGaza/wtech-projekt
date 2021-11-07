@@ -1,6 +1,6 @@
 .order-page {
     display: grid;
-    grid: repeat(2, auto) / 10% 5fr 1fr 10%;
+    grid: repeat(2, auto) / 10% 4fr 1fr 10%;
     margin-bottom: 5rem;
 }
 
@@ -10,24 +10,16 @@
 
 #order-form {
     grid-column: 2;
-}
-
-#order-form button {
-    /* margin-top: 40%; */
-
+    width: 90%;
 }
 
 #order-summary {
     grid-column: 3;
     display: grid;
     grid: repeat(3, 1fr) 8rem / 1fr;
-    justify-content: end;
+    justify-content: end; 
+    padding-left: 2rem;
 }
-
-/* #order-summary:last-child {
-    height: 85%;
-    border-bottom: 1px solid black;
-} */
 
 .divider {
     border-left: 1px solid black;
@@ -38,14 +30,13 @@
 }
 
 .cart-price-content {
-    width: 90%;
+    width: 100%;
     height: 50%;
     max-width: 500px;
     border-radius: 5px;
-    padding: 1rem 1rem;
+    padding: 1rem 0;
     text-align: right;
     background-color: papayawhip;
-    /* margin: 1.5%; */
     justify-self: end;
     align-self: center;
 }
@@ -75,11 +66,8 @@ fieldset {
     border-radius: 30%;
 }
 
-/* #order-form button {
-    place-self: end;
-} */
-
 .payment-button {
+    grid-column: 2;
     width: 90%;
     max-width: 400px;
     max-height: 4rem;
@@ -92,7 +80,6 @@ fieldset {
     background-color: orange;
     border: none;
     justify-self: end;
-    line-height: 1rem;
 }
 
 .payment-button:hover {
@@ -102,4 +89,232 @@ fieldset {
 .payment-button:after {
     content: '>';
     padding-left: 1rem;
+}
+
+.align-right {
+    display: grid;
+    grid: 1fr / repeat(2, 1fr);
+}
+
+.transport-form {
+    display: grid;
+    grid: repeat(5, auto) / repeat(2, 2rem) 2fr 1fr;
+    grid-row-gap: 2rem;
+    align-items: center;
+}
+
+
+.transport-form .search-bar {
+    grid-column: 1 / span 3;
+    width: 60%;
+}
+
+.transport-form .outpost {
+    grid-row: 4;
+    grid-column: 1 / span 3;
+    width: 100%;
+    border: 1px solid black;
+    padding: 2rem 1rem;
+    background-color: white;
+}
+
+.transport-form .selected-outpost {
+    grid-row: 5;
+    grid-column: 2 / span 2;
+}
+
+.outpost-chooser {
+    display: grid;
+    grid: auto / 1fr 2fr;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 0.5rem 0;
+    background-color: rgb(255, 213, 136);
+}
+
+
+
+.payment-form {
+    display: grid;
+    align-items: center;
+    grid: repeat(3, auto) / repeat(2, 3rem) 2fr 1fr;
+    grid-row-gap: 2rem;
+}
+
+.order-button {
+    padding: 1rem 0;
+    max-width: 400px;
+    width: 80%;
+    justify-items: center;
+}
+
+.transport-form .payment {
+    grid-row: 5;
+    grid-column: 4;
+}
+
+.next-step {
+    grid-column: 4;
+}
+
+.order-button::after {
+    content: '\2304';
+    vertical-align: super;
+    margin-left: 1rem;
+}
+
+#order-company-detail, #order-personal-detail {
+    display: grid;
+    grid-row-gap: 1rem;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+#order-company-detail label, #order-personal-detail label {
+    grid-column: 2;
+}
+
+#order-company-detail input, #order-personal-detail input {
+    grid-column: 3;
+    height: 2rem;
+}
+
+#order-subject-type {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-auto-flow: column;
+}
+
+
+#order-company-detail {
+    grid: repeat(4, auto) / 10% 10rem 1fr 10%;
+    margin-bottom: 2rem;
+}
+
+#order-personal-detail {
+    grid: repeat(6, auto) / 10% 10rem 1fr 10%;
+}
+
+@media (max-width: 1200px) {
+    #order-company-detail label, #order-personal-detail label {
+        grid-column: 1;
+    }
+    
+    #order-company-detail input, #order-personal-detail input {
+        grid-column: 2;
+    }
+
+    #order-company-detail {
+        grid: repeat(4, auto) / 20% 1fr;
+    }
+    
+    #order-personal-detail {
+        grid: repeat(6, auto) / 20% 1fr;
+    }
+}
+
+@media (max-width: 992px) {
+    .product {
+        height: 300px;
+    }
+
+    .order-page {
+        display: grid;
+        grid: repeat(3, auto) / 1fr;
+        margin-bottom: 5rem;
+    }
+
+    .order-page h1 {
+        grid-column: 1;
+        padding-left: 1rem;
+    }
+
+    #order-summary{
+        grid-column: 1;
+        grid-row: 2;
+        display: grid;
+        grid: repeat(2, auto) / repeat(3, 1fr);
+        padding-left: 0;
+        margin-bottom: 1rem;
+    }
+
+    .cart-price-content {
+        grid-row: 2;
+        grid-column: 3;
+        margin-top: 0.5rem;
+    }
+
+    #order-form {
+        grid-column: 1;
+        width: 100%;
+    }
+
+    .divider {
+        border-left: none;
+    }
+
+    .transport-form {
+        display: grid;
+        grid: repeat(6, auto) / repeat(2, 2rem) 2fr 1fr;
+        grid-row-gap: 2rem;
+        align-items: center;
+    }
+
+    .transport-form .search-bar {
+        grid-column: 1 / span 4;
+        width: 100%;
+    }
+
+    .transport-form .outpost {
+        grid-row: 4;
+        grid-column: 1 / span 4;
+        width: 100%;
+    }
+
+    .transport-form .selected-outpost {
+        grid-row: 5;
+        grid-column: 1 / span 4;
+    }  
+
+    .order-button {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .transport-form .payment {
+        grid-row: 6;
+        grid-column: 1 / span 4;
+        /* padding: 1rem 0;
+        max-width: 400px; */
+        /* width: 100%; */
+        justify-items: center;
+    }
+
+    .next-step {
+        grid-column: 1 / span 4;
+    }
+}
+
+@media (max-width: 540px) {
+    .cart-price-content {
+        grid-column: 2 / span 2;
+        margin-top: 0.5rem;
+    }
+
+    #order-company-detail label, 
+    #order-personal-detail label,
+    #order-company-detail input, 
+    #order-personal-detail input {
+        grid-column: 1;
+    }
+
+    #order-company-detail {
+        grid: repeat(8, auto) / 1fr;
+    }
+    
+    #order-personal-detail {
+        grid: repeat(12, auto) / 1fr;
+    }
 }
