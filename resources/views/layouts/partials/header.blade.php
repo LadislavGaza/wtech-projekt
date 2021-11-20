@@ -4,16 +4,31 @@
             <img src="{{ asset('images/logo.png') }}" class="logo" alt="Antiquea Logo">
         </a>
         <div class="login-user">
-            <img class="icon" src="{{ asset('icons/magician.svg') }}">
-            <p>novotna@gmail.com</p>
+            @if (Auth::check())
+                <img class="icon" src="{{ asset('icons/magician.svg') }}">
+                <p>{{ Auth::user()->email }}</p>
+            @else
+                <p></p>
+            @endif
         </div>
         <div class="search-bar">
             <img src="{{ asset('icons/search.svg') }}" class="icon">
             <input type="text" id="search" placeholder="Sem zadajte hľadaný nábytok ...">
         </div>
-        <a href="{{ url('login') }}" class="button">
-            Prihlásiť sa <img class="icon" src="{{ asset('icons/magician.svg') }}">
-        </a>
+        @if (Auth::check())
+            <form action="{{ route('logout') }}" method="post">
+                @csrf
+                <button type="submit" class="button">
+                    Odhlásiť sa <img class="icon" src="{{ asset('icons/magician.svg') }}">
+                </button>
+            </form>
+        @else
+            <div>
+                <a href="{{ url('login') }}" class="button">
+                    Prihlásiť sa <img class="icon" src="{{ asset('icons/magician.svg') }}">
+                </a>
+            </div>
+        @endif
         <a href="{{ url('cart') }}" class="button cart">
             Košík <img class="icon" src="{{ asset('icons/wagon.svg') }}">
         </a>

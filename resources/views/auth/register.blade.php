@@ -1,59 +1,34 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.main', ['title' => 'Registrácia'])
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+@push('styles')
+<link href="{{ asset('css/login.css') }}" rel="stylesheet">
+<script src="{{ asset('js/main.js') }}" type="text/javascript"></script>
+@endpush
+ 
+@section('content')
+<main class="center">
+    <div class="login-page content-middle">
+        <section class="registration-form">
+            <h1>Registrácia</h1>
+             <!-- Validation Errors -->
+            <x-auth-validation-errors :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+            <form action="{{ route('register') }}" method="post">
+                @csrf
+                <p id="subtitle">Ste tu nový? Vyplňte formulár a uľahčite si u nás vaše nákupy </p>
 
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
+                <label for="email">E-mail:</label>
+                <input id="email" type="email" name="email" :value="old('email')" required>
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-            </div>
+                <label for="password">Heslo:</label>
+                <input id="password" type="password" name="password" required autocomplete="new-password" >
 
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
+                <label for="password-confirm">Zopakovať heslo:</label>
+                <input id="password_confirmation" type="password" name="password_confirmation" required>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+                <button type="submit" class="button-login big-button">Registrovať sa</button>
+            </form>
+        </section>
+    </div>
+</main>
+@endsection
