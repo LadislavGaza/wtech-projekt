@@ -11,14 +11,14 @@
 <body>
     <header>
         <a href="index.html">
-            <img src="images/logo-white.png" class="logo" alt="Antiquea Logo">
+            <img src="{{ asset('images/logo-white.png') }}" class="logo" alt="Antiquea Logo">
         </a>
         <div class="search-bar">
-            <img src="icons/search.svg" class="icon">
+            <img src="{{ asset('icons/search.svg') }}" class="icon">
             <input type="text" id="search" placeholder="Sem zadajte hľadaný produkt ...">
         </div>
         <div class="login-user">
-            <img class="icon" src="icons/magician.svg">
+            <img class="icon" src="{{ asset('icons/magician.svg') }}">
             <p>Admin účet</p>
         </div>
         <a href="login.html" class="button">
@@ -27,7 +27,7 @@
     </header>
     <main id="product-stock">
         <a href="admin-product.html" class="btn" id="new-product">
-            <img src="icons/plus-lg.svg" class="icon">
+            <img src="{{ asset('icons/plus-lg.svg') }}" class="icon">
             Nový produkt
         </a>
         <table id="admin-product-stock">
@@ -41,55 +41,55 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><img class="product-image" src="images/sofa.jpg"></td>
+                    <td><img class="product-image" src="{{ asset('images/sofa.jpg') }}"></td>
                     <td><a href="admin-product.html">Holandský barokový kabinet</a></td>
-                    <td><img class="icon" src="icons/eye.svg"></td>
+                    <td><img class="icon" src="{{ asset('icons/eye.svg') }}"></td>
                     <td>8 ks</td>
                     <td>700 €</td>
                     <td>
                         <a href="furniture.html">
-                            <img class="icon" src="icons/box-arrow.svg">
+                            <img class="icon" src="{{ asset('icons/box-arrow.svg') }}">
                         </a>
-                        <img class="icon" src="icons/x-lg.svg">
+                        <img class="icon" src="{{ asset('icons/x-lg.svg') }}">
                     </td>
                 </tr>
                 <tr>
-                    <td><img class="product-image" src="images/sofa.jpg"></td>
+                    <td><img class="product-image" src="{{ asset('images/sofa.jpg') }}"></td>
                     <td><a href="admin-product.html">Modernistická stolová lampa</a></td>
-                    <td><img class="icon" src="icons/eye-slash.svg"></td>
+                    <td><img class="icon" src="{{ asset('icons/eye-slash.svg') }}"></td>
                     <td>0 ks</td>
                     <td>40 €</td>
                     <td>
                         <a href="furniture.html">
-                            <img class="icon" src="icons/box-arrow.svg">
+                            <img class="icon" src="{{ asset('icons/box-arrow.svg') }}">
                         </a>
-                        <img class="icon" src="icons/x-lg.svg">
+                        <img class="icon" src="{{ asset('icons/x-lg.svg') }}">
                     </td>
                 </tr>
                 <tr>
-                    <td><img class="product-image" src="images/sofa.jpg"></td>
+                    <td><img class="product-image" src="{{ asset('images/sofa.jpg') }}"></td>
                     <td><a href="admin-product.html">Benátsky rokokový konferenčný stolík</a></td>
-                    <td><img class="icon" src="icons/eye.svg"></td>
+                    <td><img class="icon" src="{{ asset('icons/eye.svg') }}"></td>
                     <td>6 ks</td>
                     <td>2200 €</td>
                     <td>
                         <a href="furniture.html">
-                            <img class="icon" src="icons/box-arrow.svg">
+                            <img class="icon" src="{{ asset('icons/box-arrow.svg') }}">
                         </a>
-                        <img class="icon" src="icons/x-lg.svg">
+                        <img class="icon" src="{{ asset('icons/x-lg.svg') }}">
                     </td>
                 </tr>
                 <tr>
-                    <td><img class="product-image" src="images/sofa.jpg"></td>
+                    <td><img class="product-image" src="{{ asset('images/sofa.jpg') }}"></td>
                     <td><a href="admin-product.html">Pohovka Bauhaus Chrome</a></td>
-                    <td><img class="icon" src="icons/eye.svg"></td>
+                    <td><img class="icon" src="{{ asset('icons/eye.svg') }}"></td>
                     <td>4 ks</td>
                     <td>720 €</td>
                     <td>
                         <a href="furniture.html">
-                            <img class="icon" src="icons/box-arrow.svg">
+                            <img class="icon" src="{{ asset('icons/box-arrow.svg') }}">
                         </a>
-                        <img class="icon" src="icons/x-lg.svg">
+                        <img class="icon" src="{{ asset('icons/x-lg.svg') }}">
                     </td>
                 </tr>
             </tbody>

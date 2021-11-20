@@ -17,8 +17,8 @@ class CreateShoppingItemsTable extends Migration
             $table->id();
             $table->unsignedSmallInteger('quantity');
 
-            $table->integer('shopping_cart_id')->unsigned();
-            $table->integer('product_id')->unsigned();
+            $table->unsignedInteger('shopping_cart_id');
+            $table->unsignedInteger('product_id');
 
             $table->foreign('shopping_cart_id')->references('id')->on('shopping_carts');
             $table->foreign('product_id')->references('id')->on('products');

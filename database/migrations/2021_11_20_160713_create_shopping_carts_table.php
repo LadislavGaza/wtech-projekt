@@ -17,10 +17,10 @@ class CreateShoppingCartsTable extends Migration
             $table->id();
             $table->boolean('is_bought')->default(false);
 
-            $table->integer('transport')->unsigned();
-            $table->integer('payment')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->integer('delivery_place_id')->unsigned();
+            $table->unsignedInteger('transport');
+            $table->unsignedInteger('payment');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('delivery_place_id');
             
             $table->foreign('transport')->references('id')->on('shopping_options');
             $table->foreign('payment')->references('id')->on('shopping_options');

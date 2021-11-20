@@ -10,7 +10,7 @@
 <body>
     <main id="admin-login-page">
         <form id="admin-login-form" action="/admin-log.php" method="post">
-            <img class="logo" src="images/logo.png">
+            <img class="logo" src="{{ asset('images/logo.png') }}">
             <h1>Administrácia</h1>
             <label for="username" class="login-form-field">Uživateľské meno</label>
             <input type="text" id="username" class="username login-form-field">

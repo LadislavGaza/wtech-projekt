@@ -11,14 +11,14 @@
 <body>
     <header>
         <a href="index.html">
-            <img src="images/logo-white.png" class="logo" alt="Antiquea Logo">
+            <img src="{{ asset('images/logo-white.png') }}" class="logo" alt="Antiquea Logo">
         </a>
         <div class="search-bar">
-            <img src="icons/search.svg" class="icon">
+            <img src="{{ asset('icons/search.svg') }}" class="icon">
             <input type="text" id="search" placeholder="Sem zadajte hľadaný produkt ...">
         </div>
         <div class="login-user">
-            <img class="icon" src="icons/magician.svg">
+            <img class="icon" src="{{ asset('icons/magician.svg') }}">
             <p>Admin účet</p>
         </div>
         <a href="login.html" class="btn button">
@@ -27,20 +27,20 @@
     </header>
     <main id="product-edit">
         <div id="upload-image">
-            <img src="images/sofa.jpg" width="300">
+            <img src="{{ asset('images/sofa.jpg') }}" width="300">
             <button class=login-user>
-                <img class="icon" src="icons/card-image.svg">
+                <img class="icon" src="{{ asset('icons/card-image.svg') }}">
                 Nahrať obrázok
             </button>
         </div>
         <form id="product-edit-form">
             <h1>Produkt</h1>
             <a href="furniture.html" class="admin-product-button">
-                <img class="icon" src="icons/box-arrow.svg">
+                <img class="icon" src="{{ asset('icons/box-arrow.svg') }}">
                 Zobraziť
             </a>
             <button type="submit" class="admin-product-button">
-                <img class="icon" src="icons/save.svg">
+                <img class="icon" src="{{ asset('icons/save.svg') }}">
                 Uložiť
             </button>
             <fieldset id="product-basic-info">
