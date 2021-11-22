@@ -95,11 +95,14 @@ class ShoppingCartController extends Controller
      * @param  \App\Models\ShoppingCart  $shoppingCart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, ShoppingCart $cart)
+    public function destroy(Request $request, $id)
     {
-        $product = $request->get('product-id');
+        error_log('bruh');
+        $product = $id;
+        error_log($product);
         
         $cart = $request->session()->get('cart', array());
+        error_log(print_r($cart));
         if (($key = array_search($product, $cart)) !== false) {
             unset($cart[$key]);
         }
