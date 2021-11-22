@@ -18,16 +18,14 @@
         @if (Auth::check())
             <form action="{{ route('logout') }}" method="post">
                 @csrf
-                <button type="submit" class="button">
+                <button type="submit" class="button loginout">
                     Odhlásiť sa <img class="icon" src="{{ asset('icons/magician.svg') }}">
                 </button>
             </form>
         @else
-            <div>
-                <a href="{{ url('login') }}" class="button">
-                    Prihlásiť sa <img class="icon" src="{{ asset('icons/magician.svg') }}">
-                </a>
-            </div>
+            <a href="{{ url('login') }}" class="button loginout">
+                Prihlásiť sa <img class="icon" src="{{ asset('icons/magician.svg') }}">
+            </a>
         @endif
         <a href="{{ url('cart') }}" class="button cart">
             Košík <img class="icon" src="{{ asset('icons/wagon.svg') }}">

@@ -12,15 +12,16 @@
         Zvolený nábytok by mal preto vhodne vyzdvihovať ostatné zariadenie domácnosti a zároveň pôsobiť na pohľad
         príjemným dojmom. Ideálnou voľbou je zladiť štýl pohoviek, kresiel, stolíku a skriniek v dobovom tóne.
     </p>
-    <form id="product-sort" action="/sort.php" action="post">
+    <form id="product-sort" action="{{ url('products') }}" method="get">
+        <p>{{ request()->get('product-filter') }}</p>
         <fieldset>
             <legend>Usporiadanie</legend>
             <div class="select-wrapper">
-                <select>
-                    <option value="cheap">Od najlacnejších</option>
-                    <option value="expensive">Od najdrahších</option>
-                    <option value="discount">Od najväčšej zľavy</option>
-                    <option value="newest">Najnovšie</option>
+                <select id="product-filter" name="product-filter">
+                    <option value="cheap" {{ request()->get('product-filter') == 'cheap' ? 'selected':'' }}>Od najlacnejších</option>
+                    <option value="expensive" {{ request()->get('product-filter') == 'expensive' ? 'selected':'' }}>Od najdrahších</option>
+                    <option value="discount" {{ request()->get('product-filter') == 'discount' ? 'selected':'' }}>Od najväčšej zľavy</option>
+                    <option value="newest" {{ request()->get('product-filter') == 'newest' ? 'selected':'' }}>Najnovšie</option>
                 </select>
             </div>
         </fieldset>
@@ -100,78 +101,35 @@
         </div>
     </aside>
     <section id="product-list">
+        @foreach($products as $product)
         <article class="product">
-            <a href="furniture.html">
-                <img class="product-image" src="{{ asset('images/sofa.jpg') }}" alt="Kreslo v štýle art deco">
-                <p class="product-caption">Kreslo v štýle art deco s červeným čalúnením</p>
-                <p class="product-price">350 €</p>
+            <a href="products/{{ $product->id }}">
+                <img class="product-image" src="{{ asset('images/'. $product->picture) }}" alt="{{ $product->name }}">
+                <p class="product-caption">{{ $product->name }}</p>
+                <p class="product-price">{{ $product->price }} €</p>
             </a>
         </article>
-        <article class="product">
-            <a href="furniture.html">
-                <img class="product-image" src="{{ asset('images/couch.jpg') }}">
-                <p class="product-caption">Holandský barokový kabinet</p>
-                <p class="product-price">1120 €</p>
-            </a>
-        </article>
-        <article class="product">
-            <a href="furniture.html">
-                <img class="product-image" src="{{ asset('images/sofa.jpg') }}">
-                <p class="product-caption">Pohovka zo zelenej kože  z 1970</p>
-                <p class="product-price">525 €</p>
-            </a>
-        </article>
-        <article class="product">
-            <a href="furniture.html">
-                <img class="product-image" src="{{ asset('images/couch.jpg') }}">
-                <p class="product-caption">Pohovka Bauhaus Chrome</p>
-                <p class="product-price">720 €</p>
-            </a>
-        </article>
-        <article class="product">
-            <a href="furniture.html">
-                <img class="product-image" src="{{ asset('images/sofa.jpg') }}">
-                <p class="product-caption">Maľované bambusové kreslo</p>
-                <p class="product-price">499 €</p>
-            </a>
-        </article>
-        <article class="product">
-            <a href="furniture.html">
-                <img class="product-image" src="{{ asset('images/sofa.jpg') }}">
-                <p class="product-caption">Gauč alebo rozkladacia pohovka z 1960</p>
-                <p class="product-price">380 €</p>
-            </a>
-        </article>
-        <article class="product">
-            <a href="furniture.html">
-                <img class="product-image" src="{{ asset('images/couch.jpg') }}">
-                <p class="product-caption">Benátsky rokokový konferenčný stolík</p>
-                <p class="product-price">2200 €</p>
-            </a>
-        </article>
-        <article class="product">
-            <a href="furniture.html">
-                <img class="product-image" src="{{ asset('images/sofa.jpg') }}">
-                <p class="product-caption">Mahagonový kartový stolík z pozláteného bronzu</p>
-                <p class="product-price">5200 €</p>
-            </a>
-        </article>
-        <article class="product">
-            <a href="furniture.html">
-                <img class="product-image" src="{{ asset('images/couch.jpg') }}">
-                <p class="product-caption">Medený kávový stolík</p>
-                <p class="product-price">1800 €</p>
-            </a>
-        </article>
+        @endforeach
     </section>
     </div>
     <nav id="product-pager" class="pagination">
         <ul>
-            <li><a href="#">&lt;</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">&gt;</a></li>
+            @if ($products->onFirstPage())
+            <li><a href="{{ $products->previousPageUrl() }}">&lt;</a></li>
+            <li><a href="{{ $products->url($products->currentPage()) }}" class="current-page">{{ $products->currentPage() }}</a></li>
+                @if ($products->hasMorePages())
+                <li><a href="{{ $products->nextPageUrl() }}">{{ $products->currentPage() + 1 }}</a></li>
+                @endif
+            <li><a href="{{ $products->nextPageUrl() }}">&gt;</a></li>
+            @else
+            <li><a href="{{ $products->previousPageUrl() }}">&lt;</a></li>
+            <li><a href="{{ $products->previousPageUrl() }}">{{ $products->currentPage() - 1 }}</a></li>
+            <li><a href="{{ $products->url($products->currentPage()) }}" class="current-page">{{ $products->currentPage() }}</a></li>
+                @if ($products->hasMorePages())
+                <li><a href="{{ $products->nextPageUrl() }}">{{ $products->currentPage() + 1 }}</a></li>
+                @endif
+            <li><a href="{{ $products->nextPageUrl() }}">&gt;</a></li>
+            @endif
         </ul>
     </nav>
 </main>

@@ -9,16 +9,15 @@
 <main class="furniture-page">
     <ul class="breadcrumb">
         <li><a href="#">Obývačka</a></li>
-        <li><a href="#">Pohovka Bauhaus Chrome</a></li>
+        <li><a href="#">{{ $product->name }}</a></li>
     </ul>
     <img id="furniture-image" src="{{ asset('images/couch.jpg') }}" alt="Pohovka Bauhaus Chrome">
-    <h1 id="furniture-name">Pohovka Bauhaus Chrome</h1>
-    <p id="furniture-description">Kovová rúrková pohovka chrómového vzhľadu, rok 1930. Traduje sa,
-        že bola nadizajnovaná samotným Klementom Gottwaldom. Kov je vo výbornom stave
+    <h1 id="furniture-name">{{ $product->name }}</h1>
+    <p id="furniture-description">{{ $product->description }}
     </p>
-    <p id="furniture-stock-amount">Na sklade 4 ks</p>
+    <p id="furniture-stock-amount">Na sklade {{ $product->quantity }} ks</p>
     <p id="furniture-price">
-        <emph>720 €</emph> 576 € bez DPH
+        <emph>{{ $product->price }} €</emph> {{ $product->price * 0.8 }} € bez DPH
     </p>
     <button id="add-to-cart" class="button-to-cart">
         <img class="icon" id="cart-add-icon" src="{{ asset('icons/wagon.svg') }}">
@@ -37,7 +36,7 @@
             </tr>
             <tr>
                 <th>Rok výroby:</th>
-                <td>1930</td>
+                <td>{{ $product->year }}</td>
             </tr>
             <tr>
                 <th>Krajina pôvodu:</th>
@@ -58,15 +57,15 @@
         <table>
             <tr>
                 <th>Šírka:</th>
-                <td>191 cm</td>
+                <td>{{ $product->width }} cm</td>
             </tr>
             <tr>
                 <th>Hĺbka:</th>
-                <td>81 cm</td>
+                <td>{{ $product->depth }} cm</td>
             </tr>
             <tr>
                 <th>Výška:</th>
-                <td>70 cm</td>
+                <td>{{ $product->height }} cm</td>
             </tr>
         </table>  
     </section>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Http\Request;
 use App\Models\Product;
 
 class ProductController extends Controller
@@ -13,9 +14,16 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('shop.products');
+        $sort = $request->query('product-filter');
+        $sortActions = ['cheap' => Product::orderBy('price', 'asc')->paginate(9), 
+                        'expensive' => Product::orderBy('price', 'desc')->paginate(9), 
+                        'discount' => Product::orderBy('discount', 'desc')->paginate(9),
+                        'newest' => Product::orderBy('year', 'desc')->paginate(9), 
+                    ];
+        $products = $sortActions[$sort] ?? Product::paginate(9);           
+        return view('shop.products', ['products' => $products]);
     }
 
     /**
@@ -47,7 +55,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('shop.product');
+        return view('shop.product', ['product' => $product]);
     }
 
     /**
