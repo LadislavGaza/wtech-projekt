@@ -33,13 +33,13 @@
     </div>
     <nav class="product-categories">
         <ul>
-            <li><a href="products.html">Obývačka</a></li>
-            <li><a href="products.html">Detská izba</a></li>
-            <li><a href="products.html">Spálňa</a></li>
-            <li><a href="products.html">Kuchyňa</a></li>
-            <li><a href="products.html">Kupeľňa</a></li>
-            <li><a href="products.html">Pracovňa</a></li>
-            <li><a href="products.html">Doplnky</a></li>
+            <li><a href="{{ url('products') }}">Obývačka</a></li>
+            <li><a href="{{ url('products') }}">Detská izba</a></li>
+            <li><a href="{{ url('products') }}">Spálňa</a></li>
+            <li><a href="{{ url('products') }}">Kuchyňa</a></li>
+            <li><a href="{{ url('products') }}">Kupeľňa</a></li>
+            <li><a href="{{ url('products') }}">Pracovňa</a></li>
+            <li><a href="{{ url('products') }}">Doplnky</a></li>
         </ul>
     </nav>
 </header>

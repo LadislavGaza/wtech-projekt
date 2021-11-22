@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreShoppingCartRequest;
 use App\Http\Requests\UpdateShoppingCartRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use App\Models\ShoppingCart;
+use App\Models\Product;
 
 class ShoppingCartController extends Controller
 {
@@ -13,9 +16,11 @@ class ShoppingCartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('shop.cart');
+        $cart = $request->session()->get('cart', array());
+        $items = Product::whereIn('id', $cart)->get();
+        return view('shop.cart', ['items' => $items]);
     }
 
     /**
@@ -36,7 +41,18 @@ class ShoppingCartController extends Controller
      */
     public function store(StoreShoppingCartRequest $request)
     {
-        //
+        $product = $request->get('product-id');
+        
+        if (Auth::check()) {
+            $user = Auth::user();
+            // $user->cart()->items()->create();
+        }
+
+        $cart = $request->session()->get('cart', array());
+        array_push($cart, $product);
+        $request->session()->put('cart', $cart);
+
+        return back();
     }
 
     /**
@@ -79,8 +95,16 @@ class ShoppingCartController extends Controller
      * @param  \App\Models\ShoppingCart  $shoppingCart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ShoppingCart $shoppingCart)
+    public function destroy(Request $request, ShoppingCart $cart)
     {
-        //
+        $product = $request->get('product-id');
+        
+        $cart = $request->session()->get('cart', array());
+        if (($key = array_search($product, $cart)) !== false) {
+            unset($cart[$key]);
+        }
+        $request->session()->put('cart', $cart);
+        
+        return redirect('cart');
     }
 }

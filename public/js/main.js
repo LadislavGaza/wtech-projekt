@@ -13,8 +13,8 @@ window.addEventListener('load', function() {
         }); 
     }
     
-    const filter = document.getElementById('product-filter');
-    filter.addEventListener('change', function() {
+    const sort = document.getElementById('product-sort');
+    sort.addEventListener('change', function() {
        this.closest('form').submit(); 
     });
 })

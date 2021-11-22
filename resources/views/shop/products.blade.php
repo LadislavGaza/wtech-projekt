@@ -12,93 +12,52 @@
         Zvolený nábytok by mal preto vhodne vyzdvihovať ostatné zariadenie domácnosti a zároveň pôsobiť na pohľad
         príjemným dojmom. Ideálnou voľbou je zladiť štýl pohoviek, kresiel, stolíku a skriniek v dobovom tóne.
     </p>
-    <form id="product-sort" action="{{ url('products') }}" method="get">
-        <p>{{ request()->get('product-filter') }}</p>
+    <form id="product-form-sort" action="{{ url('products') }}" method="get">
+        @csrf
         <fieldset>
             <legend>Usporiadanie</legend>
             <div class="select-wrapper">
-                <select id="product-filter" name="product-filter">
-                    <option value="cheap" {{ request()->get('product-filter') == 'cheap' ? 'selected':'' }}>Od najlacnejších</option>
-                    <option value="expensive" {{ request()->get('product-filter') == 'expensive' ? 'selected':'' }}>Od najdrahších</option>
-                    <option value="discount" {{ request()->get('product-filter') == 'discount' ? 'selected':'' }}>Od najväčšej zľavy</option>
-                    <option value="newest" {{ request()->get('product-filter') == 'newest' ? 'selected':'' }}>Najnovšie</option>
+                <select id="product-sort" name="product-sort">
+                    <option value="default" {{ $active_sort == 'default' ? 'selected' : '' }} disabled>Predvolené</option>
+                    <option value="cheap" {{ $active_sort == 'cheap' ? 'selected' : '' }}>Od najlacnejších</option>
+                    <option value="expensive" {{ $active_sort == 'expensive' ? 'selected' : '' }}>Od najdrahších</option>
+                    <option value="discount" {{ $active_sort == 'discount' ? 'selected' : '' }}>Od najväčšej zľavy</option>
+                    <option value="newest" {{ $active_sort == 'newest' ? 'selected' : '' }}>Najnovšie</option>
                 </select>
             </div>
         </fieldset>
     </form>
-    <aside id="product-filter" class="tabs">
-        <div class="tab">
-            <input type="checkbox" id="price-accordion" class="tab-checked">
-            <label class="tab-label" for="price-accordion">Cena</label>
-            <div class="tab-content">
-                <input type="range" min="0" max="2000" id="cena">
-                <div class="price-range">
-                    <input type="text" class="price-constraint"> € až <input type="text" class="price-constraint"> €
+    <aside id="product-filter">
+        <form action="{{ url('products') }}" method="get" class="tabs">
+            @csrf
+            <div class="filter-buttons">
+                <button type="submit" class="big-button btn filter-button">Filtrovať</button>
+                <button type="submit" class="big-button btn filter-button" name='cancel-filters'>Zrušiť výber</button>
+            </div>
+            <div class="tab">
+                <input type="checkbox" id="price-accordion" class="tab-checked">
+                <label class="tab-label" for="price-accordion">Cena</label>
+                <div class="tab-content">
+                    <div class="price-range">
+                        <input type="text" class="price-constraint" name="price-from" value="{{ session()->get('price-from') }}"> € až 
+                        <input type="text" class="price-constraint" name="price-to" value="{{ session()->get('price-to') }}"> €
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="tab">
-            <input type="checkbox" id="era-accordion" class="tab-checked">
-            <label class="tab-label" for="era-accordion">Historické obdobie</label>
-            <div class="tab-content">
-                <input type="checkbox" id="stredovek">
-                <label for="stredovek">Stredovek</label>
-                <input type="checkbox" id="renesancia">
-                <label for="renesancia">Renesancia</label>
-                <input type="checkbox" id="rokoko">
-                <label for="rokoko">Rokoko</label>
-                <input type="checkbox" id="art-nouveau">
-                <label for="art-nouveau">Art Nouveau</label>
-                <input type="checkbox" id="bauhaus">
-                <label for="bauhaus">Bauhaus</label>
-                <input type="checkbox" id="art-deco">
-                <label for="art-deco">Art Deco</label>
+            <div class="tab">
+            @foreach($filter_names as $key => $title)
+            <div class="tab">
+                <input type="checkbox" id="{{ $key }}-accordion" class="tab-checked">
+                <label class="tab-label" for="{{ $key }}-accordion">{{ $title }}</label>
+                <div class="tab-content">
+                    @foreach($filters[$key] as $option)
+                    <input type="checkbox" id="{{ $option->id }}" name="{{ $key }}-{{ $option->name }}">
+                    <label for="{{ $option->id }}">{{ $option->name }}</label>
+                    @endforeach        
+                </div>
             </div>
-        </div>
-        <div class="tab">
-            <input type="checkbox" id="material-accordion" class="tab-checked">
-            <label class="tab-label" for="material-accordion">Materiál</label>
-            <div class="tab-content">
-                <input type="checkbox" id="drevo">
-                <label for="drevo">Drevo</label>
-                <input type="checkbox" id="koza">
-                <label for="koza">Koža</label>
-                <input type="checkbox" id="kov">
-                <label for="kov">Kov</label>
-                <input type="checkbox" id="plast">
-                <label for="plast">Plast</label>
-                <input type="checkbox" id="latka">
-                <label for="latka">Látka</label>          
-            </div>
-        </div>
-        <div class="tab">
-            <input type="checkbox" id="furniture-accordion" class="tab-checked">
-            <label class="tab-label" for="furniture-accordion">Druh nábytku</label>
-            <div class="tab-content">
-                <input type="checkbox" id="sedacky">
-                <label for="sedacky">Sedačky</label>
-                <input type="checkbox" id="pohovky">
-                <label for="pohovky">Pohovky</label>
-                <input type="checkbox" id="kresla">
-                <label for="kresla">Kreslá</label>
-                <input type="checkbox" id="lehatka">
-                <label for="lehatka">Lehátka</label>
-                <input type="checkbox" id="komody">
-                <label for="komody">Komody</label>           
-            </div>
-        </div>
-        <div class="tab">
-            <input type="checkbox" id="color-accordion" class="tab-checked">
-            <label class="tab-label" for="color-accordion">Farba</label>
-            <div class="tab-content">
-                <input type="checkbox" id="biela">
-                <label for="biela">Biela</label>
-                <input type="checkbox" id="cierna">
-                <label for="cierna">Čierna</label>
-                <input type="checkbox" id="hneda">
-                <label for="hneda">Hnedá</label>           
-            </div>
-        </div>
+            @endforeach
+        </form>
     </aside>
     <section id="product-list">
         @foreach($products as $product)

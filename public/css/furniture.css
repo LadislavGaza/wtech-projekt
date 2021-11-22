@@ -77,11 +77,14 @@
     font-weight: bold;
 }
 
-#add-to-cart {
+#form-add-to-cart {
     grid-row: 5;
     grid-column: 4;
     align-self: center;
     justify-self: start;
+}
+
+#add-to-cart {
     max-width: 600px;
     width: 100%;
     font-size: 1.2rem;

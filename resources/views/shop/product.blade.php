@@ -19,10 +19,14 @@
     <p id="furniture-price">
         <emph>{{ $product->price }} €</emph> {{ $product->price * 0.8 }} € bez DPH
     </p>
-    <button id="add-to-cart" class="button-to-cart">
-        <img class="icon" id="cart-add-icon" src="{{ asset('icons/wagon.svg') }}">
-        Do košíka
-    </button>
+    <form id="form-add-to-cart" action="{{ url('cart') }}" method="post">
+        @csrf
+        <input type="hidden" value="{{ $product->id }}" name="product-id">
+        <button type="submit" id="add-to-cart" class="button-to-cart">
+            <img class="icon" id="cart-add-icon" src="{{ asset('icons/wagon.svg') }}">
+            Do košíka
+        </button>
+    </form>
     <section id="furniture-parameters">
         <h2>Parametre</h2>
         <table>

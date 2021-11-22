@@ -17,30 +17,24 @@
             <th></th>
         </thead>
         <tbody>
+            @foreach ($items as $item)
             <tr>
-                <td><img class="product-image" src="{{ asset('images/couch.jpg') }}"></td>
-                <td>Pohovka Bauhaus Chrome</td>
-                <td>720 €</td>
-                <td><input type="number" value="2"></td>
-                <td>1440 €</td>
-                <td><img class="icon-clickable" src="{{ asset('icons/x-lg.svg') }}"></td>
+                <td><img class="product-image" src="{{ asset('images/'. $item->picture) }}"></td>
+                <td>{{ $item->name }}</td>
+                <td>{{ $item->price }} €</td>
+                <td><input type="number" value="$item->quantity"></td>
+                <td>$item->price * $item->quantity €</td>
+                <td>
+                    <form id="form-add-to-cart" action="{{ url('cart', [$item->id]) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" id="add-to-cart" class="button-to-cart">
+                            <img class="icon-clickable" src="{{ asset('icons/x-lg.svg') }}">
+                        </button>
+                    </form>
+                </td>
             </tr>
-            <tr>
-                <td><img class="product-image" src="{{ asset('images/couch.jpg') }}"></td>
-                <td>Drevený rošt Jakub</td>
-                <td>65 €</td>
-                <td><input type="number" value="1"></td>
-                <td>65 €</td>
-                <td><img class="icon-clickable" src="{{ asset('icons/x-lg.svg') }}"></td>
-            </tr>
-            <tr>
-                <td><img class="product-image" src="{{ asset('images/couch.jpg') }}"></td>
-                <td>Medený kávový stolík</td>
-                <td>1800 €</td>
-                <td><input type="number" value="1"></td>
-                <td>1800 €</td>
-                <td><img class="icon-clickable" src="{{ asset('icons/x-lg.svg') }}"></td>
-            </tr>
+            @endforeach
         </tbody>
     </table>
     <div class="cart-price content-middle">
