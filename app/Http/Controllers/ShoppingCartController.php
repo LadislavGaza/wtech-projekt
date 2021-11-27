@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\ShoppingCart;
 use App\Models\Product;
+use App\Models\ShoppingItem;
 
 class ShoppingCartController extends Controller
 {
@@ -19,7 +20,6 @@ class ShoppingCartController extends Controller
     public function index(Request $request)
     {
         $cart = $request->session()->get('cart', array());
-
         $items = Product::whereIn('id', array_keys($cart))->get();
 
         $final_sum = 0;
@@ -52,12 +52,24 @@ class ShoppingCartController extends Controller
         
         if (Auth::check()) {
             $user = Auth::user();
-            // $user->cart()->items()->create();
+            // error_log('bruh');
+            // error_log($user);
+            $cart = $user->cart();
+            $item = new ShoppingItem;
+            $item->quantity = 1;
+            $item->product_id = $product;
+            // $cart->items()->create([
+            //     'quantity' => 1,
+            //     'product_id' => $product->id
+            // ]);
+            $wtf = $cart->items();
+            // $cart->items()->save($item);
         }
-
-        $cart = $request->session()->get('cart', array());
-        $cart[$product] = 1;
-        $request->session()->put('cart', $cart);
+        else {
+            $cart = $request->session()->get('cart', array());
+            $cart[$product] = 1;
+            $request->session()->put('cart', $cart);
+        }
 
         return back();
     }

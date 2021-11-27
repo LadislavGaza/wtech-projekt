@@ -8,7 +8,6 @@
 @section('content')
 <main>
     <h1 class="content-middle">Váš nákup</h1>
-
     <table class="cart-contents content-middle">
         <thead>
             <th></th>
@@ -35,7 +34,7 @@
                     <form action="{{ url('cart', [$item->id]) }}" method="post">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="button-to-cart">
+                        <button type="submit" class="button-to-delete">
                             <img class="icon-clickable" src="{{ asset('icons/x-lg.svg') }}">
                         </button>
                     </form>

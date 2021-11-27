@@ -15,12 +15,11 @@ class CreateShoppingCartsTable extends Migration
     {
         Schema::create('shopping_carts', function (Blueprint $table) {
             $table->id();
-            $table->boolean('is_bought')->default(false);
 
-            $table->unsignedInteger('transport');
-            $table->unsignedInteger('payment');
+            $table->unsignedInteger('transport')->nullable();
+            $table->unsignedInteger('payment')->nullable();
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('delivery_place_id');
+            $table->unsignedInteger('delivery_place_id')->nullable();
             
             $table->foreign('transport')->references('id')->on('shopping_options');
             $table->foreign('payment')->references('id')->on('shopping_options');
