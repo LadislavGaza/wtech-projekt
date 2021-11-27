@@ -44,7 +44,6 @@
                     </div>
                 </div>
             </div>
-            <div class="tab">
             @foreach($filter_names as $key => $title)
             <div class="tab">
                 <input type="checkbox" id="{{ $key }}-accordion" class="tab-checked">
