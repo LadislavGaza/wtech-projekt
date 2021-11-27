@@ -2,11 +2,13 @@
 
 @push('styles')
 <link href="{{ asset('css/cart.css') }}" rel="stylesheet">
+<script src="{{ asset('js/main.js') }}" type="text/javascript"></script>
 @endpush
  
 @section('content')
 <main>
     <h1 class="content-middle">Váš nákup</h1>
+
     <table class="cart-contents content-middle">
         <thead>
             <th></th>
@@ -22,13 +24,18 @@
                 <td><img class="product-image" src="{{ asset('images/'. $item->picture) }}"></td>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->price }} €</td>
-                <td><input type="number" value="$item->quantity"></td>
-                <td>$item->price * $item->quantity €</td>
+                <td><form action="{{ url('cart', [$item->id]) }}" method="post">
+                    @csrf
+                    @method('put')
+                    <input type="number" name="howMuch" value="{{ $quantity[$item->id] }}" onChange="changeQuantity()">
+                    </form>
+                </td>
+                <td> {{ $item->price * $quantity[$item->id] }}€</td>
                 <td>
-                    <form id="form-add-to-cart" action="{{ url('cart', [$item->id]) }}" method="post">
+                    <form action="{{ url('cart', [$item->id]) }}" method="post">
                         @csrf
                         @method('delete')
-                        <button type="submit" id="add-to-cart" class="button-to-cart">
+                        <button type="submit" class="button-to-cart">
                             <img class="icon-clickable" src="{{ asset('icons/x-lg.svg') }}">
                         </button>
                     </form>
@@ -41,11 +48,11 @@
         <table class="cart-price-content">
             <tr>
                 <th><emph>Celková suma:</emph><th>
-                <td><emph>3305&nbsp;€</emph></td>
+                <td><emph>{{ $final_sum }}&nbsp;€</emph></td>
             </tr>
             <tr>
                 <th>Bez DPH:<th>
-                <td>2644&nbsp;€</td>
+                <td>{{ $final_sum * 0.8 }}&nbsp;€</td>
             </tr>
         </table>
         <a href="order.html" class="button payment-button">K pokladni</a>

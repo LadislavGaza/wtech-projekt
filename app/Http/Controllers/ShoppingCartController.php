@@ -19,8 +19,15 @@ class ShoppingCartController extends Controller
     public function index(Request $request)
     {
         $cart = $request->session()->get('cart', array());
-        $items = Product::whereIn('id', $cart)->get();
-        return view('shop.cart', ['items' => $items]);
+
+        $items = Product::whereIn('id', array_keys($cart))->get();
+
+        $final_sum = 0;
+        foreach($items as $item){
+            $final_sum += $item->price * $cart[$item->id];
+        }
+
+        return view('shop.cart', ['items' => $items, 'quantity' => $cart, 'final_sum' => $final_sum]);
     }
 
     /**
@@ -49,7 +56,7 @@ class ShoppingCartController extends Controller
         }
 
         $cart = $request->session()->get('cart', array());
-        array_push($cart, $product);
+        $cart[$product] = 1;
         $request->session()->put('cart', $cart);
 
         return back();
@@ -84,9 +91,14 @@ class ShoppingCartController extends Controller
      * @param  \App\Models\ShoppingCart  $shoppingCart
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateShoppingCartRequest $request, ShoppingCart $shoppingCart)
+    public function update(Request $request, $id)
     {
-        //
+        $cart = $request->session()->get('cart', array());
+        $quantity = $request->get('howMuch');
+        $cart[$id] = $quantity;
+        $request->session()->put('cart', $cart);
+
+        return redirect('cart');
     }
 
     /**
@@ -97,15 +109,10 @@ class ShoppingCartController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        error_log('bruh');
         $product = $id;
-        error_log($product);
         
         $cart = $request->session()->get('cart', array());
-        error_log(print_r($cart));
-        if (($key = array_search($product, $cart)) !== false) {
-            unset($cart[$key]);
-        }
+        unset($cart[$product]);
         $request->session()->put('cart', $cart);
         
         return redirect('cart');

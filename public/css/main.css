@@ -67,6 +67,8 @@ body {
     grid: 1fr / 2rem auto;
     align-items: center;
     justify-content: center;
+    background-color: transparent;
+    border: 0px;
 }
 
 .btn:hover, .button:hover, .button-login:hover {

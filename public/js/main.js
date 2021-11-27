@@ -5,7 +5,7 @@ window.addEventListener('load', function() {
         buy.addEventListener('click', function() {
             const notif = document.getElementById('cart-notification');
             
-            this.innerHTML = '<img class="icon" id="cart-add-icon" src="icons/check.svg">Pridané do košíka';
+            this.innerHTML = '<img class="icon" id="cart-add-icon" src="/icons/check.svg">Pridané do košíka';
             this.style.color = 'white';
             this.style.backgroundColor = 'green';
             
@@ -14,7 +14,14 @@ window.addEventListener('load', function() {
     }
     
     const sort = document.getElementById('product-sort');
-    sort.addEventListener('change', function() {
-       this.closest('form').submit(); 
-    });
-})
+
+    if (sort !== null){
+        sort.addEventListener('change', function() {
+        this.closest('form').submit(); 
+        });
+    }
+});
+
+function changeQuantity(){
+    this.closest('form').submit();
+}
