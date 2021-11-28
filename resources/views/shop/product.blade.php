@@ -11,7 +11,7 @@
         <li><a href="#">Obývačka</a></li>
         <li><a href="#">{{ $product->name }}</a></li>
     </ul>
-    <img id="furniture-image" src="{{ asset('images/couch.jpg') }}" alt="Pohovka Bauhaus Chrome">
+    <img id="furniture-image" src="{{ asset('images/'. $product->picture) }}" alt="{{ $product->name }}">
     <h1 id="furniture-name">{{ $product->name }}</h1>
     <p id="furniture-description">{{ $product->description }}
     </p>

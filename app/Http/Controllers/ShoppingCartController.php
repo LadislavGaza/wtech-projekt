@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\ShoppingCart;
 use App\Models\Product;
-use App\Models\ShoppingItem;
+use Illuminate\Database\QueryException;
+
 
 class ShoppingCartController extends Controller
 {
@@ -19,15 +20,28 @@ class ShoppingCartController extends Controller
      */
     public function index(Request $request)
     {
-        $cart = $request->session()->get('cart', array());
-        $items = Product::whereIn('id', array_keys($cart))->get();
+        if (Auth::check()) {
+            $user = Auth::user();
+            $cart = $user->cart()->first();
+            $items = $cart->items()->with('product')->get();
+        } else {
+            $cart = $request->session()->get('cart', array());
+            $products = Product::whereIn('id', array_keys($cart))->get()->keyBy('id');
 
-        $final_sum = 0;
-        foreach($items as $item){
-            $final_sum += $item->price * $cart[$item->id];
+            $items = array();
+            foreach ($cart as $product_id => $quantity) {
+                array_push($items, (object) [
+                    'quantity' => $quantity,
+                    'product' => $products[$product_id]
+                ]);
+            }
         }
 
-        return view('shop.cart', ['items' => $items, 'quantity' => $cart, 'final_sum' => $final_sum]);
+        $final_sum = 0;
+        foreach($items as $item) {
+            $final_sum += $item->product->price * $item->quantity;
+        }
+        return view('shop.cart', ['items' => $items, 'final_sum' => $final_sum]);
     }
 
     /**
@@ -48,22 +62,20 @@ class ShoppingCartController extends Controller
      */
     public function store(StoreShoppingCartRequest $request)
     {
-        $product = $request->get('product-id');
+        $request->validate(['product-id' => 'required|integer|min:1']);
+        $product = (int)$request->get('product-id');
         
         if (Auth::check()) {
             $user = Auth::user();
-            // error_log('bruh');
-            // error_log($user);
-            $cart = $user->cart();
-            $item = new ShoppingItem;
-            $item->quantity = 1;
-            $item->product_id = $product;
-            // $cart->items()->create([
-            //     'quantity' => 1,
-            //     'product_id' => $product->id
-            // ]);
-            $wtf = $cart->items();
-            // $cart->items()->save($item);
+            $cart = $user->cart()->first();
+            try {
+                $cart->items()->create([
+                    'quantity' => 1,
+                    'product_id' => $product
+                ]);
+            } catch (QueryException $e) {
+                return back();
+            }
         }
         else {
             $cart = $request->session()->get('cart', array());
@@ -105,10 +117,19 @@ class ShoppingCartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cart = $request->session()->get('cart', array());
-        $quantity = $request->get('howMuch');
-        $cart[$id] = $quantity;
-        $request->session()->put('cart', $cart);
+        $request->validate(['howMuch' => 'required|integer|min:1']);
+        $quantity = (int)$request->get('howMuch');
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            $cart = $user->cart()->first();
+            $product = $cart->items()->where('product_id', $id);
+            $product->update(['quantity' => $quantity]);
+        } else {
+            $cart = $request->session()->get('cart', array());
+            $cart[$id] = $quantity;
+            $request->session()->put('cart', $cart);
+        }
 
         return redirect('cart');
     }
@@ -122,10 +143,16 @@ class ShoppingCartController extends Controller
     public function destroy(Request $request, $id)
     {
         $product = $id;
-        
-        $cart = $request->session()->get('cart', array());
-        unset($cart[$product]);
-        $request->session()->put('cart', $cart);
+        if (Auth::check()) {
+            $user = Auth::user();
+            $cart = $user->cart()->first();
+            $product = $cart->items()->where('product_id', $id);
+            $product->delete();
+        } else {
+            $cart = $request->session()->get('cart', array());
+            unset($cart[$product]);
+            $request->session()->put('cart', $cart);
+        }
         
         return redirect('cart');
     }

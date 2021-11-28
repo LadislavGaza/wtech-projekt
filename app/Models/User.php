@@ -42,18 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // public function cart()
-    // {
-    //     return $this->hasOne(ShoppingCart::class)->wherePivot('is_bought', false);
-    // }
-
     public function cart()
     {
-        return $this->hasOne(ShoppingCart::class);
+        return $this->hasOne(ShoppingCart::class, 'user_id');
     }
 
-    // public function order()
-    // {
-    //     return $this->hasMany('App\Models\ShoppingCart');
-    // }
+    /*public function shoppingItem()
+    {
+        return $this->hasManyThrough(ShoppingItem::class, ShoppingCart::class);
+    }*/
+
 }

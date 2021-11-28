@@ -100,7 +100,7 @@ body {
 /* Products */
 .product {
     box-sizing: border-box;
-    height: 307px;
+    height: 350px;
     border: 1px solid black;
     margin: 1.5%;
     position: relative;

@@ -22,6 +22,7 @@ class CreateShoppingItemsTable extends Migration
 
             $table->foreign('shopping_cart_id')->references('id')->on('shopping_carts');
             $table->foreign('product_id')->references('id')->on('products');
+            $table->unique(['shopping_cart_id', 'product_id']);
 
             $table->timestamps();
         });

@@ -20,18 +20,18 @@
         <tbody>
             @foreach ($items as $item)
             <tr>
-                <td><img class="product-image" src="{{ asset('images/'. $item->picture) }}"></td>
-                <td>{{ $item->name }}</td>
-                <td>{{ $item->price }} €</td>
-                <td><form action="{{ url('cart', [$item->id]) }}" method="post">
+                <td><img class="product-image" src="{{ asset('images/'. $item->product->picture) }}"></td>
+                <td>{{ $item->product->name }}</td>
+                <td>{{ $item->product->price }} €</td>
+                <td><form action="{{ url('cart', [$item->product->id]) }}" method="post">
                     @csrf
                     @method('put')
-                    <input type="number" name="howMuch" value="{{ $quantity[$item->id] }}" onChange="changeQuantity()">
+                    <input type="number" name="howMuch" value="{{ $item->quantity }}" onChange="changeQuantity()">
                     </form>
                 </td>
-                <td> {{ $item->price * $quantity[$item->id] }}€</td>
+                <td> {{ $item->product->price * $item->quantity }}€</td>
                 <td>
-                    <form action="{{ url('cart', [$item->id]) }}" method="post">
+                    <form action="{{ url('cart', [$item->product->id]) }}" method="post">
                         @csrf
                         @method('delete')
                         <button type="submit" class="button-to-delete">
