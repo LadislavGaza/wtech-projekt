@@ -8,7 +8,7 @@
 @section('content')
 <main class="furniture-page">
     <ul class="breadcrumb">
-        <li><a href="#">Obývačka</a></li>
+        <li><a href="{{ url('products/'. $room->key) }}">{{ $room->name }}</a></li>
         <li><a href="#">{{ $product->name }}</a></li>
     </ul>
     <img id="furniture-image" src="{{ asset('images/'. $product->picture) }}" alt="{{ $product->name }}">
@@ -22,37 +22,38 @@
     <form id="form-add-to-cart" action="{{ url('cart') }}" method="post">
         @csrf
         <input type="hidden" value="{{ $product->id }}" name="product-id">
-        <button type="submit" id="add-to-cart" class="button-to-cart">
-            <img class="icon" id="cart-add-icon" src="{{ asset('icons/wagon.svg') }}">
-            Do košíka
+        @if (session('status'))
+        <button type="submit" id="in-cart" class="add-to-cart button-to-cart">
+            <img class="icon" id="cart-add-icon" src="{{ asset('icons/check.svg') }}">Pridané do košíka
         </button>
+        @else
+        <button type="submit" class="add-to-cart button-to-cart">
+            <img class="icon" id="cart-add-icon" src="{{ asset('icons/wagon.svg') }}">Do košíka
+        </button>
+        @endif
     </form>
     <section id="furniture-parameters">
         <h2>Parametre</h2>
         <table>
             <tr>
                 <th>Historické obdobie:</th>
-                <td>Bauhaus</td>
+                <td>{{ $product->periods_str() }}</td>
             </tr>
             <tr>
                 <th>Druh nábytku:</th>
-                <td>Pohovka</td>
+                <td>{{ $product->furniture_str() }}</td>
             </tr>
             <tr>
                 <th>Rok výroby:</th>
                 <td>{{ $product->year }}</td>
             </tr>
             <tr>
-                <th>Krajina pôvodu:</th>
-                <td>Česká republika</td>
-            </tr>
-            <tr>
                 <th>Materiál:</th>
-                <td>Kov, Látka</td>
+                <td>{{ $product->materials_str() }}</td>
             </tr>
             <tr>
                 <th>Farba:</th>
-                <td>Strieborna, Šedá</td>
+                <td>{{ $product->colors_str() }}</td>
             </tr>
         </table>
     </section>
@@ -75,34 +76,15 @@
     </section>
     <section id="furniture-recommendation"> 
         <h2>Ďalej odporúčame</h2>
+        @foreach ($recommendations as $product)
         <article class="product">
-            <a href="furniture.html">
-                <img class="product-image" src="{{ asset('images/couch.jpg') }}">
-                <p class="product-caption">Holandský barokový kabinet</p>
-                <p class="product-price">1120 €</p>
+            <a href="{{ url('products/'. $room->key, [$product]) }}">
+                <img class="product-image" src="{{ asset('images/' . $product->picture) }}" alt="{{ $product->name }}">
+                <p class="product-caption">{{ $product->name }}</p>
+                <p class="product-price">{{ $product->price }} €</p>
             </a>
         </article>
-        <article class="product">
-            <a href="furniture.html">
-                <img class="product-image" src="{{ asset('images/sofa.jpg') }}">
-                <p class="product-caption">Pohovka zo zelenej kože  z 1970</p>
-                <p class="product-price">525 €</p>
-            </a>
-        </article>
-        <article class="product">
-            <a href="furniture.html">
-                <img class="product-image" src="{{ asset('images/couch.jpg') }}">
-                <p class="product-caption">Pohovka Bauhaus Chrome</p>
-                <p class="product-price">720 €</p>
-            </a>
-        </article>
-        <article class="product">
-            <a href="furniture.html">
-                <img class="product-image" src="{{ asset('images/sofa.jpg') }}">
-                <p class="product-caption">Maľované bambusové kreslo</p>
-                <p class="product-price">499 €</p>
-            </a>
-        </article>
+        @endforeach
     </section>
 </main>
 @endsection

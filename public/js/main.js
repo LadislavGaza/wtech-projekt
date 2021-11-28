@@ -1,7 +1,7 @@
 window.addEventListener('load', function() {
-    const buy = document.getElementById('add-to-cart');
+    //const buy = document.getElementById('add-to-cart');
 
-    if (buy !== null){
+    /*if (buy !== null){
         buy.addEventListener('click', function() {
             const notif = document.getElementById('cart-notification');
             
@@ -11,7 +11,7 @@ window.addEventListener('load', function() {
             
             notif.style.display = 'grid';
         }); 
-    }
+    }*/
     
     const sort = document.getElementById('product-sort');
 

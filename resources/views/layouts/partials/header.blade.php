@@ -29,17 +29,19 @@
         @endif
         <a href="{{ url('cart') }}" class="button cart">
             Košík <img class="icon" src="{{ asset('icons/wagon.svg') }}">
+            @if (session('status'))
+            <div id="cart-notification">1</div>
+            @endif
         </a>
     </div>
     <nav class="product-categories">
         <ul>
-            <li><a href="{{ url('products') }}">Obývačka</a></li>
-            <li><a href="{{ url('products') }}">Detská izba</a></li>
-            <li><a href="{{ url('products') }}">Spálňa</a></li>
-            <li><a href="{{ url('products') }}">Kuchyňa</a></li>
-            <li><a href="{{ url('products') }}">Kupeľňa</a></li>
-            <li><a href="{{ url('products') }}">Pracovňa</a></li>
-            <li><a href="{{ url('products') }}">Doplnky</a></li>
+            <li><a href="{{ url('products/living-room') }}">Obývačka</a></li>
+            <li><a href="{{ url('products/children-room') }}">Detská izba</a></li>
+            <li><a href="{{ url('products/bedroom') }}">Spálňa</a></li>
+            <li><a href="{{ url('products/kitchen') }}">Kuchyňa</a></li>
+            <li><a href="{{ url('products/bathroom') }}">Kupeľňa</a></li>
+            <li><a href="{{ url('products/office') }}">Pracovňa</a></li>
         </ul>
     </nav>
 </header>

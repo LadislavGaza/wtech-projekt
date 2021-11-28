@@ -15,17 +15,16 @@ use App\Http\Controllers\ShoppingCartController;
 |
 */
 
-Route::get('/', function () { 
-    return view('index');
-});
+Route::get('/', function () {  return view('index'); });
+// Route::resource('products', ProductController::class);
+//Route::resource('products/{room}', ProductController::class);
+// Route::get('products', [ProductController::class, 'index']);
+Route::get('products/{room}', [ProductController::class, 'index']);
+Route::get('products/{room}/{product}', [ProductController::class, 'show']);
+// Route::post('products/{product}', [ProductController::class, 'store'])->middleware(['auth']);
+// Route::delete('products/{product}', [ProductController::class, 'destroy'])->middleware(['auth']);
 
-Route::resource('products', ProductController::class);
 Route::resource('cart', ShoppingCartController::class);
-
-/*
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-*/
+Route::resource('admin', AdminController::class)->middleware(['auth']);
 
 require __DIR__.'/auth.php';

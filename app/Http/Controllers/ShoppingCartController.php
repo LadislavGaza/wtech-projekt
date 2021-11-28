@@ -74,16 +74,15 @@ class ShoppingCartController extends Controller
                     'product_id' => $product
                 ]);
             } catch (QueryException $e) {
-                return back();
+                return back()->with('status', true);
             }
-        }
-        else {
+        } else {
             $cart = $request->session()->get('cart', array());
             $cart[$product] = 1;
             $request->session()->put('cart', $cart);
         }
 
-        return back();
+        return back()->with('status', true);
     }
 
     /**

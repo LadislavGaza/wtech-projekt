@@ -82,9 +82,10 @@
     grid-column: 4;
     align-self: center;
     justify-self: start;
+    width: 100%;
 }
 
-#add-to-cart {
+.add-to-cart {
     max-width: 600px;
     width: 100%;
     font-size: 1.2rem;
@@ -92,9 +93,14 @@
     padding: 1rem 2rem;
 }
 
-#add-to-cart:hover {
+.add-to-cart:hover {
     cursor: pointer;
     background-color: orange;
+}
+
+#in-cart {
+    color: white; 
+    background-color: green;
 }
 
 #furniture-parameters, #furniture-size {

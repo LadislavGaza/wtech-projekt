@@ -7,11 +7,7 @@
  
 @section('content')
 <main class="product-page">
-    <h1 id="product-category">Obývačka</h1>
-    <p id="product-description">Obývačka je miestom kde spoločne posedí celá rodina, pozývame si do nej hostí, trávime v nej chvíľe pohodlia.
-        Zvolený nábytok by mal preto vhodne vyzdvihovať ostatné zariadenie domácnosti a zároveň pôsobiť na pohľad
-        príjemným dojmom. Ideálnou voľbou je zladiť štýl pohoviek, kresiel, stolíku a skriniek v dobovom tóne.
-    </p>
+    <h1 id="product-category">{{ $room->name }}</h1>
     <form id="product-form-sort" action="{{ url('products') }}" method="get">
         @csrf
         <fieldset>
@@ -22,13 +18,13 @@
                     <option value="cheap" {{ $active_sort == 'cheap' ? 'selected' : '' }}>Od najlacnejších</option>
                     <option value="expensive" {{ $active_sort == 'expensive' ? 'selected' : '' }}>Od najdrahších</option>
                     <option value="discount" {{ $active_sort == 'discount' ? 'selected' : '' }}>Od najväčšej zľavy</option>
-                    <option value="newest" {{ $active_sort == 'newest' ? 'selected' : '' }}>Najnovšie</option>
+                    <option value="newest" {{ $active_sort == 'newest' ? 'selected' : '' }}>Najnovšie rokom výroby</option>
                 </select>
             </div>
         </fieldset>
     </form>
     <aside id="product-filter">
-        <form action="{{ url('products') }}" method="get" class="tabs">
+        <form action="{{ url('products/'. $room->key) }}" method="get" class="tabs">
             @csrf
             <div class="filter-buttons">
                 <button type="submit" class="big-button btn filter-button">Filtrovať</button>
@@ -61,7 +57,7 @@
     <section id="product-list">
         @foreach($products as $product)
         <article class="product">
-            <a href="products/{{ $product->id }}">
+            <a href="{{ url('products/'. $room->key, [$product]) }}">
                 <img class="product-image" src="{{ asset('images/'. $product->picture) }}" alt="{{ $product->name }}">
                 <p class="product-caption">{{ $product->name }}</p>
                 <p class="product-price">{{ $product->price }} €</p>

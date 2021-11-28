@@ -15,7 +15,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, $room)
     {
         $user_input = $request->all();
         foreach ($user_input as $key => $value) {
@@ -27,7 +27,10 @@ class ProductController extends Controller
             $request->session()->forget('price-to');
         }
 
-        $products = new Product;
+        $products = Product::with('rooms')->whereHas('categories', function ($query) use($room) {
+            $query->where('key', $room);
+        });
+            
         $sort = 'default';
 
         if ($request->session()->has('product-sort')) {
@@ -59,13 +62,14 @@ class ProductController extends Controller
         ];
 
         $filters = [
-            'era' => Category::where('type', '=', 'era')->get(),
-            'material' => Category::where('type', '=', 'material')->get(),
-            'furniture' => Category::where('type', '=', 'furniture')->get(),
-            'color' => Category::where('type', '=', 'color')->get(),
+            'era' => Category::where('type', 'era')->get(),
+            'material' => Category::where('type', 'material')->get(),
+            'furniture' => Category::where('type', 'furniture')->get(),
+            'color' => Category::where('type', 'color')->get(),
         ];
                   
         return view('shop.products', [
+            'room' => Category::where('type', 'room')->where('key', $room)->first(),
             'products' => $products->paginate(9), 
             'active_sort' => $sort,
             'filters' => $filters,
@@ -100,9 +104,24 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($room, Product $product)
     {
-        return view('shop.product', ['product' => $product]);
+        $recommendations = (
+            Product::with('rooms')
+            ->whereHas('categories', function ($query) use($room) {
+                $query->where('key', $room);
+            })
+            ->inRandomOrder()
+            ->where('id', '!=', $product->id)
+            ->limit(4)
+            ->get()
+        );
+
+        return view('shop.product', [
+            'room' => Category::where('type', 'room')->where('key', $room)->first(),
+            'product' => $product,
+            'recommendations' => $recommendations
+        ]);
     }
 
     /**
