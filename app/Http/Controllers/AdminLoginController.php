@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreShoppingOptionRequest;
-use App\Http\Requests\UpdateShoppingOptionRequest;
-use App\Models\ShoppingOption;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
-class ShoppingOptionController extends Controller
+class AdminLoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,26 +28,30 @@ class ShoppingOptionController extends Controller
     public function create()
     {
         //
+        return view('admin.login');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreShoppingOptionRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreShoppingOptionRequest $request)
+    public function store(LoginRequest $request)
     {
         //
+        $request->authenticate();
+        $request->session()->regenerate();
+        return redirect()->intended('admin/stock');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ShoppingOption  $shoppingOption
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ShoppingOption $shoppingOption)
+    public function show($id)
     {
         //
     }
@@ -53,10 +59,10 @@ class ShoppingOptionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ShoppingOption  $shoppingOption
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ShoppingOption $shoppingOption)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +70,11 @@ class ShoppingOptionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateShoppingOptionRequest  $request
-     * @param  \App\Models\ShoppingOption  $shoppingOption
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateShoppingOptionRequest $request, ShoppingOption $shoppingOption)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +82,10 @@ class ShoppingOptionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ShoppingOption  $shoppingOption
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ShoppingOption $shoppingOption)
+    public function destroy($id)
     {
         //
     }

@@ -1,6 +1,6 @@
 .order-page {
     display: grid;
-    grid: repeat(2, auto) / 10% 4fr 1fr 10%;
+    grid: repeat(2, auto) / 10% 4fr 10%;
     margin-bottom: 5rem;
 }
 
@@ -10,7 +10,7 @@
 
 #order-form {
     grid-column: 2;
-    width: 90%;
+    /* width: 90%; */
 }
 
 #order-summary {
@@ -26,12 +26,12 @@
 }
 
 .product {
-    height: 205px;
+    height: 280px;
 }
 
 .cart-price-content {
     width: 100%;
-    height: 50%;
+    /* height: 50%; */
     max-width: 500px;
     border-radius: 5px;
     padding: 1rem 0;
@@ -98,7 +98,7 @@ fieldset {
 
 .transport-form {
     display: grid;
-    grid: repeat(5, auto) / repeat(2, 2rem) 2fr 1fr;
+    grid: repeat(5, auto) / repeat(2, 2rem) 3fr 1fr;
     grid-row-gap: 2rem;
     align-items: center;
 }
@@ -112,18 +112,28 @@ fieldset {
 .transport-form .outpost {
     grid-row: 4;
     grid-column: 1 / span 3;
-    width: 100%;
+    overflow-y: scroll;
+    height: 180px;
     border: 1px solid black;
     padding: 2rem 1rem;
     background-color: white;
 }
 
-.transport-form .selected-outpost {
-    grid-row: 5;
-    grid-column: 2 / span 2;
+.transport-form .outpost table {
+    width: 100%;
 }
 
+.transport-form .outpost .table-data-chooser {
+    width: 30%;
+}
+
+/* .transport-form .selected-outpost {
+    grid-row: 5;
+    grid-column: 2 / span 2;
+} */
+
 .outpost-chooser {
+    width: 60%;
     display: grid;
     grid: auto / 1fr 2fr;
     align-items: center;
@@ -131,6 +141,7 @@ fieldset {
     border-radius: 5px;
     padding: 0.5rem 0;
     background-color: rgb(255, 213, 136);
+    margin-left: 50px;
 }
 
 
@@ -138,7 +149,7 @@ fieldset {
 .payment-form {
     display: grid;
     align-items: center;
-    grid: repeat(3, auto) / repeat(2, 3rem) 2fr 1fr;
+    grid: repeat(3, auto) / repeat(2, 3rem) 3fr 1fr;
     grid-row-gap: 2rem;
 }
 
@@ -234,8 +245,8 @@ fieldset {
     #order-summary{
         grid-column: 1;
         grid-row: 2;
-        display: grid;
-        grid: repeat(2, auto) / repeat(3, 1fr);
+        /* display: grid;
+        grid: repeat(2, auto) / repeat(3, 1fr); */
         padding-left: 0;
         margin-bottom: 1rem;
     }
@@ -270,7 +281,7 @@ fieldset {
     .transport-form .outpost {
         grid-row: 4;
         grid-column: 1 / span 4;
-        width: 100%;
+        /* width: 100%; */
     }
 
     .transport-form .selected-outpost {

@@ -3,20 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
+use App\Models\DeliveryPlace;
 
-class AdminController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.stock', [
-            'products' => Product::paginate(10),
-            'query' => request()->except('page')
+        if (Auth::check()) {
+            $user = Auth::user();
+            $cart = $user->cart()->first();
+            $items = $cart->items()->with('product')->get();
+        } else {
+            $cart = $request->session()->get('cart', array());
+            $products = Product::whereIn('id', array_keys($cart))->get()->keyBy('id');
+
+            $items = array();
+            foreach ($cart as $product_id => $quantity) {
+                array_push($items, (object) [
+                    'quantity' => $quantity,
+                    'product' => $products[$product_id]
+                ]);
+            }
+        }
+
+        $final_sum = 0;
+        foreach($items as $item) {
+            $final_sum += $item->product->price * $item->quantity;
+        }
+
+        return view('shop.order', [
+            'items' => $items, 
+            'final_sum' => $final_sum, 
+            'places' => DeliveryPlace::all()
         ]);
     }
 
@@ -47,11 +72,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        return view('admin.product', [
-            'product' => $product
-        ]);
+        //
     }
 
     /**

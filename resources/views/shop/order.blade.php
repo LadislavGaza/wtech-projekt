@@ -28,44 +28,27 @@
                     <img src="{{ asset('icons/search.svg') }}" class="icon">
                     <input type="text" id="search" placeholder="Sem napíšte výdajné miesto alebo prepravcu ...">
                 </div>
-                <table class="outpost">
-                    <tr>
-                        <td>Bratislava - Cheese tower</td>
-                        <td>
-                            <div class="outpost-chooser">
-                                <input type="radio" id="outpost-selection1" name="selection">
-                                <label for="outpost-selection1">Zvoliť</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Telgárt - veľkosklad</td>
-                        <td>
-                            <div class="outpost-chooser">
-                                <input type="radio" id="outpost-selection2" name="selection" checked>
-                                <label for="outpost-selection2">Vybrané</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Moldava nad Bodvou - papiernictvo</td>
-                        <td>
-                            <div class="outpost-chooser">
-                                <input type="radio" id="outpost-selection3" name="selection">
-                                <label for="outpost-selection3">Zvoliť</label>
-                            <div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Brezová pod Bradlom - chovateľské potreby</td>
-                        <td>
-                            <div class="outpost-chooser">
-                                <input type="radio" id="outpost-selection4" name="selection">
-                                <label for="outpost-selection4">Zvoliť</label>
-                            <div>
-                        </td>
-                    </tr>
-                </table>
+                <div class="outpost">
+                    <table>
+                        @if($places->isNotEmpty())
+                        @foreach ($places as $place)
+                            <tr>
+                                <td>
+                                    {{ $place->name }}
+                                </td>
+                                <td class="table-data-chooser">
+                                    <div class="outpost-chooser">
+                                        <input type="radio" id="{{ $place->id }}-selection" name="selection">
+                                        <label for="{{ $place->id }}-selection">Zvoliť</label>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        @else
+                            <p>No items (places)</p>
+                        @endif
+                    </table>
+                </div>
                 <p class="selected-outpost"><b>Výdajné miesto:</b> Telgárt - veľkosklad</p>
                 <a href="#" class="btn order-button payment">Platba</a>
             </div>
@@ -131,32 +114,5 @@
             <button class="payment-button" type="submit">Na prehľad</button>
         </div>
     </form>
-    <section id="order-summary" class="divider">
-        <article class="product">
-            <img class="product-image" src="{{ asset('images/sofa.jpg') }}">
-            <label class=product-caption>Bauhaus Chrome</label>
-            <label class="product-price">1400 €</label>
-        </article>
-        <article class="product">
-            <img class="product-image" src="{{ asset('images/sofa.jpg') }}">
-            <label class=product-caption>Bauhaus Chrome</label>
-            <label class="product-price">1400 €</label>
-        </article>
-        <article class="product">
-            <img class="product-image" src="{{ asset('images/sofa.jpg') }}">
-            <label class=product-caption>Bauhaus Chrome</label>
-            <label class="product-price">1400 €</label>
-        </article>
-        <table class="cart-price-content">
-            <tr>
-                <th>Celková suma:<th>
-                <td>3305&nbsp;€</td>
-            </tr>
-            <tr>
-                <th>Bez DPH:<th>
-                <td>2644&nbsp;€</td>
-            </tr>
-        </table>
-    </section>
 </main>
 @endsection

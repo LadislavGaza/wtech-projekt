@@ -112,13 +112,6 @@ VALUES  (1, 5), (1, 14), (1, 10), (1, 23), (1, 30), (1, 35), (1, 50), (1, 52),
         (37, 2), (38, 10), (38, 14), (38, 27), (38, 53),
         (38, 2), (38, 10), (38, 14), (38, 27), (38, 53), (38, 55);
 
-INSERT INTO shopping_options(name, price, type)
-VALUES ('DHL', 5.50, 'transport'),
-       ('Slovesnká pošta', 6.20, 'transport'),
-       ('DPD', 5.80, 'transport'),
-       ('Hotovosť', 1.20, 'payment'),
-       ('Karta', 0, 'payment');
-
 INSERT INTO delivery_places(name)
 VALUES ('Bratislava'), ('Žilina'), ('Banská Bystrica'), ('Martin'), ('Nitra'), 
        ('Prešov'), ('Poprad'), ('Trenčín'), ('Dolný Kubín'), ('Košice'), ('Humenné');

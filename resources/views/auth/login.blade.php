@@ -9,10 +9,7 @@
     <div class="login-page content-middle">
         <section class="login-form">    
             <h1>Prihlásenie</h1>
-
-            <!-- Session Status -->
             <x-auth-session-status :status="session('status')" />
-            <!-- Validation Errors -->
             <x-auth-validation-errors :errors="$errors" />
 
             <form action="{{ route('login') }}" method="post">

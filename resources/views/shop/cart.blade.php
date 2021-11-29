@@ -54,7 +54,7 @@
                 <td>{{ $final_sum * 0.8 }}&nbsp;€</td>
             </tr>
         </table>
-        <a href="order.html" class="button payment-button">K pokladni</a>
+        <a href="{{ url('order') }}" class="button payment-button">K pokladni</a>
     </div>
 </main>
 @endsection

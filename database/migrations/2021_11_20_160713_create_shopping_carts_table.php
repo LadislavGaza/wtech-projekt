@@ -16,13 +16,9 @@ class CreateShoppingCartsTable extends Migration
         Schema::create('shopping_carts', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedInteger('transport')->nullable();
-            $table->unsignedInteger('payment')->nullable();
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('delivery_place_id')->nullable();
-            
-            $table->foreign('transport')->references('id')->on('shopping_options');
-            $table->foreign('payment')->references('id')->on('shopping_options');
+     
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('delivery_place_id')->references('id')->on('delivery_places');
 
