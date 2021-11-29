@@ -18,9 +18,32 @@ class SearchController extends Controller
     {
         $term = $request->query('search', '');
         $products = Product::where('name', 'ilike', '%'.$term.'%');
+        $category_room = (object) ['name' => 'Výsledky pre: "'. $term .'"', 'key' => 'search'];
+
+        $filter = $request->all();
+        $criteria = Category::whereIn('key', array_keys($filter))->get();
+
+        $filter = new Category;
+        $filters = $filter->filters();
+        $filter_names = $filter->filter_names();
+        $filters_checked = array();
+
+        foreach($criteria as $c) {
+            $products->whereHas('categories', function($query) use ($c){
+                $query->where('key', $c->key);
+            });
+            $filters_checked[$c->key] = 'checked';
+        }
+        
+        if ($request->has('price-from')) {
+            $products = $products->where('price', '>=', $request->query('price-from'));
+        } 
+        if ($request->has('price-to')) {
+            $products = $products->where('price', '<=', $request->query('price-to'));
+        }
 
         $sort = $request->query('sort', 'default');
-        if ($sort == 'cheap') {
+        if ($sort  == 'cheap') {
             $products = $products->orderBy('price', 'asc');
         } else if ($sort == 'expensive') {
             $products = $products->orderBy('price', 'desc');
@@ -29,24 +52,14 @@ class SearchController extends Controller
         } else if ($sort == 'newest') {
             $products = $products->orderBy('year', 'desc');
         }
-
-        if ($request->has('price-from')) {
-            $products = $products->where('price', '>=', $request->query('price-from'));
-        } 
-        if ($request->has('price-to')) {
-            $products = $products->where('price', '<=', $request->query('price-to'));
-        }
-
-        $filter = new Category;
-        $filters = $filter->filters();
-        $filter_names = $filter->filter_names();
-
+                  
         return view('shop.products', [
-            'room' => (object) ['name' => 'Výsledky pre: "'. $term .'"', 'key' => 'search'],
+            'room' => $category_room,
             'products' => $products->paginate(9), 
             'active_sort' => $sort,
             'filters' => $filters,
             'filter_names' => $filter_names,
+            'filters_checked' => $filters_checked,
             'query' => request()->except('page')
         ]);
     }
@@ -69,13 +82,18 @@ class SearchController extends Controller
      */
     public function store(Request $request)
     {
-        $params = $request->all();
-        parse_str($params['url-params'], $old_params);
-        $params = Arr::except($params, ['url-params', '_token']);
-        $old_params = Arr::except($old_params, array_keys($params));
-        $params = array_merge($params, $old_params);
+        if ($request->has('filter') || $request->has('sort')) {
+            $params = $request->all();
+            parse_str($params['url-params'], $old_params);
+            $params = Arr::except($params, ['url-params', '_token']);
+            $old_params = Arr::except($old_params, array_keys($params));
+            $params = array_merge($params, $old_params);
 
-        return redirect(strtok(url()->previous(), '?') . '?' . http_build_query($params));
+            return redirect(strtok(url()->previous(), '?') . '?' . http_build_query($params));
+
+        } else if ($request->has('cancel')) {
+            return redirect(strtok(url()->previous(), '?'));
+        }
     }
 
     /**
@@ -92,8 +110,6 @@ class SearchController extends Controller
             ->limit(4)
             ->get()
         );
-
-        // print_r($product);
 
         return view('shop.product', [
             'room' => 'search',

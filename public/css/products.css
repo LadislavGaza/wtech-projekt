@@ -23,6 +23,11 @@
     grid-column: 2;
 }
 
+.filter-categories {
+    display: grid;
+    grid: auto / 1fr 2fr 1fr 2fr;
+}
+
 #product-list {
     grid-column: 3 / span 3;
     display: grid;

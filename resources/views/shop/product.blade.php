@@ -9,7 +9,7 @@
 <main class="furniture-page">
     <ul class="breadcrumb">
         @if ($room != 'search')
-        <li><a href="{{ url('products/room/'. $room->key) }}">{{ $room->name }}</a></li>
+        <li><a href="{{ url('products/'. $room->key) }}">{{ $room->name }}</a></li>
         @endif
         <li><a href="#">{{ $product->name }}</a></li>
     </ul>
@@ -81,9 +81,9 @@
         @foreach ($recommendations as $product)
         <article class="product">
             @if ($room == 'search')
-            <a href="{{ url('products/item', [$product]) }}">
+            <a href="{{ url('search', [$product]) }}">
             @else
-            <a href="{{ url('products/room/'. $room->key, [$product]) }}">
+            <a href="{{ url('products/'. $room->key, [$product]) }}">
             @endif
                 <img class="product-image" src="{{ asset('images/' . $product->picture) }}" alt="{{ $product->name }}">
                 <p class="product-caption">{{ $product->name }}</p>

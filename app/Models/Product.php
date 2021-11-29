@@ -44,7 +44,7 @@ class Product extends Model
         return $this->belongsToMany(Category::class)->wherePivot('categories.type', 'room');
     }
 
-    public function periods_str()
+    public function periods_str() 
     {
         return $this->periods()->get()->pluck('name')->implode(', ');
     }

@@ -37,12 +37,12 @@
     </div>
     <nav class="product-categories">
         <ul>
-            <li><a href="{{ url('products/room/living-room') }}">Obývačka</a></li>
-            <li><a href="{{ url('products/room/children-room') }}">Detská izba</a></li>
-            <li><a href="{{ url('products/room/bedroom') }}">Spálňa</a></li>
-            <li><a href="{{ url('products/room/kitchen') }}">Kuchyňa</a></li>
-            <li><a href="{{ url('products/room/bathroom') }}">Kupeľňa</a></li>
-            <li><a href="{{ url('products/room/office') }}">Pracovňa</a></li>
+            <li><a href="{{ url('products/living-room') }}">Obývačka</a></li>
+            <li><a href="{{ url('products/children-room') }}">Detská izba</a></li>
+            <li><a href="{{ url('products/bedroom') }}">Spálňa</a></li>
+            <li><a href="{{ url('products/kitchen') }}">Kuchyňa</a></li>
+            <li><a href="{{ url('products/bathroom') }}">Kupeľňa</a></li>
+            <li><a href="{{ url('products/office') }}">Pracovňa</a></li>
         </ul>
     </nav>
 </header>

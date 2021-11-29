@@ -17,10 +17,9 @@ use App\Http\Controllers\SearchController;
 */
 
 Route::get('/', function () {  return view('index'); });
-Route::get('products/room/{room}', [ProductController::class, 'index']);
-Route::get('products/room/{room}/{product}', [ProductController::class, 'show']);
-Route::get('products/item/{product}', [SearchController::class, 'show']);
-
+Route::get('products/{room}', [ProductController::class, 'index']);
+Route::get('products/{room}/{product}', [ProductController::class, 'show']);
+Route::get('search/{product}', [SearchController::class, 'show']);
 Route::resource('search', SearchController::class);
 
 // Route::post('products/{product}', [ProductController::class, 'store'])->middleware(['auth']);

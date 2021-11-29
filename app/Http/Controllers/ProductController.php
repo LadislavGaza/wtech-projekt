@@ -19,16 +19,34 @@ class ProductController extends Controller
     {
         $filter = $request->all();
         $criteria = Category::whereIn('key', array_keys($filter))->get();
+        $category_room = Category::where('type', 'room')->where('key', $room)->first();
 
-        $products = Product::with('categories')->whereHas('categories', function ($query) use($room, $criteria) {
-            $query = $query->where('type', 'room')->where('key', $room);
-            foreach($criteria as $c) {
-                $query = $query->where('key', $c->key);
-            }
+        $products = Product::with('categories');
+        $products->whereHas('categories', function ($query) use($room) {
+            $query->where('type', 'room')->where('key', $room);
         });
+
+        $filter = new Category;
+        $filters = $filter->filters();
+        $filter_names = $filter->filter_names();
+        $filters_checked = array();
+
+        foreach($criteria as $c) {
+            $products->whereHas('categories', function($query) use ($c){
+                $query->where('key', $c->key);
+            });
+            $filters_checked[$c->key] = 'checked';
+        }
         
+        if ($request->has('price-from')) {
+            $products = $products->where('price', '>=', $request->query('price-from'));
+        } 
+        if ($request->has('price-to')) {
+            $products = $products->where('price', '<=', $request->query('price-to'));
+        }
+
         $sort = $request->query('sort', 'default');
-        if ($sort == 'cheap') {
+        if ($sort  == 'cheap') {
             $products = $products->orderBy('price', 'asc');
         } else if ($sort == 'expensive') {
             $products = $products->orderBy('price', 'desc');
@@ -38,24 +56,13 @@ class ProductController extends Controller
             $products = $products->orderBy('year', 'desc');
         }
 
-        if ($request->has('price-from')) {
-            $products = $products->where('price', '>=', $request->query('price-from'));
-        } 
-        if ($request->has('price-to')) {
-            $products = $products->where('price', '<=', $request->query('price-to'));
-        }
-
-        $filter = new Category;
-        $filters = $filter->filters();
-        $filter_names = $filter->filter_names();
-                  
-        print_r($products->toSql());
         return view('shop.products', [
-            'room' => Category::where('type', 'room')->where('key', $room)->first(),
+            'room' => $category_room,
             'products' => $products->paginate(9), 
             'active_sort' => $sort,
             'filters' => $filters,
             'filter_names' => $filter_names,
+            'filters_checked' => $filters_checked,
             'query' => request()->except('page')
         ]);
     }

@@ -10,6 +10,7 @@
     <h1 id="product-category">{{ $room->name }}</h1>
     <form id="product-form-sort" action="{{ url('search') }}" method="post">
         @csrf
+        <input type="hidden" name="sort">
         <input type="hidden" name="url-params" value="{{ http_build_query($query) }}">
         <fieldset>
             <legend>Usporiadanie</legend>
@@ -29,8 +30,8 @@
             @csrf
             <input type="hidden" name="url-params" value="{{ http_build_query($query) }}">
             <div class="filter-buttons">
-                <button type="submit" class="big-button btn filter-button">Filtrovať</button>
-                <button type="submit" class="big-button btn filter-button" name='cancel-filters'>Zrušiť výber</button>
+                <button type="submit" class="big-button btn filter-button" name='filter'>Filtrovať</button>
+                <button type="submit" class="big-button btn filter-button" name='cancel'>Zrušiť výber</button>
             </div>
             <div class="tab">
                 <input type="checkbox" id="price-accordion" class="tab-checked">
@@ -46,9 +47,10 @@
             <div class="tab">
                 <input type="checkbox" id="{{ $key }}-accordion" class="tab-checked">
                 <label class="tab-label" for="{{ $key }}-accordion">{{ $title }}</label>
-                <div class="tab-content">
+                <div class="tab-content filter-categories">
                     @foreach($filters[$key] as $option)
-                    <input type="checkbox" id="{{ $option->id }}" name="{{ $option->key }}">
+                    <input type="checkbox" id="{{ $option->id }}"
+                           name="{{ $option->key }}" {{ $filters_checked[$option->key] ?? '' }}>
                     <label for="{{ $option->id }}">{{ $option->name }}</label>
                     @endforeach        
                 </div>
@@ -60,9 +62,9 @@
         @foreach($products as $product)
         <article class="product">
             @if ($room->key == 'search')
-            <a href="{{ url('products/item', [$product]) }}">
+            <a href="{{ url('search', [$product]) }}">
             @else
-            <a href="{{ url('products/room/'. $room->key, [$product]) }}">
+            <a href="{{ url('products/'. $room->key, [$product]) }}">
             @endif
                 <img class="product-image" src="{{ asset('images/'. $product->picture) }}" alt="{{ $product->name }}">
                 <p class="product-caption">{{ $product->name }}</p>
