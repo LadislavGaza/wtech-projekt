@@ -11,12 +11,13 @@
                 <p></p>
             @endif
         </div>
-        <div class="search-bar">
+        <form class="search-bar" action="{{ url('search') }}" method="get">
             <img src="{{ asset('icons/search.svg') }}" class="icon">
-            <input type="text" id="search" placeholder="Sem zadajte hľadaný nábytok ...">
-        </div>
+            <input type="text" id="search" name="search" value="{{ request()->get('search', '')}}"
+                   placeholder="Sem zadajte hľadaný nábytok ..." onChange="search()">
+        </form>
         @if (Auth::check())
-            <form action="{{ route('logout') }}" method="post">
+            <form action="{{ url('logout') }}" method="post">
                 @csrf
                 <button type="submit" class="button loginout">
                     Odhlásiť sa <img class="icon" src="{{ asset('icons/magician.svg') }}">
@@ -36,12 +37,12 @@
     </div>
     <nav class="product-categories">
         <ul>
-            <li><a href="{{ url('products/living-room') }}">Obývačka</a></li>
-            <li><a href="{{ url('products/children-room') }}">Detská izba</a></li>
-            <li><a href="{{ url('products/bedroom') }}">Spálňa</a></li>
-            <li><a href="{{ url('products/kitchen') }}">Kuchyňa</a></li>
-            <li><a href="{{ url('products/bathroom') }}">Kupeľňa</a></li>
-            <li><a href="{{ url('products/office') }}">Pracovňa</a></li>
+            <li><a href="{{ url('products/room/living-room') }}">Obývačka</a></li>
+            <li><a href="{{ url('products/room/children-room') }}">Detská izba</a></li>
+            <li><a href="{{ url('products/room/bedroom') }}">Spálňa</a></li>
+            <li><a href="{{ url('products/room/kitchen') }}">Kuchyňa</a></li>
+            <li><a href="{{ url('products/room/bathroom') }}">Kupeľňa</a></li>
+            <li><a href="{{ url('products/room/office') }}">Pracovňa</a></li>
         </ul>
     </nav>
 </header>

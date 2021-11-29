@@ -47,9 +47,4 @@ class User extends Authenticatable
         return $this->hasOne(ShoppingCart::class, 'user_id');
     }
 
-    /*public function shoppingItem()
-    {
-        return $this->hasManyThrough(ShoppingItem::class, ShoppingCart::class);
-    }*/
-
 }

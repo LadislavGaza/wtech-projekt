@@ -2,31 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Http\Request;
-use App\Models\Product;
 use App\Models\Category;
+use App\Models\Product;
+use Illuminate\Support\Arr;
 
-class ProductController extends Controller
+class SearchController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $room)
+    public function index(Request $request)
     {
-        $filter = $request->all();
-        $criteria = Category::whereIn('key', array_keys($filter))->get();
+        $term = $request->query('search', '');
+        $products = Product::where('name', 'ilike', '%'.$term.'%');
 
-        $products = Product::with('categories')->whereHas('categories', function ($query) use($room, $criteria) {
-            $query = $query->where('type', 'room')->where('key', $room);
-            foreach($criteria as $c) {
-                $query = $query->where('key', $c->key);
-            }
-        });
-        
         $sort = $request->query('sort', 'default');
         if ($sort == 'cheap') {
             $products = $products->orderBy('price', 'asc');
@@ -48,10 +40,9 @@ class ProductController extends Controller
         $filter = new Category;
         $filters = $filter->filters();
         $filter_names = $filter->filter_names();
-                  
-        print_r($products->toSql());
+
         return view('shop.products', [
-            'room' => Category::where('type', 'room')->where('key', $room)->first(),
+            'room' => (object) ['name' => 'Výsledky pre: "'. $term .'"', 'key' => 'search'],
             'products' => $products->paginate(9), 
             'active_sort' => $sort,
             'filters' => $filters,
@@ -73,35 +64,39 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreProductRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $params = $request->all();
+        parse_str($params['url-params'], $old_params);
+        $params = Arr::except($params, ['url-params', '_token']);
+        $old_params = Arr::except($old_params, array_keys($params));
+        $params = array_merge($params, $old_params);
+
+        return redirect(strtok(url()->previous(), '?') . '?' . http_build_query($params));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($room, Product $product)
+    public function show(Product $product)
     {
         $recommendations = (
-            Product::with('rooms')
-            ->whereHas('categories', function ($query) use($room) {
-                $query->where('key', $room);
-            })
-            ->inRandomOrder()
+            Product::inRandomOrder()
             ->where('id', '!=', $product->id)
             ->limit(4)
             ->get()
         );
 
+        // print_r($product);
+
         return view('shop.product', [
-            'room' => Category::where('type', 'room')->where('key', $room)->first(),
+            'room' => 'search',
             'product' => $product,
             'recommendations' => $recommendations
         ]);
@@ -110,10 +105,10 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
         //
     }
@@ -121,11 +116,11 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateProductRequest  $request
-     * @param  \App\Models\Product  $product
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -133,10 +128,10 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
         //
     }
