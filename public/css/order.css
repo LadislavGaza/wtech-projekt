@@ -202,6 +202,7 @@ fieldset {
 #order-company-detail {
     grid: repeat(4, auto) / 10% 10rem 1fr 10%;
     margin-bottom: 2rem;
+    display: none;
 }
 
 #order-personal-detail {

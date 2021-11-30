@@ -38,8 +38,9 @@
                                 </td>
                                 <td class="table-data-chooser">
                                     <div class="outpost-chooser">
-                                        <input type="radio" id="{{ $place->id }}-selection" name="selection">
-                                        <label for="{{ $place->id }}-selection">Zvoliť</label>
+                                        <input type="radio" id="selection-{{ $place->id }}" 
+                                               name="selection" onchange="outpostChosen()">
+                                        <label id="selection-{{ $place->id }}-label" for="selection-{{ $place->id }}">Zvoliť</label>
                                     </div>
                                 </td>
                             </tr>
@@ -50,7 +51,7 @@
                     </table>
                 </div>
                 <p class="selected-outpost"><b>Výdajné miesto:</b> Telgárt - veľkosklad</p>
-                <a href="#" class="btn order-button payment">Platba</a>
+                <a href="#order-payment" class="btn order-button payment" onclick="toPayment()">Platba</a>
             </div>
         </fieldset>
         <fieldset class="tab">
@@ -68,7 +69,7 @@
                 <img class="icon" src="{{ asset('icons/credit-card.svg') }}">
                 <label for="card">Kartou vopred</label>
                 <label for="card">0 €</label>
-                <a class="btn order-button next-step" href="#">Dodanie a fakturácia</a>
+                <a href="#order-address" class="btn order-button next-step" onclick="toAddress()">Dodanie a fakturácia</a>
             </div>
         </fieldset>
         <fieldset class="tab">
@@ -79,9 +80,9 @@
             </label>
             <div class="tab-content">
                 <div id="order-subject-type">
-                    <input type="radio" name="org">
+                    <input type="radio" name="org" onchange="company_info(false)" checked>
                     <label>Súkromná osoba</label>
-                    <input type="radio" name="org">
+                    <input type="radio" name="org" onchange="company_info(true)">
                     <label>Firma</label>
                 </div>
                 <div id="order-company-detail">
@@ -114,5 +115,38 @@
             <button class="payment-button" type="submit">Na prehľad</button>
         </div>
     </form>
+    <script>
+        function toPayment() {
+            document.querySelector('#order-transport').checked = false;
+            document.querySelector('#order-payment').checked = true;
+            document.querySelector('#order-address').checked = false;
+        }
+
+        function toAddress() {
+            document.querySelector('#order-transport').checked = false;
+            document.querySelector('#order-payment').checked = false;
+            document.querySelector('#order-address').checked = true;
+        }
+
+        function company_info(state) {
+            if (state) {
+                document.querySelector('#order-company-detail').style.display = 'grid';
+            } else {
+                document.querySelector('#order-company-detail').style.display = 'none';   
+            }
+        }
+
+        function outpostChosen() {
+            var buttons = document.getElementsByName('selection');
+            
+            for (var i = 0; i < buttons.length; i++) {
+                let label = document.querySelector('#' + buttons[i].id + '-label');
+                if (buttons[i].checked === true)
+                    label.textContent = 'Vybrané';
+                else 
+                    label.textContent = 'Zvoliť';
+            }
+        }
+    </script>
 </main>
 @endsection
