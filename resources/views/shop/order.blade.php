@@ -2,13 +2,14 @@
 
 @push('styles')
 <link href="{{ asset('css/order.css') }}" rel="stylesheet">
-<script src="{{ asset('js/main.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/order.js') }}" type="text/javascript"></script>
 @endpush
  
 @section('content')
 <main class="order-page">
     <h1>Váš nákup</h1>
-    <form id="order-form" class="tabs" action="/order.php" method="post">
+    <form id="order-form" class="tabs" action="{{ url('order') }}" method="post">
+        @csrf
         <fieldset class="tab">
             <input id="order-transport" type="checkbox" class="tab-checked" checked>
             <label for="order-transport" class="tab-label">
@@ -16,41 +17,23 @@
                 Doprava
             </label>
             <div class="tab-content transport-form">
-                <input type="radio" id="place" name="transport">
-                <img class="icon" src="{{ asset('icons/box.svg') }}">
-                <label for="place">Výdajné miesto</label>
-                <label for="place">1 €</label>
-                <input type="radio" id="delivery" name="transport">
-                <img class="icon" src="{{ asset('icons/truck.svg') }}">
-                <label for="delivery">Kuriér</label>
-                <label for="delivery">0 €</label>
+                @foreach ($transport_options as $transport)
+                    <input type="radio" id="{{ $transport->key }}" name="{{ $transport->type }}" value="{{ $transport->key }}" {{ $loop->index == 0 ? 'checked' : ''}}>
+                    <img class="icon" src="{{ asset('icons/'. $transport->icon ) }}">
+                    <label for="{{ $transport->key }}">{{ $transport->name }}</label>
+                    <label for="{{ $transport->key }}">{{ $transport->price }} €</label>
+                @endforeach
                 <div class="search-bar">
                     <img src="{{ asset('icons/search.svg') }}" class="icon">
-                    <input type="text" id="search" placeholder="Sem napíšte výdajné miesto alebo prepravcu ...">
+                    <input type="text" id="search" onInput="outpostSearch(this)"
+                           placeholder="Sem napíšte výdajné miesto alebo prepravcu ...">
                 </div>
-                <div class="outpost">
-                    <table>
-                        @if($places->isNotEmpty())
-                        @foreach ($places as $place)
-                            <tr>
-                                <td>
-                                    {{ $place->name }}
-                                </td>
-                                <td class="table-data-chooser">
-                                    <div class="outpost-chooser">
-                                        <input type="radio" id="selection-{{ $place->id }}" 
-                                               name="selection" onchange="outpostChosen()">
-                                        <label id="selection-{{ $place->id }}-label" for="selection-{{ $place->id }}">Zvoliť</label>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                        @else
-                            <p>No items (places)</p>
-                        @endif
-                    </table>
+                <div id="outpost" class="outpost">
                 </div>
-                <p class="selected-outpost"><b>Výdajné miesto:</b> Telgárt - veľkosklad</p>
+                <p class="selected-outpost">
+                    <b>Výdajné miesto:</b>
+                    <span id="outpost-active">-</span>
+                </p>
                 <a href="#order-payment" class="btn order-button payment" onclick="toPayment()">Platba</a>
             </div>
         </fieldset>
@@ -61,14 +44,12 @@
                 Platba
             </label>
             <div class="tab-content payment-form">
-                <input type="radio" id="dobierka" name="payment">
-                <img class="icon" src="{{ asset('icons/cash-coin.svg') }}">
-                <label for="dobierka">Dobierka</label>
-                <label for="dobierka">1 €</label>
-                <input type="radio" id="card" name="payment">
-                <img class="icon" src="{{ asset('icons/credit-card.svg') }}">
-                <label for="card">Kartou vopred</label>
-                <label for="card">0 €</label>
+                @foreach ($payment_options as $payment)
+                <input type="radio" id="{{ $payment->key }}" name="{{ $payment->type }}" value="{{ $payment->key }}"{{ $loop->index == 0 ? 'checked' : ''}}>
+                <img class="icon" src="{{ asset('icons/'. $payment->icon) }}">
+                <label for="{{ $payment->key }}">{{ $payment->name }}</label>
+                <label for="{{ $payment->key }}">{{ $payment->price }} €</label>
+                @endforeach
                 <a href="#order-address" class="btn order-button next-step" onclick="toAddress()">Dodanie a fakturácia</a>
             </div>
         </fieldset>
@@ -80,34 +61,84 @@
             </label>
             <div class="tab-content">
                 <div id="order-subject-type">
-                    <input type="radio" name="org" onchange="company_info(false)" checked>
+                    <input type="radio" name="org" value="person" onchange="companyInfo(false)" checked>
                     <label>Súkromná osoba</label>
-                    <input type="radio" name="org" onchange="company_info(true)">
+                    <input type="radio" name="org" value="company" onchange="companyInfo(true)">
                     <label>Firma</label>
                 </div>
                 <div id="order-company-detail">
                     <label for="company">Spoločnosť</label>
-                    <input type="text" id="company" name="company">
+                    <input type="text" id="company" name="company" value="{{ $user->company_name ?? ''}}">
+                    @if ($errors->has('company'))
+                    <div class="input-error">
+                        {{ $errors->first('company') }}
+                    </div>
+                    @endif
                     <label for="ico">IČO</label>
-                    <input type="text" id="ico" name="ico">
+                    <input type="text" id="ico" name="ico" value="{{ $user->ico ?? ''}}">
+                    @if ($errors->has('ico'))
+                    <div class="input-error">
+                        {{ $errors->first('ico') }}
+                    </div>
+                    @endif
                     <label for="dic">DIČ</label>
-                    <input type="text" id="dic" name="dic">
+                    <input type="text" id="dic" name="dic" value="{{ $user->dic ?? ''}}">
+                    @if ($errors->has('dic'))
+                    <div class="input-error">
+                        {{ $errors->first('dic') }}
+                    </div>
+                    @endif
                     <label for="ic-dph">IČ DPH</label>
-                    <input type="text" id="ic-dph" name="ic-dph">
+                    <input type="text" id="ic_dph" name="ic_dph" value="{{ $user->ic_dph ?? ''}}">
+                    @if ($errors->has('ic_dph'))
+                    <div class="input-error">
+                        {{ $errors->first('ic_dph') }}
+                    </div>
+                    @endif
                 </div>
                 <div id="order-personal-detail">
-                    <label for="name">Meno</label>
-                    <input type="text" id="name" name="name">
-                    <label for="surname">Priezvisko</label>
-                    <input type="text" id="surname" name="surname">
-                    <label for="street">Ulica a číslo domu</label>
-                    <input type="text" id="street" name="street">
-                    <label for="city">Mesto</label>
-                    <input type="text" id="city" name="city">
-                    <label for="psc">PSČ</label>
-                    <input type="text" id="psc" name="psc">
-                    <label for="phone">Telefónne číslo</label>
-                    <input type="text" id="phone" name="phone">
+                    <label for="name">Meno *</label>
+                    <input type="text" id="name" name="name" value="{{ $user->firstname ?? ''}}">
+                    @if ($errors->has('name'))
+                    <div class="input-error">
+                        {{ $errors->first('name') }}
+                    </div>
+                    @endif
+                    <label for="surname">Priezvisko *</label>
+                    <input type="text" id="surname" name="surname" value="{{ $user->surname ?? ''}}">
+                    @if ($errors->has('surname'))
+                    <div class="input-error">
+                        {{ $errors->first('surname') }}
+                    </div>
+                    @endif
+                    <label for="street">Ulica a číslo domu *</label>
+                    <input type="text" id="street" name="street" value="{{ $user->street ?? ''}}">
+                    @if ($errors->has('street'))
+                    <div class="input-error">
+                        {{ $errors->first('street') }}
+                    </div>
+                    @endif
+                    <label for="city">Mesto *</label>
+                    <input type="text" id="city" name="city" value="{{ $user->city ?? ''}}">
+                    @if ($errors->has('city'))
+                    <div class="input-error">
+                        {{ $errors->first('city') }}
+                    </div>
+                    @endif
+                    <label for="psc">PSČ *</label>
+                    <input type="text" id="psc" name="psc" value="{{ $user->postal_code ?? ''}}">
+                    @if ($errors->has('psc'))
+                    <div class="input-error">
+                        {{ $errors->first('psc') }}
+                    </div>
+                    @endif
+                    <label for="phone">Telefónne číslo *</label>
+                    <input type="text" id="phone" name="phone" value="{{ $user->phone ?? ''}}">
+                    @if ($errors->has('phone'))
+                    <div class="input-error">
+                        {{ $errors->first('phone') }}
+                    </div>
+                    @endif
                 </div>
             </div>
         </fieldset>
@@ -115,38 +146,5 @@
             <button class="payment-button" type="submit">Na prehľad</button>
         </div>
     </form>
-    <script>
-        function toPayment() {
-            document.querySelector('#order-transport').checked = false;
-            document.querySelector('#order-payment').checked = true;
-            document.querySelector('#order-address').checked = false;
-        }
-
-        function toAddress() {
-            document.querySelector('#order-transport').checked = false;
-            document.querySelector('#order-payment').checked = false;
-            document.querySelector('#order-address').checked = true;
-        }
-
-        function company_info(state) {
-            if (state) {
-                document.querySelector('#order-company-detail').style.display = 'grid';
-            } else {
-                document.querySelector('#order-company-detail').style.display = 'none';   
-            }
-        }
-
-        function outpostChosen() {
-            var buttons = document.getElementsByName('selection');
-            
-            for (var i = 0; i < buttons.length; i++) {
-                let label = document.querySelector('#' + buttons[i].id + '-label');
-                if (buttons[i].checked === true)
-                    label.textContent = 'Vybrané';
-                else 
-                    label.textContent = 'Zvoliť';
-            }
-        }
-    </script>
 </main>
 @endsection

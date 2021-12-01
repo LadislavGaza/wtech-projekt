@@ -22,7 +22,10 @@ class CreateUsersTable extends Migration
             $table->string('surname')->nullable();
             $table->string('street')->nullable();
             $table->string('city')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('phone')->nullable();
             $table->boolean('is_company')->default(false);
+            $table->string('company_name')->nullable();
             $table->string('ico')->nullable();
             $table->string('dic')->nullable();
             $table->string('ic_dph')->nullable();

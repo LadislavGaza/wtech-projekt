@@ -127,10 +127,10 @@ fieldset {
     width: 30%;
 }
 
-/* .transport-form .selected-outpost {
+.transport-form .selected-outpost {
     grid-row: 5;
     grid-column: 2 / span 2;
-} */
+}
 
 .outpost-chooser {
     width: 60%;
@@ -189,6 +189,13 @@ fieldset {
 #order-company-detail input, #order-personal-detail input {
     grid-column: 3;
     height: 2rem;
+}
+
+.input-error {
+    grid-column: 3;
+    height: 2rem;
+    color: red;
+    font-weight: bold;
 }
 
 #order-subject-type {
@@ -285,7 +292,7 @@ fieldset {
         /* width: 100%; */
     }
 
-    .transport-form .selected-outpost {
+    .selected-outpost {
         grid-row: 5;
         grid-column: 1 / span 4;
     }  

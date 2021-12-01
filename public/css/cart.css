@@ -81,6 +81,8 @@ main {
     border: none;
     justify-self: end;
     line-height: 1rem;
+    text-decoration: none;
+    text-align: center;
 }
 
 .payment-button:hover {

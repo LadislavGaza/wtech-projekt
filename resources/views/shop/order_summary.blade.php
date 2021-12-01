@@ -16,61 +16,50 @@
             <th>Medzisúčet</th>
         </thead>
         <tbody>
+            @foreach ($items as $item)
             <tr>
-                <td><img src="{{ asset('images/couch.jpg') }}" width="150"></td>
-                <td>Pohovka Bauhaus Chrome</td>
-                <td>720 €</td>
-                <td>2</td>
-                <td>1440 €</td>
+                <td><img src="{{ asset('images/'. $item->product->picture) }}" width="150"></td>
+                <td>{{ $item->product->name }}</td>
+                <td>{{ $item->product->price }} €</td>
+                <td>{{ $item->quantity }}</td>
+                <td>{{ $item->product->price * $item->quantity }} €</td>
             </tr>
-            <tr>
-                <td><img src="{{ asset('images/couch.jpg') }}" width="150"></td>
-                <td>Drevený rošt Jakub</td>
-                <td>65 €</td>
-                <td>1</td>
-                <td>65 €</td>
-            </tr>
-            <tr>
-                <td><img src="{{ asset('images/couch.jpg') }}" width="150"></td>
-                <td>Medený kávový stolík</td>
-                <td>1800 €</td>
-                <td>1</td>
-                <td>1800 €</td>
-            </tr>
+            @endforeach
         </tbody>
     </table>
     <div class="summary-options">
         <section id="order-summary-transport">
             <h2>Doprava</h2>
-            <img class="icon" src="{{ asset('icons/box.svg') }}">
-            <p>Výdajné miesto</p>
-            <p>5 €</p>
-            <p>Telgárt - veľkosklad</p>
+            <img class="icon" src="{{ asset('icons/'. $transport->icon) }}">
+            <p>{{ $transport->name }}</p>
+            <p>{{ $transport->price }} €</p>
+            <p>{{ $delivery_place->name }}</p>
         </section>
         <section id="order-summary-payment">
             <h2>Platba</h2>
-            <img class="icon" src="{{ asset('icons/credit-card.svg') }}">
-            <p>Kartou vopred</p>
-            <p>0 €</p>
+            <img class="icon" src="{{ asset('icons/'. $payment->icon) }}">
+            <p>{{ $payment->name }}</p>
+            <p>{{ $payment->price }} €</p>
         </section>
         <table id="order-summary-price" class="cart-price-content">
             <tr>
                 <th><emph>Celková suma:</emph><th>
-                <td><emph>3305 €</emph></td>
+                <td><emph>{{ $final_sum }} €</emph></td>
             </tr>
             <tr>
                 <th>Bez DPH:<th>
-                <td>2644 €</td>
+                <td>{{ $final_sum * 0.8 }} €</td>
             </tr>
         </table>
         <div id="order-summary-confirm">
             <input id="sales-terms-confirm" type="checkbox">
-            <label for="sales-terms-confirm">Súhlasím s obchodnými podmienkami</label>
+            <label for="sales-terms-confirm">Súhlasím s obchodnými podmienkami *</label>
             <input id="personal-data-confirm" type="checkbox">
-            <label for="personal-data-confirm">Súhlasím so spracovaním osobných údajov</label>
+            <label for="personal-data-confirm">Súhlasím so spracovaním osobných údajov *</label>
         </div>
-        <button id="order-btn-back"  class="payment-button payment-back">Späť k objednávke</button> 
-        <button id="order-btn-finish" class="order-move payment-button">Dokončiť nákup</button>
+        <a href="{{ url('order') }}" id="order-btn-back"  class="payment-button payment-back">Späť k objednávke</a> 
+        <a href="{{ url('order-success') }}" id="order-btn-finish" class="order-move payment-button">Dokončiť nákup *</a>
+        <!-- <button id="order-btn-finish" class="order-move payment-button">Dokončiť nákup *</button> -->
         <p class="mandatory-payment">*s povinnosťou platby</p>
     </div>
 </main>
