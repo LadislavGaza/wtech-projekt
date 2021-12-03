@@ -22,9 +22,15 @@
 
 .login-form form, .registration-form form {
     display: grid;
-    height: 80%;
+    height: 12rem;
     grid-column-gap: 0.5rem;
     align-items: center;
+}
+
+.login-form form
+
+.registration-form form {
+    height: 20rem;
 }
 
 .login-form form {

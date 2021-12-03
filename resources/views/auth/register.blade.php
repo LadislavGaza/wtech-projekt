@@ -10,9 +10,9 @@
     <div class="login-page content-middle">
         <section class="registration-form">
             <h1>Registrácia</h1>
-             <!-- Validation Errors -->
-            <x-auth-validation-errors :errors="$errors" />
-
+            @if($errors->any())
+                <p class="input-error">{{ $errors->first() }}<p>
+            @endif
             <form action="{{ route('register') }}" method="post">
                 @csrf
                 <p id="subtitle">Ste tu nový? Vyplňte formulár a uľahčite si u nás vaše nákupy </p>

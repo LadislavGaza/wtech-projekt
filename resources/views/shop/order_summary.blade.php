@@ -51,16 +51,16 @@
                 <td>{{ $final_sum * 0.8 }} €</td>
             </tr>
         </table>
-        <div id="order-summary-confirm">
-            <input id="sales-terms-confirm" type="checkbox">
+        <a href="{{ url('order') }}" id="order-btn-back"  class="payment-button payment-back">Späť k objednávke</a>
+        <form id="order-summary-confirm" action="{{ url('finish-order') }}" method="post">
+            @csrf
+            <input id="sales-terms-confirm" type="checkbox" name="terms-of-service">
             <label for="sales-terms-confirm">Súhlasím s obchodnými podmienkami *</label>
-            <input id="personal-data-confirm" type="checkbox">
+            <input id="personal-data-confirm" type="checkbox" name="personal-data">
             <label for="personal-data-confirm">Súhlasím so spracovaním osobných údajov *</label>
-        </div>
-        <a href="{{ url('order') }}" id="order-btn-back"  class="payment-button payment-back">Späť k objednávke</a> 
-        <a href="{{ url('order-success') }}" id="order-btn-finish" class="order-move payment-button">Dokončiť nákup *</a>
-        <!-- <button id="order-btn-finish" class="order-move payment-button">Dokončiť nákup *</button> -->
-        <p class="mandatory-payment">*s povinnosťou platby</p>
+            <button id="order-btn-finish" class="payment-button" type="submit">Dokončiť nákup *</button>
+            <p class="mandatory-payment">*s povinnosťou platby</p>
+        </form> 
     </div>
 </main>
 @endsection

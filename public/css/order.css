@@ -84,6 +84,7 @@ fieldset {
 
 .payment-button:hover {
     background-color: darkorange;
+    cursor: pointer;
 }
 
 .payment-button:after {
@@ -144,8 +145,6 @@ fieldset {
     margin-left: 50px;
 }
 
-
-
 .payment-form {
     display: grid;
     align-items: center;
@@ -191,13 +190,6 @@ fieldset {
     height: 2rem;
 }
 
-.input-error {
-    grid-column: 3;
-    height: 2rem;
-    color: red;
-    font-weight: bold;
-}
-
 #order-subject-type {
     display: grid;
     justify-content: center;
@@ -214,6 +206,12 @@ fieldset {
 
 #order-personal-detail {
     grid: repeat(6, auto) / 10% 10rem 1fr 10%;
+}
+
+.button-success{
+    padding: 0.5rem 0.2rem;
+    background-color: green;
+    color: white;
 }
 
 @media (max-width: 1200px) {

@@ -33,19 +33,32 @@ class OrderController extends Controller
                     'product' => $products[$product_id]
                 ]);
             }
+
+            $order = $request->session()->get('order', array());
+            $user = (object)$order;
+        }
+
+        if (sizeof($items) == 0) {
+            return back()->withErrors(['msg' => __('Your cart is empty')]);
         }
 
         $final_sum = 0;
         foreach($items as $item) {
             $final_sum += $item->product->price * $item->quantity;
         }
+        $options = $request->session()->get('shopping_options', (object) [
+            'transport' => null,
+            'payment' =>  null,
+            'delivery_place' => null
+        ]);
 
         return view('shop.order', [
             'items' => $items, 
             'final_sum' => $final_sum, 
             'transport_options' => ShoppingOption::where('type', 'transport')->get(),
             'payment_options' => ShoppingOption::where('type', 'payment')->get(),
-            'user' => $user
+            'user' => $user,
+            'options' => $options
         ]);
     }
 
@@ -67,13 +80,12 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $validatedData = $request->validate([
-            'name' => 'required',
+            'firstname' => 'required',
             'surname' => 'required',
             'street' => 'required',
             'city' => 'required',
-            'psc' => 'required|digits:5',
+            'postal_code' => 'required|digits:5',
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
 
             'company' => 'nullable',
@@ -84,14 +96,11 @@ class OrderController extends Controller
 
         if (Auth::check()) {
             $user = Auth::user();
-            $cart = $user->cart()->first();
-            $items = $cart->items()->with('product')->get();
-            
-            $user->firstname = $request->name; 
+            $user->firstname = $request->firstname; 
             $user->surname = $request->surname; 
             $user->street = $request->street; 
             $user->city = $request->city;
-            $user->postal_code = $request->psc;
+            $user->postal_code = $request->postal_code;
             $user->phone = $request->phone;
             $type_of_order = $request->get('org');
 
@@ -104,26 +113,19 @@ class OrderController extends Controller
             }
             else {
                 $user->is_company = false;
+                $user->company_name = null;
+                $user->ico = null;
+                $user->dic = null;
+                $user->ic_dph = null;
             }
             $user->save();
         } else {
-            $cart = $request->session()->get('cart', array());
-            $products = Product::whereIn('id', array_keys($cart))->get()->keyBy('id');
-
-            $items = array();
-            foreach ($cart as $product_id => $quantity) {
-                array_push($items, (object) [
-                    'quantity' => $quantity,
-                    'product' => $products[$product_id]
-                ]);
-            }
-            
             $order = $request->session()->get('order', array());
-            $order['firstname'] = $request->name;
+            $order['firstname'] = $request->firstname;
             $order['surname'] = $request->surname; 
             $order['street'] = $request->street; 
             $order['city'] = $request->city;
-            $order['postal_code'] = $request->psc;
+            $order['postal_code'] = $request->postal_code;
             $order['phone'] = $request->phone;
             $type_of_order = $request->get('org');
             if ($type_of_order == 'company'){
@@ -139,28 +141,20 @@ class OrderController extends Controller
             $request->session()->put('order', $order);
         }
 
-        $final_sum = 0;
-        foreach($items as $item) {
-            $final_sum += $item->product->price * $item->quantity;
-        }
-
         $type_of_transport = $request->get('transport');
         $transport = ShoppingOption::where('key', $type_of_transport)->first();
-        $final_sum += $transport->price;
-
         $type_of_payment = $request->get('payment');
         $payment = ShoppingOption::where('key', $type_of_payment)->first();
-        $final_sum += $payment->price;
 
         $delivery_place = $request->get('selection');
-
-        return view('shop.order_summary', [
+        $shoping_options = (object) [
             'transport' => $transport,
-            'payment' => $payment,
-            'delivery_place' => DeliveryPlace::find($delivery_place),
-            'items' => $items,
-            'final_sum' => $final_sum
-        ]);
+            'payment' =>  $payment,
+            'delivery_place' => $delivery_place
+        ];
+        $request->session()->put('shopping_options', $shoping_options);
+
+        return redirect('finish-order');
     }
 
     /**

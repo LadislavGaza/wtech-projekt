@@ -18,7 +18,9 @@
             </label>
             <div class="tab-content transport-form">
                 @foreach ($transport_options as $transport)
-                    <input type="radio" id="{{ $transport->key }}" name="{{ $transport->type }}" value="{{ $transport->key }}" {{ $loop->index == 0 ? 'checked' : ''}}>
+                    <input type="radio" id="{{ $transport->key }}" name="{{ $transport->type }}" 
+                           value="{{ $transport->key }}" 
+                           {{ ($options->transport == null && $loop->index == 0) || ($options->transport->id ?? '' == $transport->id) ? 'checked' : ''}}>
                     <img class="icon" src="{{ asset('icons/'. $transport->icon ) }}">
                     <label for="{{ $transport->key }}">{{ $transport->name }}</label>
                     <label for="{{ $transport->key }}">{{ $transport->price }} €</label>
@@ -45,7 +47,9 @@
             </label>
             <div class="tab-content payment-form">
                 @foreach ($payment_options as $payment)
-                <input type="radio" id="{{ $payment->key }}" name="{{ $payment->type }}" value="{{ $payment->key }}"{{ $loop->index == 0 ? 'checked' : ''}}>
+                <input type="radio" id="{{ $payment->key }}" name="{{ $payment->type }}" 
+                       value="{{ $payment->key }}"
+                       {{ ($options->payment == null && $loop->index == 0) || ($options->payment->id ?? '' == $payment->id) ? 'checked' : ''}}>
                 <img class="icon" src="{{ asset('icons/'. $payment->icon) }}">
                 <label for="{{ $payment->key }}">{{ $payment->name }}</label>
                 <label for="{{ $payment->key }}">{{ $payment->price }} €</label>
@@ -61,9 +65,11 @@
             </label>
             <div class="tab-content">
                 <div id="order-subject-type">
-                    <input type="radio" name="org" value="person" onchange="companyInfo(false)" checked>
+                    <input type="radio" name="org" value="person" onchange="companyInfo(false)" 
+                            {{ (!isset($user->is_company)) || (($user->is_company ?? '') == false) ? 'checked': '' }} >
                     <label>Súkromná osoba</label>
-                    <input type="radio" name="org" value="company" onchange="companyInfo(true)">
+                    <input type="radio" name="org" value="company" onchange="companyInfo(true)" 
+                            {{ (($user->is_company ?? '') == true) ? 'checked' : '' }}>
                     <label>Firma</label>
                 </div>
                 <div id="order-company-detail">
@@ -97,11 +103,11 @@
                     @endif
                 </div>
                 <div id="order-personal-detail">
-                    <label for="name">Meno *</label>
-                    <input type="text" id="name" name="name" value="{{ $user->firstname ?? ''}}">
-                    @if ($errors->has('name'))
+                    <label for="firstname">Meno *</label>
+                    <input type="text" id="firstname" name="firstname" value="{{ $user->firstname ?? ''}}">
+                    @if ($errors->has('firstname'))
                     <div class="input-error">
-                        {{ $errors->first('name') }}
+                        {{ $errors->first('firstname') }}
                     </div>
                     @endif
                     <label for="surname">Priezvisko *</label>
@@ -125,11 +131,11 @@
                         {{ $errors->first('city') }}
                     </div>
                     @endif
-                    <label for="psc">PSČ *</label>
-                    <input type="text" id="psc" name="psc" value="{{ $user->postal_code ?? ''}}">
-                    @if ($errors->has('psc'))
+                    <label for="postal_code">PSČ *</label>
+                    <input type="text" id="postal_code" name="postal_code" value="{{ $user->postal_code ?? ''}}">
+                    @if ($errors->has('postal_code'))
                     <div class="input-error">
-                        {{ $errors->first('psc') }}
+                        {{ $errors->first('postal_code') }}
                     </div>
                     @endif
                     <label for="phone">Telefónne číslo *</label>
@@ -147,4 +153,9 @@
         </div>
     </form>
 </main>
+@if (isset($user->is_company))
+<script>
+    companyInfo({{ $user->is_company ? 'true': 'false'}});
+</script>
+@endif
 @endsection

@@ -9,9 +9,9 @@
     <div class="login-page content-middle">
         <section class="login-form">    
             <h1>Prihlásenie</h1>
-            <x-auth-session-status :status="session('status')" />
-            <x-auth-validation-errors :errors="$errors" />
-
+            @if($errors->any())
+                <p class="input-error">{{ $errors->first() }}<p>
+            @endif
             <form action="{{ route('login') }}" method="post">
                 @csrf
                 <label for="email">E-mail:</label>

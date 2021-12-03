@@ -41,6 +41,9 @@
                 </td>
             </tr>
             @endforeach
+            @if (sizeof($items) == 0)
+                <tr><td colspan="8" class="cart-empty">V košíku nemáte žiadny nábytok</td></tr>
+            @endif
         </tbody>
     </table>
     <div class="cart-price content-middle">
@@ -55,6 +58,9 @@
             </tr>
         </table>
         <a href="{{ url('order') }}" class="button payment-button">K pokladni</a>
+        @if($errors->any())
+            <p class="input-error cart-error">{{ $errors->first() }}<p>
+        @endif
     </div>
 </main>
 @endsection

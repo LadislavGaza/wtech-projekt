@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\DeliveryPlaceController;
+use App\Http\Controllers\FinishOrderController;
 
 
 Route::get('/', function () {  return view('index'); });
@@ -18,7 +19,7 @@ Route::resource('search', SearchController::class);
 Route::resource('cart', ShoppingCartController::class);
 Route::resource('order', OrderController::class);
 Route::get('places', [DeliveryPlaceController::class, 'index']);
-Route::get('order-success', function () {  return view('shop.order_success'); });
+Route::resource('finish-order', FinishOrderController::class);
 
 Route::get('admin', [AdminLoginController::class, 'create']); //->middleware('guest');
 Route::post('admin', [AdminLoginController::class, 'store']); //->middleware('guest');

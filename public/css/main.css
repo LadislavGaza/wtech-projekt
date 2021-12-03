@@ -222,3 +222,10 @@ body {
     max-height: 200vh;
     padding: 1rem;
 }
+
+.input-error {
+    grid-column: 3;
+    height: 2rem;
+    color: red;
+    font-weight: bold;
+}

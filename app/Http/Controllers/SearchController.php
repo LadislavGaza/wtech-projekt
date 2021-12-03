@@ -82,6 +82,8 @@ class SearchController extends Controller
      */
     public function store(Request $request)
     {
+        $previous = strtok(url()->previous(), '?');
+
         if ($request->has('filter') || $request->has('sort')) {
             $params = $request->all();
             parse_str($params['url-params'], $old_params);
@@ -89,10 +91,18 @@ class SearchController extends Controller
             $old_params = Arr::except($old_params, array_keys($params));
             $params = array_merge($params, $old_params);
 
-            return redirect(strtok(url()->previous(), '?') . '?' . http_build_query($params));
+            return redirect($previous . '?' . http_build_query($params));
 
         } else if ($request->has('cancel')) {
-            return redirect(strtok(url()->previous(), '?'));
+            $params = $request->all();
+            parse_str($params['url-params'], $old_params);
+
+            if (array_key_exists('search', $old_params))
+                return redirect($previous . '?' . http_build_query([
+                    'search' => $old_params['search']
+                ]));
+    
+            return redirect($previous);
         }
     }
 

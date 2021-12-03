@@ -87,6 +87,7 @@ main {
 
 .payment-button:hover {
     background-color: darkorange;
+    cursor: pointer;
 }
 
 .payment-button:after {
@@ -136,7 +137,7 @@ main {
 #order-summary-confirm {
     display: grid;
     align-items: center;   
-    grid: repeat(2, 1fr) / 10% 1fr;
+    grid: repeat(4, auto) / 10% 1fr;
     width: 90%;
     max-width: 400px;
     place-self: end; /* justify a align end */
@@ -144,6 +145,7 @@ main {
 
 .payment-back {
     justify-self: start;
+    grid-column: 1;
 }
 
 .payment-back:after {
@@ -161,6 +163,21 @@ main {
     place-self: end;
     margin-right: 1rem;
     margin-top: 0;
+}
+
+.cart-error {
+    grid-row: 2;
+    grid-column: 2;
+    justify-self: end;
+}
+
+.cart-empty {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#order-btn-finish {
+    grid-column: 1 / span 2;
 }
 
 /* order summary */
