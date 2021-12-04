@@ -7,16 +7,38 @@
 
 #product-image {
     grid-column: 2;
-    max-width: 120px;
+    width: 100%;
+    max-width: 400px;
+}
+
+#product-image-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+#product-image-upload:hover {
+    background-color: darkorange;
+    cursor: pointer;
+}
+
+.product-edit-wrapper{
+    grid-column: 2 / span 2;
 }
 
 #upload-image {
     margin-top: 1.5rem;
     grid-column: 2;
-    max-width: 170px;
+    /* max-width: 170px; */
 }
 
 #product-edit-form {
+    grid-column: 3;
     display: grid;
     grid: repeat(3, auto) / 2fr 1fr 1fr;
     grid-row-gap: 1rem;

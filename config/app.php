@@ -232,5 +232,5 @@ return [
 
     ],
 
-    'app.images.path' => 'public/images/'
+    'eshop.images.path' => 'public/images/'
 ];

@@ -10,3 +10,11 @@ function changeQuantity() {
 function search(){
     this.closest('form').submit();
 }
+
+function previewImage() {
+    const [file] = event.target.files;
+    if (file) {
+        let productImg = document.querySelector('#product-image');
+        productImg.src = URL.createObjectURL(file);
+    }
+}

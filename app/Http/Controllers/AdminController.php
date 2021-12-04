@@ -66,6 +66,7 @@ class AdminController extends Controller
             'product_width' => 'required|integer|min:0',
             'product_depth' => 'required|integer|min:0',
             'product_height' => 'required|integer|min:0',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp', //|max:1024'
         ]);
 
         $product = new Product;
@@ -77,6 +78,13 @@ class AdminController extends Controller
         $product->width = $request->product_width;
         $product->depth = $request->product_depth;
         $product->height = $request->product_height;
+        $product->save();
+
+        $file = $request->get('image');
+        $fileName = $product->id . '-' . md5($file->getClientOriginalName()) . time() . '.' . $file->getClientOriginalExtension();
+        $uploadedFile = $file->storeAs(config('app.eshop_images_path'), $fileName);
+
+        $product->image = $fileName;
         $product->save();
 
         $categories = $request->all();
@@ -145,6 +153,7 @@ class AdminController extends Controller
             'product_width' => 'required|integer|min:0',
             'product_depth' => 'required|integer|min:0',
             'product_height' => 'required|integer|min:0',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp', //|max:1024'
         ]);
 
         $product = Product::find($id);
@@ -156,6 +165,22 @@ class AdminController extends Controller
         $product->width = $request->product_width;
         $product->depth = $request->product_depth;
         $product->height = $request->product_height;
+
+        $file = $validatedData['image'];
+        $fileName = $product->id . '-' . md5($file->getClientOriginalName()) . time() . '.' . $file->getClientOriginalExtension();
+        // $uploadedFile = $file->storeAs(config('app.eshop_images_path'), $fileName);
+
+//         $img = Image::make($image->getRealPath());
+
+// $img->resize(100, 100, function ($constraint) {
+
+//     $constraint->aspectRatio();
+
+// })->save($destinationPath.'/'.$input['imagename']);
+
+        $uploadedFile = $file->storeAs('', $fileName, 'images_storage');
+
+        $product->picture = $fileName;
 
         $categories = $request->all();
         $criteria = Category::whereIn('key', array_keys($categories))->get()->pluck('id');
