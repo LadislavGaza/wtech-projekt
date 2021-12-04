@@ -9,9 +9,6 @@
 </head>
 <body>
     <main id="admin-login-page">
-        <x-auth-session-status :status="session('status')" />
-        <x-auth-validation-errors :errors="$errors" />
-
         <form id="admin-login-form" action="{{ url('admin') }}" method="post">
             @csrf
             <img class="logo" src="{{ asset('images/logo.png') }}">
@@ -22,6 +19,9 @@
             <input type="password" id="password" name="password" 
                    class="password login-form-field" required autocomplete="current-password">
             <button type="submit" class="btn admin-login-button">Prihlásiť sa</button>
+            @if($errors->any())
+                <p class="input-error">{{ $errors->first() }}<p>
+            @endif
         </form>
     </main>
 </body>

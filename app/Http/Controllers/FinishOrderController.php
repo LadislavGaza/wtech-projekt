@@ -86,6 +86,16 @@ class FinishOrderController extends Controller
                 $cart = $user->cart()->first();
                 $cart->items()->delete();
             } else {
+                $cart = $request->session()->get('cart', array());
+                $products = Product::whereIn('id', array_keys($cart))->get()->keyBy('id');
+
+                foreach ($cart as $product_id => $quantity) {
+                    $products[$product_id]->quantity = (
+                        max($products[$product_id]->quantity - $quantity, 0)
+                    );
+                    $products[$product_id]->save();
+                }
+                
                 $request->session()->forget('cart');
             }
 

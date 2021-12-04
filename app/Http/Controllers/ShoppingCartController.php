@@ -63,22 +63,26 @@ class ShoppingCartController extends Controller
     public function store(StoreShoppingCartRequest $request)
     {
         $request->validate(['product-id' => 'required|integer|min:1']);
-        $product = (int)$request->get('product-id');
+        $product_id = (int)$request->get('product-id');
         
         if (Auth::check()) {
             $user = Auth::user();
             $cart = $user->cart()->first();
             try {
+                $product = Product::find($product_id);
+                $product->quantity -= 1;
+                $product->save();
+
                 $cart->items()->create([
                     'quantity' => 1,
-                    'product_id' => $product
+                    'product_id' => $product_id
                 ]);
             } catch (QueryException $e) {
                 return back()->with('status', true);
             }
         } else {
             $cart = $request->session()->get('cart', array());
-            $cart[$product] = 1;
+            $cart[$product_id] = 1;
             $request->session()->put('cart', $cart);
         }
 
@@ -118,15 +122,23 @@ class ShoppingCartController extends Controller
     {
         $request->validate(['howMuch' => 'required|integer|min:1']);
         $quantity = (int)$request->get('howMuch');
+        $product = Product::find($id);
 
         if (Auth::check()) {
             $user = Auth::user();
             $cart = $user->cart()->first();
-            $product = $cart->items()->where('product_id', $id);
-            $product->update(['quantity' => $quantity]);
+
+            $item = $cart->items()->where('product_id', $id)->first();    
+            $old_quantity = $item->quantity;
+
+            $what_u_rly_get = min($quantity, $old_quantity + $product->quantity);
+            $item->update(['quantity' => $what_u_rly_get]);
+            
+            $product->quantity -= ($what_u_rly_get - $old_quantity);
+            $product->save();
         } else {
             $cart = $request->session()->get('cart', array());
-            $cart[$id] = $quantity;
+            $cart[$id] = min($quantity, $product->quantity);
             $request->session()->put('cart', $cart);
         }
 
@@ -141,15 +153,20 @@ class ShoppingCartController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $product = $id;
+        $product_id = $id;
         if (Auth::check()) {
             $user = Auth::user();
             $cart = $user->cart()->first();
-            $product = $cart->items()->where('product_id', $id);
-            $product->delete();
+            $item = $cart->items()->where('product_id', $product_id)->first();
+
+            $product = Product::find($product_id);
+            $product->quantity += $item->quantity;
+
+            $item->delete();
+            $product->save();
         } else {
             $cart = $request->session()->get('cart', array());
-            unset($cart[$product]);
+            unset($cart[$product_id]);
             $request->session()->put('cart', $cart);
         }
         

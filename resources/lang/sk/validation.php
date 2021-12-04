@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'accepted' => 'The :attribute must be accepted.',
+    'accepted' => 'Pole :attribute musí byť akceptovaný.',
     'accepted_if' => 'The :attribute must be accepted when :other is :value.',
-    'active_url' => 'The :attribute is not a valid URL.',
+    'active_url' => ':attribute nie je platnou URL adresou.',
     'after' => 'The :attribute must be a date after :date.',
     'after_or_equal' => 'The :attribute must be a date after or equal to :date.',
     'alpha' => 'The :attribute must only contain letters.',
@@ -31,8 +31,8 @@ return [
         'array' => 'The :attribute must have between :min and :max items.',
     ],
     'boolean' => 'The :attribute field must be true or false.',
-    'confirmed' => 'The :attribute confirmation does not match.',
-    'current_password' => 'The password is incorrect.',
+    'confirmed' => 'Potvrdenie pre :attribute sa nezhoduje.',
+    'current_password' => 'Heslo je nesprávne.',
     'date' => 'The :attribute is not a valid date.',
     'date_equals' => 'The :attribute must be a date equal to :date.',
     'date_format' => 'The :attribute does not match the format :format.',
@@ -86,10 +86,10 @@ return [
         'string' => 'The :attribute must not be greater than :max characters.',
         'array' => 'The :attribute must not have more than :max items.',
     ],
-    'mimes' => 'The :attribute must be a file of type: :values.',
-    'mimetypes' => 'The :attribute must be a file of type: :values.',
+    'mimes' => ':attribute musí byť typu súboru: :values.',
+    'mimetypes' => ':attribute musí byť typu súboru: :values.',
     'min' => [
-        'numeric' => 'The :attribute must be at least :min.',
+        'numeric' => ':attribute musí byť najmenej :min.',
         'file' => 'The :attribute must be at least :min kilobytes.',
         'string' => 'The :attribute must be at least :min characters.',
         'array' => 'The :attribute must have at least :min items.',
@@ -123,9 +123,9 @@ return [
     'string' => 'The :attribute must be a string.',
     'timezone' => 'The :attribute must be a valid timezone.',
     'unique' => 'The :attribute has already been taken.',
-    'uploaded' => 'The :attribute failed to upload.',
-    'url' => 'The :attribute must be a valid URL.',
-    'uuid' => 'The :attribute must be a valid UUID.',
+    'uploaded' => 'Pole :attribute zlyhalo s nahrávaniím.',
+    'url' => 'Pole :attribute musí byť platná adresa URL.',
+    'uuid' => 'Pole :attribute musí byť platné UUID.',
 
     /*
     |--------------------------------------------------------------------------
@@ -165,7 +165,9 @@ return [
         'phone' => 'Telefónne číslo',
         'ico' => 'IČO',
         'dic' => 'DIČ',
-        'ic_dph' => 'IČ DPH'
+        'ic_dph' => 'IČ DPH',
+        'howMuch' => 'Množstvo',
+        'password' => 'heslo'
     ],
 
 ];

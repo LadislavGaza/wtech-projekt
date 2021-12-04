@@ -58,7 +58,7 @@ class ProductController extends Controller
 
         return view('shop.products', [
             'room' => $category_room,
-            'products' => $products->paginate(9), 
+            'products' => $products->where('quantity', '>', 0)->paginate(9), 
             'active_sort' => $sort,
             'filters' => $filters,
             'filter_names' => $filter_names,

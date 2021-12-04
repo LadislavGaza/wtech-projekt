@@ -15,7 +15,7 @@ class CreateShoppingItemsTable extends Migration
     {
         Schema::create('shopping_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedSmallInteger('quantity');
+            $table->unsignedSmallInteger('quantity')->default(1);
 
             $table->unsignedInteger('shopping_cart_id');
             $table->unsignedInteger('product_id');

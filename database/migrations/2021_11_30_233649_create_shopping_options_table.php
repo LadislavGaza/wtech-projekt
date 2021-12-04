@@ -21,8 +21,6 @@ class CreateShoppingOptionsTable extends Migration
             $table->unsignedDecimal('price', $precision = 10, $scale = 2);
             $table->string('type');
             $table->string('icon');
-
-            $table->timestamps();
         });
     }
 
