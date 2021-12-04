@@ -12,13 +12,7 @@
     color: #333;
 }
 
-.login-form {
-    height: 20rem;   
-}
 
-.registration-form {
-    height: 25rem;
-}
 
 .login-form form, .registration-form form {
     display: grid;
@@ -26,8 +20,6 @@
     grid-column-gap: 0.5rem;
     align-items: center;
 }
-
-.login-form form
 
 .registration-form form {
     height: 20rem;

@@ -1,4 +1,6 @@
 {
     "Whoops! Something went wrong.": "Hups! Niečo sa pokazilo :(",
-    "Your cart is empty": "Pokračovať na objednávku môžete len s nábytkom v košíku!"
+    "Your cart is empty": "Pokračovať na objednávku môžete len s nábytkom v košíku!",
+    "The password confirmation does not match.": "Heslá sa nezhodujú.",
+    "The password must be at least 8 characters.": "Heslo musí mať najmenej 8 znakov."
 }
