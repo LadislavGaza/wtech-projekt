@@ -33,4 +33,26 @@ class Category extends Model
             'color' => 'Farba',
         ];
     }
+
+    public function attributes() 
+    {
+        return [
+            'room' =>  Category::where('type', 'room')->get(),
+            'era' => Category::where('type', 'era')->get(),
+            'material' => Category::where('type', 'material')->get(),
+            'furniture' => Category::where('type', 'furniture')->get(),
+            'color' => Category::where('type', 'color')->get()
+        ];
+    } 
+
+    public function attributes_names()
+    {
+        return [
+            'room' => 'Miestnosť',
+            'era' => 'Historické obdobie',
+            'material' => 'Materiál',
+            'furniture' => 'Druh nábytku',
+            'color' => 'Farba'
+        ];
+    }
 }

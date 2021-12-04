@@ -82,6 +82,20 @@ body {
     border: 0px;
 }
 
+.icon-clickable {
+    width: 1.5rem;
+}
+
+.icon-clickable:hover {
+    cursor: pointer;
+    filter: invert(17%) 
+            sepia(100%) 
+            saturate(6695%) 
+            hue-rotate(356deg) 
+            brightness(110%) 
+            contrast(131%);
+}
+
 .btn:hover, .button:hover, .button-login:hover {
     background-color: orange;
     cursor: pointer;

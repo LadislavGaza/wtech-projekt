@@ -32,21 +32,6 @@ main {
     width: 200px;
 }
 
-.icon-clickable {
-    width: 1.5rem;
-}
-
-.icon-clickable:hover {
-    cursor: pointer;
-    /* https://codepen.io/sosuke/pen/Pjoqqp */
-    filter: invert(17%) 
-            sepia(100%) 
-            saturate(6695%) 
-            hue-rotate(356deg) 
-            brightness(110%) 
-            contrast(131%);
-}
-
 .cart-price {
     display: grid;
     grid: 1fr / repeat(2, 1fr);

@@ -38,7 +38,7 @@
     grid-column: 2;
     max-width: 200px;
     justify-self: end;
-    padding: 0.5rem 2rem;
+    padding: 1rem 2rem;
     display: grid;
     grid: 1fr / 2rem auto;
     align-items: center;
@@ -47,4 +47,19 @@
 
 .product-image {
     max-width: 120px;
+}
+
+.tr-stock-actions td:last-child {
+    width: 6rem;
+}
+
+.stock-actions {
+    display: grid;
+    grid: 1fr / repeat(2, 1fr);
+    width: 50%;
+}
+
+#product-pager {
+    grid-row: 3;
+    grid-column: 2;
 }

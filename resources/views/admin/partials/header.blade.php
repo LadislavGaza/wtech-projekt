@@ -2,7 +2,7 @@
     <a href="{{ url('/') }}">
         <img src="{{ asset('images/logo-white.png') }}" class="logo" alt="Antiquea Logo">
     </a>
-    <form class="search-bar" action="{{ url('search') }}" method="get">
+    <form class="search-bar" action="{{ url('admin/stock') }}" method="get">
         <img src="{{ asset('icons/search.svg') }}" class="icon">
         <input type="text" id="search" name="search" value="{{ request()->get('search', '')}}"
                 placeholder="Sem zadajte hľadaný nábytok ..." onChange="search()">

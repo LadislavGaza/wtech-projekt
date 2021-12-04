@@ -18,7 +18,12 @@ class SearchController extends Controller
     {
         $term = $request->query('search', '');
         $products = Product::where('name', 'ilike', '%'.$term.'%');
-        $category_room = (object) ['name' => 'Výsledky pre: "'. $term .'"', 'key' => 'search'];
+
+        $msg_search = 'Výsledky pre hľadanie: "'. $term .'"';
+        if ($term == '')
+            $msg_search = 'Zobrazuje sa celý katalóg nábytku';
+
+        $category_room = (object) ['name' => $msg_search, 'key' => 'search'];
 
         $filter = $request->all();
         $criteria = Category::whereIn('key', array_keys($filter))->get();

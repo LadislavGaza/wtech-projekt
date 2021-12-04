@@ -53,21 +53,21 @@
 
 #product-availability {
     display: grid;
-    grid: repeat(4, 1fr) / repeat(2, 1fr);
+    grid: repeat(3, 1fr) / repeat(2, 1fr);
     column-gap: 2rem;
     align-items: center;
     /* padding-left: 1.5rem; */
 }
 
-#product-price, #product-discount, #product-stock {
-    max-width: 4rem;
+#product-price, #product-discount, #product-stock, #product-year {
+    max-width: 5rem;
     max-height: 1.2rem;
     margin: 0;
 }
 
 #product-attributes {
     display: grid;
-    grid: repeat(8, 1fr) / repeat(2, 1fr);
+    grid: auto repeat(5, 1fr) / repeat(2, 1fr);
     row-gap: 0.5rem;
     align-items: center;
 }
@@ -96,4 +96,20 @@
 
 #product-width, #product-depth, #product-height {
     width: 80px;
+}
+
+.filter-categories {
+    display: grid;
+    grid: auto / 1fr 2fr 1fr 2fr;
+    align-items: center;
+}
+
+#product-desc {
+    font-size: 1rem;
+    font-family: 'Open Sans', serif;
+}
+
+.save-button {
+    grid-column: 3;
+    grid-row: 1;
 }

@@ -6,7 +6,7 @@
  
 @section('content')
 <main id="product-stock">
-    <a href="{{ url('admin') }}" class="btn" id="new-product">
+    <a href="{{ url('admin/stock/create') }}" class="btn" id="new-product">
         <img src="{{ asset('icons/plus-lg.svg') }}" class="icon">
         Nový produkt
     </a>
@@ -14,24 +14,31 @@
         <thead>
             <th></th>
             <th>Produkt</th>
-            <th>V ponuke</th>
             <th>Na sklade</th>
             <th>Cena</th>
             <th>Akcie</th>
         </thead>
         <tbody>
             @foreach ($products as $product)
-            <tr>
+            <tr class="tr-stock-actions">
                 <td><img class="product-image" src="{{ asset('images/'. $product->picture) }}"></td>
-                <td><a href="{{ url('admin/stock', [$product]) }}">{{ $product->name }}</a></td>
-                <td><img class="icon" src="{{ asset('icons/eye.svg') }}"></td> <!-- icons/eye-slash.svg -->
+                <td><a href="{{ url('admin/stock/'. $product->id . '/edit') }}">{{ $product->name }}</a></td>
                 <td>{{ $product->quantity }} ks</td>
                 <td>{{ $product->price }} €</td>
                 <td>
-                    <a href="{{ url('search', [$product]) }}">
-                        <img class="icon" src="{{ asset('icons/box-arrow.svg') }}">
-                    </a>
-                    <img class="icon" src="{{ asset('icons/x-lg.svg') }}">
+                    <div class="stock-actions">
+                        <a href="{{ url('search', [$product]) }}">
+                            <img class="icon" src="{{ asset('icons/box-arrow.svg') }}">
+                        </a>
+                        <form action="{{ url('admin/stock', [$product->id]) }}"
+                            method="post" onsubmit="return confirm('Naozaj chcete zmazať produkt z ponuky?');">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="button-to-delete">
+                                <img class="icon-clickable" src="{{ asset('icons/x-lg.svg') }}">
+                            </button>
+                        </form>
+                    </div>
                 </td>
             </tr>
             @endforeach
