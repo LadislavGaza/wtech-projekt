@@ -52,8 +52,6 @@ class SearchController extends Controller
             $products = $products->orderBy('price', 'asc');
         } else if ($sort == 'expensive') {
             $products = $products->orderBy('price', 'desc');
-        } else if ($sort == 'discount') {
-            $products = $products->orderBy('discount', 'desc');
         } else if ($sort == 'newest') {
             $products = $products->orderBy('year', 'desc');
         }

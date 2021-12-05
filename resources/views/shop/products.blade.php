@@ -19,7 +19,6 @@
                     <option value="default" {{ $active_sort == 'default' ? 'selected' : '' }} disabled>Predvolené</option>
                     <option value="cheap" {{ $active_sort == 'cheap' ? 'selected' : '' }}>Od najlacnejších</option>
                     <option value="expensive" {{ $active_sort == 'expensive' ? 'selected' : '' }}>Od najdrahších</option>
-                    <option value="discount" {{ $active_sort == 'discount' ? 'selected' : '' }}>Od najväčšej zľavy</option>
                     <option value="newest" {{ $active_sort == 'newest' ? 'selected' : '' }}>Najnovšie rokom výroby</option>
                 </select>
             </div>

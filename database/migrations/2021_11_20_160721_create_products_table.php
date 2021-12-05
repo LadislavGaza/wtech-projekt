@@ -19,9 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('picture')->nullable();
-            $table->boolean('in_offering')->default(true);
             $table->unsignedDecimal('price', $precision = 10, $scale = 2);
-            $table->unsignedSmallInteger('discount')->default(0);
             $table->unsignedSmallInteger('quantity')->default(0);
             $table->smallInteger('year')->nullable();
             $table->unsignedSmallInteger('width');

@@ -20,7 +20,7 @@
         <tbody>
             @foreach ($items as $item)
             <tr>
-                <td><img class="product-image" src="{{ asset('images/'. ($item->product->picture ?? 'placeholder.jpg') }}"></td>
+                <td><img class="product-image" src="{{ asset('images/'. ($item->product->picture ?? 'placeholder.jpg')) }}"></td>
                 <td>{{ $item->product->name }}</td>
                 <td>{{ $item->product->price }} €</td>
                 <td><form action="{{ url('cart', [$item->product->id]) }}" method="post">
@@ -29,7 +29,7 @@
                     <input type="number" name="howMuch" value="{{ $item->quantity }}" onChange="changeQuantity()">
                     </form>
                 </td>
-                <td> {{ $item->product->price * $item->quantity }}€</td>
+                <td>{{ $item->product->price * $item->quantity }}€</td>
                 <td>
                     <form action="{{ url('cart', [$item->product->id]) }}" method="post">
                         @csrf

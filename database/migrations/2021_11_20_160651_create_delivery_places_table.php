@@ -16,7 +16,6 @@ class CreateDeliveryPlacesTable extends Migration
         Schema::create('delivery_places', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->timestamps();
         });
     }
 
