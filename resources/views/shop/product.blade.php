@@ -13,7 +13,7 @@
         @endif
         <li><a href="#">{{ $product->name }}</a></li>
     </ul>
-    <img id="furniture-image" src="{{ asset('images/'. $product->picture) }}" alt="{{ $product->name }}">
+    <img id="furniture-image" src="{{ asset('images/'. ($product->picture ?? 'placeholder.jpg')) }}" alt="{{ $product->name }}">
     <h1 id="furniture-name">{{ $product->name }}</h1>
     <p id="furniture-description">{{ $product->description }}
     </p>
@@ -85,7 +85,7 @@
             @else
             <a href="{{ url('products/'. $room->key, [$product]) }}">
             @endif
-                <img class="product-image" src="{{ asset('images/' . $product->picture) }}" alt="{{ $product->name }}">
+                <img class="product-image" src="{{ asset('images/' . ($product->picture ?? 'placeholder.jpg')) }}" alt="{{ $product->name }}">
                 <p class="product-caption">{{ $product->name }}</p>
                 <p class="product-price">{{ $product->price }} €</p>
             </a>

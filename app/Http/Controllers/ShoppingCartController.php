@@ -45,16 +45,6 @@ class ShoppingCartController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreShoppingCartRequest  $request
@@ -87,28 +77,6 @@ class ShoppingCartController extends Controller
         }
 
         return back()->with('status', true);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ShoppingCart  $shoppingCart
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ShoppingCart $shoppingCart)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ShoppingCart  $shoppingCart
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ShoppingCart $shoppingCart)
-    {
-        //
     }
 
     /**

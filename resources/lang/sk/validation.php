@@ -91,14 +91,14 @@ return [
     'min' => [
         'numeric' => ':attribute musí byť najmenej :min.',
         'file' => 'The :attribute must be at least :min kilobytes.',
-        'string' => 'The :attribute must be at least :min characters.',
+        'string' => ':attribute musi byť dlhé najmenej :min znakov.',
         'array' => 'The :attribute must have at least :min items.',
     ],
     'multiple_of' => 'The :attribute must be a multiple of :value.',
     'not_in' => 'The selected :attribute is invalid.',
     'not_regex' => 'The :attribute format is invalid.',
     'numeric' => 'The :attribute must be a number.',
-    'password' => 'The password is incorrect.',
+    'password' => 'Heslo je nesprávne.',
     'present' => 'The :attribute field must be present.',
     'regex' => 'The :attribute format is invalid.',
     'required' => 'Pole :attribute je povinné.',
@@ -167,7 +167,7 @@ return [
         'dic' => 'DIČ',
         'ic_dph' => 'IČ DPH',
         'howMuch' => 'Množstvo',
-        'password' => 'heslo'
+        'password' => 'Heslo'
     ],
 
 ];

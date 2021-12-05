@@ -18,7 +18,7 @@
         <tbody>
             @foreach ($items as $item)
             <tr>
-                <td><img src="{{ asset('images/'. $item->product->picture) }}" width="150"></td>
+                <td><img src="{{ asset('images/'. ($item->picture ?? 'placeholder.jpg')) }}" width="150"></td>
                 <td>{{ $item->product->name }}</td>
                 <td>{{ $item->product->price }} €</td>
                 <td>{{ $item->quantity }}</td>

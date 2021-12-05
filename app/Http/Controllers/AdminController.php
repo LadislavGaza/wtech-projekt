@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AdminController extends Controller
 {
@@ -56,7 +58,6 @@ class AdminController extends Controller
     public function store(Request $request)
     {
          // Create new product
-
          $validatedData = $request->validate([
             'product_name' => 'required',
             'product_description' => 'required',
@@ -80,20 +81,25 @@ class AdminController extends Controller
         $product->height = $request->product_height;
         $product->save();
 
-        $file = $request->get('image');
-        $fileName = $product->id . '-' . md5($file->getClientOriginalName()) . time() . '.' . $file->getClientOriginalExtension();
-        $uploadedFile = $file->storeAs(config('app.eshop_images_path'), $fileName);
+        if ($request->has('image')) {
+            $file = $request->image;
+            $fileName = $product->id . '-' . md5($file->getClientOriginalName()) . time() . '.' . $file->getClientOriginalExtension();
+            $uploadedFile = $file->storeAs('', $fileName, 'images_storage');
 
-        $product->image = $fileName;
-        $product->save();
+            $product->picture = $fileName;
+            $product->save();
+
+            $img = Image::make($file);
+            $img->resize(800, 600, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(config('app.eshop') . $fileName);
+        }
 
         $categories = $request->all();
         $criteria = Category::whereIn('key', array_keys($categories))->get()->pluck('id');
         $product->categories()->sync($criteria);
 
         return redirect('admin/stock/' . $product->id . '/edit');
-
-        //  return redirect('admin/stock/' . $id);
     }
 
     /**
@@ -157,6 +163,15 @@ class AdminController extends Controller
         ]);
 
         $product = Product::find($id);
+
+        if($request->has('remove-image')){
+            if (Storage::disk('images_storage')->exists($product->picture))
+                Storage::disk('images_storage')->delete($product->picture);
+            $product->picture = null;
+            $product->save();
+            return redirect('admin/stock/' . $id . '/edit');
+        }
+
         $product->name = $request->product_name;
         $product->description = $request->product_description;
         $product->price = $request->product_price;
@@ -166,21 +181,21 @@ class AdminController extends Controller
         $product->depth = $request->product_depth;
         $product->height = $request->product_height;
 
-        $file = $validatedData['image'];
-        $fileName = $product->id . '-' . md5($file->getClientOriginalName()) . time() . '.' . $file->getClientOriginalExtension();
-        // $uploadedFile = $file->storeAs(config('app.eshop_images_path'), $fileName);
+        // $file = $validatedData['image'];
+        if ($request->has('image')) {
+            $file = $request->image;
+            $fileName = $product->id . '-' . md5($file->getClientOriginalName()) . time() . '.' . $file->getClientOriginalExtension();
+            $uploadedFile = $file->storeAs('', $fileName, 'images_storage');
+            if (Storage::disk('images_storage')->exists($product->picture))
+                Storage::disk('images_storage')->delete($product->picture);
+            
+            $product->picture = $fileName;
 
-//         $img = Image::make($image->getRealPath());
-
-// $img->resize(100, 100, function ($constraint) {
-
-//     $constraint->aspectRatio();
-
-// })->save($destinationPath.'/'.$input['imagename']);
-
-        $uploadedFile = $file->storeAs('', $fileName, 'images_storage');
-
-        $product->picture = $fileName;
+            $img = Image::make($file);
+            $img->resize(800, 600, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(config('app.eshop') . $fileName);
+        }
 
         $categories = $request->all();
         $criteria = Category::whereIn('key', array_keys($categories))->get()->pluck('id');
@@ -198,7 +213,11 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        Product::find($id)->delete();
+        $product = Product::find($id);
+        if (Storage::disk('images_storage')->exists($product->picture))
+                Storage::disk('images_storage')->delete($product->picture);
+        $product->delete();
+
         return back();
     }
 }

@@ -22,7 +22,7 @@
             </form>
         </section>
         <section class="login-register-link">
-            <h1>Nemáte ešte účet</h1>
+            <h1>Nemáte ešte účet?</h1>
             <a href="{{ url('register') }}" class="button-login big-button">Registrovať sa</a>
         </section>
     </div>

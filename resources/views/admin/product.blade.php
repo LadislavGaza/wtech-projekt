@@ -14,12 +14,15 @@
             @method('put')
         @endif
         <div id="upload-image">
-            <img id="product-image" src="{{ asset('images/' . ($product->picture ?? '')) }}">
-            <label id="product-image-upload" >
-                <input type="file" class=login-user name='image'  accept=".jpg, .jpeg, .png, .webp" onchange="previewImage()">
+            <img id="product-image" src="{{ asset('images/' . ($product->picture ?? 'placeholder.jpg')) }}">
+            <label class="btn product-image-button" >
+                <input type="file" name='image' accept=".jpg, .jpeg, .png, .webp" onchange="previewImage()">
                 <img class="icon" src="{{ asset('icons/card-image.svg') }}" >
                 Nahrať obrázok
             </label>
+            @if(isset($product->picture))
+                <button type="submit" class="btn product-image-button btn-delete" name="remove-image">Zmazať obrázok</button>
+            @endif
         </div>
         <div id="product-edit-form">
             <h1>Produkt</h1>

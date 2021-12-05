@@ -21,7 +21,7 @@
         <tbody>
             @foreach ($products as $product)
             <tr class="tr-stock-actions">
-                <td><img class="product-image" src="{{ asset('images/'. $product->picture) }}"></td>
+                <td><img class="product-image" src="{{ asset('images/'. ($product->picture ?? 'placeholder.jpg')) }}"></td>
                 <td><a href="{{ url('admin/stock/'. $product->id . '/edit') }}">{{ $product->name }}</a></td>
                 <td>{{ $product->quantity }} ks</td>
                 <td>{{ $product->price }} €</td>

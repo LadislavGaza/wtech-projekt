@@ -1,5 +1,5 @@
 <header>
-    <a href="{{ url('/') }}">
+    <a href="{{ url('/admin/stock') }}">
         <img src="{{ asset('images/logo-white.png') }}" class="logo" alt="Antiquea Logo">
     </a>
     <form class="search-bar" action="{{ url('admin/stock') }}" method="get">

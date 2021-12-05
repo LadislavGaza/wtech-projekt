@@ -66,7 +66,7 @@
             @else
             <a href="{{ url('products/'. $room->key, [$product]) }}">
             @endif
-                <img class="product-image" src="{{ asset('images/'. $product->picture) }}" alt="{{ $product->name }}">
+                <img class="product-image" src="{{ asset('images/'. ($product->picture ?? 'placeholder.jpg')) }}" alt="{{ $product->name }}">
                 <p class="product-caption">{{ $product->name }}</p>
                 <p class="product-price">{{ $product->price }} €</p>
             </a>

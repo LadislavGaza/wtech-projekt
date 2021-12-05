@@ -27,6 +27,12 @@
 
 .admin-login-button {
     grid-column: 2;
+    height: 3rem;
+}
+
+.admin-login-button:hover {
+    background-color: darkorange;
+    cursor: pointer;
 }
 
 .input-error {
